@@ -2890,7 +2890,7 @@ input[type="button"].btn-block {
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 0;
   z-index: 1000;
   display: none;
@@ -9935,7 +9935,7 @@ a:focus {
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 3rem;
 }
 
 .topbar #sidebarToggleTop {
@@ -10075,7 +10075,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 6.5rem;
+  width: 8.5rem;
   min-height: 100vh;
 }
 
@@ -10089,8 +10089,8 @@ a:focus {
 
 .sidebar .nav-item .nav-link {
   text-align: center;
-  padding: 0.75rem 1rem;
-  width: 6.5rem;
+  padding: 0.2rem 1rem;
+  width: 8.5rem;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -10220,14 +10220,14 @@ a:focus {
 }
 
 .sidebar hr.sidebar-divider {
-  margin: 0 1rem 1rem;
+  margin: 0.5rem 0rem 0rem 0rem;
 }
 
 .sidebar .sidebar-heading {
   text-align: center;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   font-weight: 800;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
 }
 
 @media (min-width: 768px) {
@@ -10995,4 +10995,12 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+i.icon-home {
+  font-size: 5rem;
+}
+
+div.card.card-home{
+  height:13rem;
 }
