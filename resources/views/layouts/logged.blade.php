@@ -10,7 +10,7 @@
         <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
       </a>
       <hr class="sidebar-divider">
-      <li class="nav-item active">
+      <li class="nav-item {{Route::currentRouteName() == 'tablero' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('tablero')}}">
           <i class="fas fa-fw fa-home"></i>
           <span>Inicio</span></a>
@@ -19,17 +19,17 @@
       <div class="sidebar-heading">
         Vacantes
       </div>
-      <li class="nav-item">
+      <li class="nav-item {{Route::currentRouteName() == 'alta-vacante' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('alta-vacante')}}">
           <i class="fas fa-fw fa-plus"></i>
           <span>Abrir Vacante</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes-abiertas' ? 'active' : ''}}">
       <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes Abiertas</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('consultar-vacantes')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes</span></a>
@@ -38,7 +38,7 @@
       <div class="sidebar-heading">
         Postulaciones
       </div>
-      <li class="nav-item">
+      <li class="nav-item {{Route::currentRouteName() == 'consultar-postulaciones' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('consultar-postulaciones')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Mis Postulaciones</span></a>
