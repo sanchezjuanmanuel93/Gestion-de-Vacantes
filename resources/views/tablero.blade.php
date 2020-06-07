@@ -11,7 +11,7 @@
 @section('logged-content')
 <div class="row justify-content-around">
     <div class="col-12 col-md-6 col-lg-3 pb-5">
-        <a href="{{action('AbrirVacanteController@index')}}" class="icon-home-anchor">
+        <a href="{{action('VacanteController@alta')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
                 <div class="card-body">
                     <div class="d-flex flex-column h-100"> 

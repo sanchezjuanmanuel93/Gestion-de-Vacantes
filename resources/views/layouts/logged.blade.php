@@ -20,7 +20,7 @@
         Vacantes
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{{action('AbrirVacanteController@index')}}">
+        <a class="nav-link" href="{{action('VacanteController@alta')}}">
           <i class="fas fa-fw fa-plus"></i>
           <span>Abrir Vacante</span></a>
       </li>

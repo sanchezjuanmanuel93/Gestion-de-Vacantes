@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AbrirVacanteController extends Controller
+class VacanteController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -13,7 +13,7 @@ class AbrirVacanteController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +21,19 @@ class AbrirVacanteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function alta()
     {
         return view('vacante/abrir-vacante');
+    }
+
+    
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function consultaLista()
+    {
+        return view('vacante/consultar-vacantes');
     }
 }

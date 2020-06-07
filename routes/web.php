@@ -19,4 +19,5 @@ Auth::routes();
 Route::get('/', 'InicioController@index')->name('default');
 Route::get('/inicio', 'InicioController@index')->name('inicio');
 Route::get('/tablero', 'TableroController@index')->name('tablero');
-Route::get('/vacante/alta', 'AbrirVacanteController@index')->name('abrir-vacante');
+Route::get('/vacante', 'VacanteController@consultaLista')->name('consultar-vacantes');
+Route::get('/vacante/alta', 'VacanteController@alta')->name('abrir-vacante');
