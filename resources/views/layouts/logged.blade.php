@@ -3,7 +3,7 @@
 @section('content')
   <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('tablero')}}">
         <div class="sidebar-brand-icon">
           <i class="fas fa-user-graduate"></i>
         </div>
@@ -11,7 +11,7 @@
       </a>
       <hr class="sidebar-divider">
       <li class="nav-item active">
-        <a class="nav-link" href="{{action('TableroController@index')}}">
+        <a class="nav-link" href="{{route('tablero')}}">
           <i class="fas fa-fw fa-home"></i>
           <span>Inicio</span></a>
       </li>
@@ -20,17 +20,17 @@
         Vacantes
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{{action('VacanteController@altaVacante')}}">
+        <a class="nav-link" href="{{route('alta-vacante')}}">
           <i class="fas fa-fw fa-plus"></i>
           <span>Abrir Vacante</span></a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="{{action('VacanteController@consultaListaVacantesAbiertas')}}">
+      <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes Abiertas</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{action('VacanteController@consultaListaVacantes')}}">
+        <a class="nav-link" href="{{route('consultar-vacantes')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes</span></a>
       </li>
@@ -39,7 +39,7 @@
         Postulaciones
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{{action('PostulacionController@consultaListaPostulaciones')}}">
+        <a class="nav-link" href="{{route('consultar-postulaciones')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Mis Postulaciones</span></a>
       </li>
