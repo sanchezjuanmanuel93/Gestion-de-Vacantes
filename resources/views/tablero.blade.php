@@ -1,10 +1,7 @@
 @extends('layouts.logged')
 
-@section('title')
-    Inicio
-@endsection
 @section('logged-content')
-<div class="row justify-content-around">
+<div class="row justify-content-around pt-5">
     <div class="col-12 col-md-6 col-lg-3 pb-5">
         <a href="{{route('alta-vacante')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
@@ -54,7 +51,7 @@
         </a>
     </div>
     <div class="col-12 col-md-6 col-lg-3 pb-5">
-        <a href="#" class="icon-home-anchor">
+        <a href="{{route('alta-usuario')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
                 <div class="card-body">
                     <div class="d-flex flex-column h-100"> 
@@ -66,7 +63,7 @@
         </a>
     </div>
     <div class="col-12 col-md-6 col-lg-3 pb-5">
-        <a href="#" class="icon-home-anchor">
+        <a href="{{route('consultar-usuarios')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
                 <div class="card-body">
                     <div class="d-flex flex-column h-100"> 
@@ -78,7 +75,7 @@
         </a>
     </div>
     <div class="col-12 col-md-6 col-lg-3 pb-5">
-        <a href="#" class="icon-home-anchor">
+        <a href="{{route('consultar-faqs')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
                 <div class="card-body">
                     <div class="d-flex flex-column h-100"> 
@@ -90,7 +87,7 @@
         </a>
     </div>
     <div class="col-12 col-md-6 col-lg-3 pb-5">
-        <a href="#" class="icon-home-anchor">
+        <a href="{{route('solicitar-soporte')}}" class="icon-home-anchor">
             <div class="card card-home mx-auto">
                 <div class="card-body">
                     <div class="d-flex flex-column h-100"> 

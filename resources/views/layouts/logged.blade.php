@@ -28,12 +28,12 @@
         <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes-abiertas' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
             <i class="fas fa-fw fa-list-ul"></i>
-            <span>Listar Vacantes Abiertas</span></a>
+            <span>Consultar Vacantes Abiertas</span></a>
         </li>
         <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('consultar-vacantes')}}">
             <i class="fas fa-fw fa-list-ul"></i>
-            <span>Listar Vacantes</span></a>
+            <span>Consultar Vacantes</span></a>
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -48,27 +48,27 @@
         <div class="sidebar-heading">
           Usuarios
         </div>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item {{Route::currentRouteName() == 'alta-usuario' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('alta-usuario')}}">
             <i class="fas fa-fw fa-plus"></i>
             <span>Crear Usuario</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item {{Route::currentRouteName() == 'consultar-usuarios' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('consultar-usuarios')}}">
             <i class="fas fa-fw fa-list-ul"></i>
-            <span>Listar Usuario</span></a>
+            <span>Consultar Usuarios</span></a>
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
           Soporte
         </div>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item {{Route::currentRouteName() == 'consultar-faqs' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('consultar-faqs')}}">
             <i class="fas fa-fw fa-info-circle"></i>
             <span>Consultar FAQs</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item {{Route::currentRouteName() == 'solicitar-soporte' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('solicitar-soporte')}}">
             <i class="fas fa-fw fa-question-circle"></i>
             <span>Solicitar Soporte</span></a>
         </li>

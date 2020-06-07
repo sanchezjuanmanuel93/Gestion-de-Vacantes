@@ -23,3 +23,8 @@ Route::get('/vacante', 'VacanteController@consultaListaVacantes')->name('consult
 Route::get('/vacante/abiertas', 'VacanteController@consultaListaVacantesAbiertas')->name('consultar-vacantes-abiertas');
 Route::get('/vacante/alta', 'VacanteController@altaVacante')->name('alta-vacante');
 Route::get('/postulacion', 'PostulacionController@consultaListaPostulaciones')->name('consultar-postulaciones');
+Route::get('/usuario', 'UsuarioController@consultaListaUsuarios')->name('consultar-usuarios');
+Route::get('/usuario/alta', 'UsuarioController@altaUsuario')->name('alta-usuario');
+Route::get('/soporte', 'SoporteController@solicitarSoporte')->name('solicitar-soporte');
+Route::get('/soporte/faqs', 'SoporteController@consultaFAQs')->name('consultar-faqs');
+
