@@ -1,0 +1,56 @@
+.dropdown-menu {
+    top: 80%;
+}
+
+.topbar {
+    height: 3rem;
+}
+
+.sidebar {
+    width: 8.5rem;
+}
+
+.sidebar .nav-item .nav-link {
+    padding: 0.2rem 1rem;
+    width: 8.5rem;
+}
+
+.sidebar hr.sidebar-divider {
+    margin: 0.5rem 0rem 0rem 0rem;
+}
+
+.sidebar .sidebar-heading {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 0.7rem;
+}
+
+i.icon-home {
+    font-size: 5rem;
+}
+
+div.card.card-home{
+    height: 13rem;
+    max-width: 13rem;
+}
+
+a.icon-home-anchor h5, 
+a.icon-home-anchor i {
+    color: #858796 !important;
+}
+
+a.icon-home-anchor:hover h5, 
+a.icon-home-anchor:hover i {
+    color: #4e73df !important;
+}
+
+a.icon-home-anchor, a.icon-home-anchor:hover {
+    text-decoration: none !important;
+}
+
+ol.breadcrumb{
+    background-color: transparent;
+    padding: 0.75rem 0rem;
+    margin-bottom: 0rem;
+}
+  
+  

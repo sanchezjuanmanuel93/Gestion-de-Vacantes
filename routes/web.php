@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+Route::get('/', 'InicioController@index')->name('default');
 Route::get('/inicio', 'InicioController@index')->name('inicio');
+Route::get('/tablero', 'TableroController@index')->name('tablero');
+Route::get('/vacante/alta', 'AbrirVacanteController@index')->name('abrir-vacante');

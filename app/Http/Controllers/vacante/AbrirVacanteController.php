@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class InicioController extends Controller
+class AbrirVacanteController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -13,7 +13,7 @@ class InicioController extends Controller
      */
     public function __construct()
     {
-        
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +23,6 @@ class InicioController extends Controller
      */
     public function index()
     {
-        return view('inicio');
+        return view('vacante/abrir-vacante');
     }
 }

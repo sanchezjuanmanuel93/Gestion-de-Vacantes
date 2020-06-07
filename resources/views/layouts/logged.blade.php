@@ -11,7 +11,7 @@
       </a>
       <hr class="sidebar-divider">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{action('TableroController@index')}}">
           <i class="fas fa-fw fa-home"></i>
           <span>Inicio</span></a>
       </li>
@@ -20,7 +20,7 @@
         Vacantes
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{action('AbrirVacanteController@index')}}">
           <i class="fas fa-fw fa-plus"></i>
           <span>Abrir Vacante</span></a>
       </li>
@@ -74,7 +74,7 @@
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
@@ -109,7 +109,7 @@
             </ol>
           </nav>
           <h1> @yield('title') </h1>
-          <div class="container p-2 p-md-5">
+          <div class="container p-2 p-md-3">
             @yield('logged-content')
           </div>
         </div>
