@@ -1,5 +1,9 @@
 @extends('layouts.logged')
 
+@section('title')
+    Inicio
+@endsection
+
 @section('logged-content')
 <div class="row justify-content-around pt-5">
     <div class="col-12 col-md-6 col-lg-3 pb-5">
