@@ -45,6 +45,11 @@ a.previous-button:hover i {
     color: #4e73df !important;
 }
 
+a.icon-home-anchor:hover div.card-home{
+    border-width: 0.2rem;
+    border-color: #4e73df !important;
+}
+
 a.icon-home-anchor, a.icon-home-anchor:hover, a.previous-button:hover {
     text-decoration: none !important;
 }

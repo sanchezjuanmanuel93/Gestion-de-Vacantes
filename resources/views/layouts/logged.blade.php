@@ -90,11 +90,11 @@
                 <i class="fas fa-angle-down"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{{route('consultar-faqs')}}">
                   <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                   FAQs
                 </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{{route('solicitar-soporte')}}">
                   <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                   Soporte
                 </a>
