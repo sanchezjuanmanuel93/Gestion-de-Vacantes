@@ -2,82 +2,86 @@
 
 @section('content')
   <div id="wrapper">
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('tablero')}}">
-        <div class="sidebar-brand-icon">
-          <i class="fas fa-user-graduate"></i>
+    @if (Route::currentRouteName() != 'tablero')
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('tablero')}}">
+          <div class="sidebar-brand-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
+        </a>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{Route::currentRouteName() == 'tablero' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('tablero')}}">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Inicio</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Vacantes
         </div>
-        <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
-      </a>
-      <hr class="sidebar-divider">
-      <li class="nav-item {{Route::currentRouteName() == 'tablero' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('tablero')}}">
-          <i class="fas fa-fw fa-home"></i>
-          <span>Inicio</span></a>
-      </li>
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Vacantes
-      </div>
-      <li class="nav-item {{Route::currentRouteName() == 'alta-vacante' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('alta-vacante')}}">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Abrir Vacante</span></a>
-      </li>
-      <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes-abiertas' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
-          <i class="fas fa-fw fa-list-ul"></i>
-          <span>Listar Vacantes Abiertas</span></a>
-      </li>
-      <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('consultar-vacantes')}}">
-          <i class="fas fa-fw fa-list-ul"></i>
-          <span>Listar Vacantes</span></a>
-      </li>
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Postulaciones
-      </div>
-      <li class="nav-item {{Route::currentRouteName() == 'consultar-postulaciones' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('consultar-postulaciones')}}">
-          <i class="fas fa-fw fa-list-ul"></i>
-          <span>Mis Postulaciones</span></a>
-      </li>
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Usuarios
-      </div>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Crear Usuario</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-list-ul"></i>
-          <span>Listar Usuario</span></a>
-      </li>
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Soporte
-      </div>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-info-circle"></i>
-          <span>Consultar FAQs</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-question-circle"></i>
-          <span>Solicitar Soporte</span></a>
-      </li>
-    </ul>
+        <li class="nav-item {{Route::currentRouteName() == 'alta-vacante' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('alta-vacante')}}">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Abrir Vacante</span></a>
+        </li>
+        <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes-abiertas' ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
+            <i class="fas fa-fw fa-list-ul"></i>
+            <span>Listar Vacantes Abiertas</span></a>
+        </li>
+        <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('consultar-vacantes')}}">
+            <i class="fas fa-fw fa-list-ul"></i>
+            <span>Listar Vacantes</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Postulaciones
+        </div>
+        <li class="nav-item {{Route::currentRouteName() == 'consultar-postulaciones' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('consultar-postulaciones')}}">
+            <i class="fas fa-fw fa-list-ul"></i>
+            <span>Mis Postulaciones</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Usuarios
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Crear Usuario</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-list-ul"></i>
+            <span>Listar Usuario</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+          Soporte
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-info-circle"></i>
+            <span>Consultar FAQs</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-question-circle"></i>
+            <span>Solicitar Soporte</span></a>
+        </li>
+        </ul>
+    @endif
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          @if (Route::currentRouteName() != 'tablero')
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+          @endif
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,15 +107,19 @@
           </ul>
         </nav>
         <div class="container-fluid">
-          <nav aria-label="breadcrumb" class="d-none d-md-flex breadcrumb-nav">
-            @if (url()->previous() != url()->current() && url()->previous() != route('login'))            
-            <a href="{{ url()->previous() }}" class="mr-2 previous-button"><i class="fas fa-arrow-left"> </i> </a>
-            @endif
-            <ol class="breadcrumb">
-              @yield('breadcrumb')
-            </ol>
-          </nav>
-          <h1> @yield('title') </h1>
+          @if (Route::currentRouteName() != 'tablero')
+            <nav aria-label="breadcrumb" class="d-none d-md-block breadcrumb-nav">
+                <ol class="breadcrumb">
+                  @yield('breadcrumb')
+                </ol>
+            </nav>
+            <div class="d-flex align-items-center">
+              @if (url()->previous() != url()->current() && url()->previous() != route('login'))            
+              <a href="{{ url()->previous() }}" class="mr-2 previous-button"><i class="fas fa-arrow-left"> </i> </a>
+              @endif
+              <h1 class="title-header"> @yield('title') </h1>
+            </div>
+          @endif
           <div class="container p-2 p-md-3">
             @yield('logged-content')
           </div>

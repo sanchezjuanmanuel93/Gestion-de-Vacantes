@@ -3,9 +3,6 @@
 @section('title')
     Inicio
 @endsection
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('inicio')}}">Inicio</a></li>
-@endsection
 @section('logged-content')
 <div class="row justify-content-around">
     <div class="col-12 col-md-6 col-lg-3 pb-5">
