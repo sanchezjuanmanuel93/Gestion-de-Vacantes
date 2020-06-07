@@ -20,17 +20,17 @@
         Vacantes
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{{action('VacanteController@alta')}}">
+        <a class="nav-link" href="{{action('VacanteController@altaVacante')}}">
           <i class="fas fa-fw fa-plus"></i>
           <span>Abrir Vacante</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="{{action('VacanteController@consultaListaVacantesAbiertas')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes Abiertas</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{action('VacanteController@consultaListaVacantes')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Listar Vacantes</span></a>
       </li>
@@ -39,7 +39,7 @@
         Postulaciones
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{action('PostulacionController@consultaListaPostulaciones')}}">
           <i class="fas fa-fw fa-list-ul"></i>
           <span>Mis Postulaciones</span></a>
       </li>
@@ -81,7 +81,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-md-inline small">gestion.de.vacantes.2020@gmail.com</span>
+                <span class="mr-2 d-none d-md-inline small">{{Auth::user()->email}}</span>
                 <i class="mr-2 fas d-inline d-md-none fa-user"></i>
                 <i class="fas fa-angle-down"></i>
               </a>
@@ -103,7 +103,10 @@
           </ul>
         </nav>
         <div class="container-fluid">
-          <nav aria-label="breadcrumb" class="d-none d-md-block">
+          <nav aria-label="breadcrumb" class="d-none d-md-flex breadcrumb-nav">
+            @if (url()->previous() != url()->current() && url()->previous() != route('login'))            
+            <a href="{{ url()->previous() }}" class="mr-2 previous-button"><i class="fas fa-arrow-left"> </i> </a>
+            @endif
             <ol class="breadcrumb">
               @yield('breadcrumb')
             </ol>
@@ -130,15 +133,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Cerrar">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Confirme para cerrar sesión</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            {{ csrf_field() }}
+            <button class="btn btn-primary" type="submit">Confirmar</button>
+          </form>
         </div>
       </div>
     </div>

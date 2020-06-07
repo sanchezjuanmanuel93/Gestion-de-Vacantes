@@ -34,23 +34,29 @@ div.card.card-home{
 }
 
 a.icon-home-anchor h5, 
-a.icon-home-anchor i {
+a.icon-home-anchor i,
+a.previous-button i {
     color: #858796 !important;
 }
 
 a.icon-home-anchor:hover h5, 
-a.icon-home-anchor:hover i {
+a.icon-home-anchor:hover i,
+a.previous-button:hover i {
     color: #4e73df !important;
 }
 
-a.icon-home-anchor, a.icon-home-anchor:hover {
+a.icon-home-anchor, a.icon-home-anchor:hover, a.previous-button:hover {
     text-decoration: none !important;
 }
 
 ol.breadcrumb{
     background-color: transparent;
-    padding: 0.75rem 0rem;
     margin-bottom: 0rem;
+    padding: 0rem 0rem;
+}
+
+nav.breadcrumb-nav{
+    padding: 0.75rem 0rem;
 }
   
   

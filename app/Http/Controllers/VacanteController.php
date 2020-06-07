@@ -21,19 +21,28 @@ class VacanteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function alta()
+    public function altaVacante()
     {
-        return view('vacante/abrir-vacante');
+        return view('vacante/alta-vacante');
     }
-
     
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function consultaLista()
+    public function consultaListaVacantes()
     {
         return view('vacante/consultar-vacantes');
+    }
+    
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function consultaListaVacantesAbiertas()
+    {
+        return view('vacante/consultar-vacantes-abiertas');
     }
 }
