@@ -27,5 +27,5 @@ Route::get('/usuario', 'UsuarioController@consultaListaUsuarios')->name('consult
 Route::get('/usuario/alta', 'UsuarioController@altaUsuario')->name('alta-usuario');
 Route::get('/soporte', 'SoporteController@solicitarSoporte')->name('solicitar-soporte');
 Route::get('/soporte/faqs', 'SoporteController@consultaFAQs')->name('consultar-faqs');
-Route::get('/password/reset/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
