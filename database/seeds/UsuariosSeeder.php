@@ -30,7 +30,7 @@ class UsuariosSeeder extends Seeder
         $usuario_admin2->name = "Ignacio";
         $usuario_admin2->apellido = "Selva";
         $usuario_admin2->nombre = "Ignacio";
-        $usuario_admin2->email = "nachoselva1993@gmail.com";
+        $usuario_admin2->email = "nacho.selva1993@gmail.com";
         $usuario_admin2->telefono = "3413123123";
         $usuario_admin2->password = Hash::make('admin');
         $usuario_admin2->rol()->associate($rol);
