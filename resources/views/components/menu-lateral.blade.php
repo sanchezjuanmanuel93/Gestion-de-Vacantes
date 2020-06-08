@@ -6,22 +6,14 @@
         <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
     </a>
     <hr class="sidebar-divider">
-    <li class="nav-item {{Route::currentRouteName() == 'tablero' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('tablero')}}">
-            <i class="fas fa-fw fa-home"></i>
-            <span>Inicio</span></a>
-    </li>
+    <x-NavItem displayName="Inicio" routeName="tablero" iconName="fa-home" />
     @foreach ($menuItemsGrouped as $menuItemGroup)
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
         {{$menuItemGroup->groupName}}
     </div>
     @foreach ($menuItemGroup->menuItems as $menuItem)
-    <li class="nav-item {{Route::currentRouteName() == $menuItem->routeName ? 'active' : ''}}">
-        <a class="nav-link" href="{{route($menuItem->routeName)}}">
-            <i class="fas fa-fw {{$menuItem->iconName}}"></i>
-            <span>{{$menuItem->displayName}}</span></a>
-    </li>
+    <x-NavItem :displayName="$menuItem->displayName" :routeName="$menuItem->routeName" :iconName="$menuItem->iconName" />
     @endforeach
     @endforeach
 </ul>
