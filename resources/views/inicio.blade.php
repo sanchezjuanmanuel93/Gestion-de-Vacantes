@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Inicio
+Inicio
 @endsection
 @section('content')
 Aqui va el listado de vacantes público! <a href="{{route('login')}}"> Login </a>
