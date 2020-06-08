@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class NavItem extends Component
+class MenuLateralItem extends Component
 {
 
     public $displayName;
@@ -32,6 +32,6 @@ class NavItem extends Component
      */
     public function render()
     {
-        return view('components.nav-item');
+        return view('components.menu-lateral-item');
     }
 }

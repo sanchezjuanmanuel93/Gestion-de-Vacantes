@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class HomeButton extends Component
+class BotonInicio extends Component
 {
     public $menuItem;
 
@@ -25,6 +25,6 @@ class HomeButton extends Component
      */
     public function render()
     {
-        return view('components.home-button');
+        return view('components.boton-inicio');
     }
 }

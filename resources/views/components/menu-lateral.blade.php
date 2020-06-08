@@ -6,14 +6,14 @@
         <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
     </a>
     <hr class="sidebar-divider">
-    <x-NavItem displayName="Inicio" routeName="tablero" iconName="fa-home" />
+    <x-menu-lateral-item displayName="Inicio" routeName="tablero" iconName="fa-home" />
     @foreach ($menuItemsGrouped as $menuItemGroup)
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
         {{$menuItemGroup->groupName}}
     </div>
     @foreach ($menuItemGroup->menuItems as $menuItem)
-    <x-NavItem :displayName="$menuItem->displayName" :routeName="$menuItem->routeName" :iconName="$menuItem->iconName" />
+    <x-menu-lateral-item :displayName="$menuItem->displayName" :routeName="$menuItem->routeName" :iconName="$menuItem->iconName" />
     @endforeach
     @endforeach
 </ul>
