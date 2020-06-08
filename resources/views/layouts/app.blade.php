@@ -14,6 +14,7 @@
     rel="stylesheet">
   <link href={{ asset("assets/theme/css/main.css")}} rel="stylesheet">
   <link href={{ asset("assets/theme/css/sb-admin-2.css")}} rel="stylesheet">
+  <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
 </head>
 
 <body id="page-top">
