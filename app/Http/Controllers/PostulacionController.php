@@ -23,6 +23,6 @@ class PostulacionController extends Controller
      */
     public function consultaListaPostulaciones()
     {
-        return view('postulacion/consultar-postulaciones');
+        return view('postulacion.consultar-postulaciones');
     }
 }

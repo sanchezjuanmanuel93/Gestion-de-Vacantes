@@ -2,76 +2,7 @@
 @section('content')
 <div id="wrapper">
   @if (Route::currentRouteName() != 'tablero')
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('tablero')}}">
-      <div class="sidebar-brand-icon">
-        <i class="fas fa-user-graduate"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
-    </a>
-    <hr class="sidebar-divider">
-    <li class="nav-item {{Route::currentRouteName() == 'tablero' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('tablero')}}">
-        <i class="fas fa-fw fa-home"></i>
-        <span>Inicio</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Vacantes
-    </div>
-    <li class="nav-item {{Route::currentRouteName() == 'alta-vacante' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('alta-vacante')}}">
-        <i class="fas fa-fw fa-plus"></i>
-        <span>Abrir Vacante</span></a>
-    </li>
-    <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes-abiertas' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-vacantes-abiertas')}}">
-        <i class="fas fa-fw fa-list-ul"></i>
-        <span>Consultar Vacantes Abiertas</span></a>
-    </li>
-    <li class="nav-item {{Route::currentRouteName() == 'consultar-vacantes' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-vacantes')}}">
-        <i class="fas fa-fw fa-list-ul"></i>
-        <span>Consultar Vacantes</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Postulaciones
-    </div>
-    <li class="nav-item {{Route::currentRouteName() == 'consultar-postulaciones' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-postulaciones')}}">
-        <i class="fas fa-fw fa-list-ul"></i>
-        <span>Mis Postulaciones</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Usuarios
-    </div>
-    <li class="nav-item {{Route::currentRouteName() == 'alta-usuario' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('alta-usuario')}}">
-        <i class="fas fa-fw fa-plus"></i>
-        <span>Crear Usuario</span></a>
-    </li>
-    <li class="nav-item {{Route::currentRouteName() == 'consultar-usuarios' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-usuarios')}}">
-        <i class="fas fa-fw fa-list-ul"></i>
-        <span>Consultar Usuarios</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Soporte
-    </div>
-    <li class="nav-item {{Route::currentRouteName() == 'consultar-faqs' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('consultar-faqs')}}">
-        <i class="fas fa-fw fa-info-circle"></i>
-        <span>Consultar FAQs</span></a>
-    </li>
-    <li class="nav-item {{Route::currentRouteName() == 'solicitar-soporte' ? 'active' : ''}}">
-      <a class="nav-link" href="{{route('solicitar-soporte')}}">
-        <i class="fas fa-fw fa-question-circle"></i>
-        <span>Solicitar Soporte</span></a>
-    </li>
-  </ul>
+  <x-menu-lateral />
   @endif
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">

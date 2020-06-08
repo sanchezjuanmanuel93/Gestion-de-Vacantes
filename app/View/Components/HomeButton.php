@@ -6,22 +6,16 @@ use Illuminate\View\Component;
 
 class HomeButton extends Component
 {
-    public $displayName;
-
-    public $routeName;
-
-    public $iconName;
+    public $menuItem;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($displayName, $routeName, $iconName)
+    public function __construct($menuItem)
     {
-        $this->displayName = $displayName;
-        $this->routeName = $routeName;
-        $this->iconName = $iconName;
+        $this->menuItem = $menuItem;
     }
 
     /**

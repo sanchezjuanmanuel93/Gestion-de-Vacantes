@@ -23,7 +23,7 @@ class UsuarioController extends Controller
      */
     public function altaUsuario()
     {
-        return view('usuario/alta-usuario');
+        return view('usuario.alta-usuario');
     }
     
     /**
@@ -33,6 +33,6 @@ class UsuarioController extends Controller
      */
     public function consultaListaUsuarios()
     {
-        return view('usuario/consultar-usuarios');
+        return view('usuario.consultar-usuarios');
     }
 }

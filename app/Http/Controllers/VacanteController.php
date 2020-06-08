@@ -23,7 +23,7 @@ class VacanteController extends Controller
      */
     public function altaVacante()
     {
-        return view('vacante/alta-vacante');
+        return view('vacante.alta-vacante');
     }
     
     /**
@@ -33,7 +33,7 @@ class VacanteController extends Controller
      */
     public function consultaListaVacantes()
     {
-        return view('vacante/consultar-vacantes');
+        return view('vacante.consultar-vacantes');
     }
     
     /**
@@ -43,6 +43,6 @@ class VacanteController extends Controller
      */
     public function consultaListaVacantesAbiertas()
     {
-        return view('vacante/consultar-vacantes-abiertas');
+        return view('vacante.consultar-vacantes-abiertas');
     }
 }

@@ -23,7 +23,7 @@ class SoporteController extends Controller
      */
     public function solicitarSoporte()
     {
-        return view('soporte/solicitar-soporte');
+        return view('soporte.solicitar-soporte');
     }
     
     /**
@@ -33,6 +33,6 @@ class SoporteController extends Controller
      */
     public function consultaFAQs()
     {
-        return view('soporte/consultar-faqs');
+        return view('soporte.consultar-faqs');
     }
 }
