@@ -3,8 +3,8 @@
 @section('title', 'Ingresar')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container d-flex h-100">
+    <div class="row h-100 w-100 justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Ingresar</div>
