@@ -14,7 +14,7 @@ class Rol extends Model
     public static $ADMINISTRADOR = 1;
     public static $POSTULANTE = 2;
     public static $RESPONSABLE_ADMINISTRATIVO = 3;
-    public static $INVITADO = 4;
+    
     /**
      * The table associated with the model.
      * 
