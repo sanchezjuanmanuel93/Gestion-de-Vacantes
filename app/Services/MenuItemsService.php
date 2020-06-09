@@ -14,9 +14,9 @@ class MenuItemsService
             new MenuItemGroup(
                 "Vacantes",
                 [
-                    new MenuItem("Abrir Vacante", "alta-vacante", "fa-plus", []),
+                    new MenuItem("Abrir Vacante", "vacante.create", "fa-plus", []),
                     new MenuItem("Consultar Vacantes Abiertas", "consultar-vacantes-abiertas", "fa-list-ul", []),
-                    new MenuItem("Consultar Vacantes", "consultar-vacantes", "fa-list-ul", [])
+                    new MenuItem("Consultar Vacantes", "vacante.index", "fa-list-ul", [])
                 ]
             ),
             new MenuItemGroup(
