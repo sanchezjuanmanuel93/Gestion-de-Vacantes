@@ -28,4 +28,6 @@ Route::get('/usuario/alta', 'UsuarioController@altaUsuario')->name('alta-usuario
 Route::get('/soporte', 'SoporteController@solicitarSoporte')->name('solicitar-soporte');
 Route::get('/soporte/faqs', 'SoporteController@consultaFAQs')->name('consultar-faqs');
 Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::get('/contraseña/cambiar', 'CambiarContrasenaController@index')->name('cambiar-contrasena-index');
+Route::post('/contraseña/cambiar', 'CambiarContrasenaController@cambiar')->name('cambiar-contrasena');
 
