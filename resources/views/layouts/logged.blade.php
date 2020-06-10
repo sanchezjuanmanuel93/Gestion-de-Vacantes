@@ -55,7 +55,7 @@
           <h1 class="title-header"> @yield('title') </h1>
         </div>
         @endif
-        <div class="container-fluid p-2 py-md-4 mb-2 mb-md-4 mt-3 bg-white">
+        <div class="p-2 py-md-4 mb-2 mb-md-4 mt-3 bg-white">
           @yield('logged-content')
         </div>
       </div>
