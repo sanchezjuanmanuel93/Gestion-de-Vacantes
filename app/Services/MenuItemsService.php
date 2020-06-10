@@ -4,42 +4,50 @@ namespace App\Services;
 
 use App\MenuItem;
 use App\MenuItemGroup;
+use App\Rol;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 
 class MenuItemsService
 {
     private $menuItems;
 
-    public function __construct(){
-        $this->menuItems = [
+    public function __construct()
+    {
+        $this->menuItems = collect([
             new MenuItemGroup(
                 "Vacantes",
                 [
-                    new MenuItem("Abrir Vacante", "alta-vacante", "fa-plus", []),
-                    new MenuItem("Consultar Vacantes Abiertas", "consultar-vacantes-abiertas", "fa-list-ul", []),
-                    new MenuItem("Consultar Vacantes", "consultar-vacantes", "fa-list-ul", [])
-                ]
+                    new MenuItem("Abrir Vacante", "alta-vacante", "fa-plus", [Rol::$RESPONSABLE_ADMINISTRATIVO]),
+                    new MenuItem("Consultar Vacantes Abiertas", "consultar-vacantes-abiertas", "fa-list-ul", [Rol::$POSTULANTE]),
+                    new MenuItem("Consultar Vacantes", "consultar-vacantes", "fa-list-ul", [Rol::$RESPONSABLE_ADMINISTRATIVO])
+                ],
+                [Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$POSTULANTE]
             ),
             new MenuItemGroup(
                 "Postulaciones",
                 [
-                    new MenuItem("Mis Postulaciones", "consultar-postulaciones", "fa-plus", [])
-                ]
+                    new MenuItem("Mis Postulaciones", "consultar-postulaciones", "fa-plus", [Rol::$POSTULANTE])
+                ],
+                [Rol::$POSTULANTE]
             ),
             new MenuItemGroup(
                 "Usuarios",
                 [
-                    new MenuItem("Crear Usuario", "alta-usuario", "fa-plus", []),
-                    new MenuItem("Consultar Usuarios", "consultar-usuarios", "fa-list-ul", [])
-                ]
+                    new MenuItem("Crear Usuario", "alta-usuario", "fa-plus", [Rol::$ADMINISTRADOR]),
+                    new MenuItem("Consultar Usuarios", "consultar-usuarios", "fa-list-ul", [Rol::$ADMINISTRADOR])
+                ],
+                [Rol::$ADMINISTRADOR]
             ),
             new MenuItemGroup(
                 "Soporte",
                 [
-                    new MenuItem("Consultar FAQs", "consultar-faqs", "fa-info-circle", []),
-                    new MenuItem("Solicitar Soporte", "solicitar-soporte", "fa-question-circle", [])
-                ]
+                    new MenuItem("Consultar FAQs", "consultar-faqs", "fa-info-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]),
+                    new MenuItem("Solicitar Soporte", "solicitar-soporte", "fa-question-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR])
+                ],
+                [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]
             )
-        ];
+        ]);
     }
 
 
@@ -50,7 +58,17 @@ class MenuItemsService
      */
     public function getMenuItemsGrouped()
     {
-        return $this->menuItems;
+        $rol = Auth::user()->rol->id;
+        $menuItemsGrouped = [];
+        
+        foreach ($this->filterByRol($this->menuItems, $rol) as $group) {
+            $menuItems = [];
+            foreach ($this->filterByRol($group->menuItems, $rol) as $item) {
+                $menuItems[] = $item;
+            }
+            $menuItemsGrouped[] = new MenuItemGroup($group->groupName, $menuItems, $group->roles);
+        }
+        return $menuItemsGrouped;
     }
 
 
@@ -61,12 +79,24 @@ class MenuItemsService
      */
     public function getMenuItems()
     {
+        $rol = Auth::user()->rol->id;
         $menuItems = [];
-        foreach ($this->menuItems as $group) {
-            foreach ($group->menuItems as $item) {
+        foreach ($this->filterByRol($this->menuItems, $rol) as $group) {
+            foreach ($this->filterByRol($group->menuItems, $rol) as $item) {
                 $menuItems[] = $item;
             }
         }
         return $menuItems;
+    }
+
+    private function filterByRol($list, $rol)
+    {
+        $listFiltered = [];
+        foreach ($list as  $item) {
+            if ($item->roles->contains($rol)) {
+                $listFiltered[] = $item;
+            }
+        }
+        return collect($listFiltered);
     }
 }

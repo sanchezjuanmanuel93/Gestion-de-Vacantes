@@ -22,6 +22,6 @@ class MenuItem
         $this->displayName = $displayName;
         $this->routeName = $routeName;
         $this->iconName = $iconName;
-        $this->roles = $roles;
+        $this->roles = collect($roles);
     }
 }
