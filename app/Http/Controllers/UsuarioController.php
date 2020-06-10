@@ -21,9 +21,9 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function altaUsuario()
+    public function create()
     {
-        return view('usuario.alta-usuario');
+        return view('usuario.create');
     }
     
     /**
@@ -31,8 +31,8 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function consultaListaUsuarios()
+    public function index()
     {
-        return view('usuario.consultar-usuarios');
+        return view('usuario.index');
     }
 }

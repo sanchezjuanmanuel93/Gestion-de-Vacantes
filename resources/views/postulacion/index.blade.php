@@ -6,7 +6,7 @@ Consultar Postulaciones
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{route('tablero')}}">Inicio</a></li>
 <li class="breadcrumb-item">Postulaciones</li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('consultar-postulaciones')}}">Mis
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('postulacion.index')}}">Mis
         Postulaciones</a></li>
 @endsection
 @section('logged-content')

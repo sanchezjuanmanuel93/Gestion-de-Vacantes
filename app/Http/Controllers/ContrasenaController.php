@@ -7,7 +7,7 @@ use App\Rules\ContrasenaEsValida;
 use Illuminate\Support\Facades\Hash;
 use App\User;
   
-class CambiarContrasenaController extends Controller
+class ContrasenaController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,7 +26,7 @@ class CambiarContrasenaController extends Controller
      */
     public function index()
     {
-        return view('auth.passwords.cambiar-contrasena');
+        return view('auth.contrasena.index');
     } 
    
     /**
@@ -34,7 +34,7 @@ class CambiarContrasenaController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function cambiar(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'contrasenaActual' => ['required', new ContrasenaEsValida],
@@ -48,7 +48,7 @@ class CambiarContrasenaController extends Controller
         ]);
    
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->contrasenaNueva)]);
-        return view('auth.passwords.cambiar-contrasena')
+        return view('auth.contrasena.create')
             ->with('success', true);
     }
 }

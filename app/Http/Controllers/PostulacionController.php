@@ -21,8 +21,8 @@ class PostulacionController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function consultaListaPostulaciones()
+    public function index()
     {
-        return view('postulacion.consultar-postulaciones');
+        return view('postulacion.index');
     }
 }

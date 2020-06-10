@@ -19,7 +19,7 @@ class MenuItemsService
                 "Vacantes",
                 [
                     new MenuItem("Abrir Vacante", "vacante.create", "fa-plus", [Rol::$RESPONSABLE_ADMINISTRATIVO]),
-                    new MenuItem("Consultar Vacantes Abiertas", "consultar-vacantes-abiertas", "fa-list-ul", [Rol::$POSTULANTE]),
+                    new MenuItem("Consultar Vacantes Abiertas", "vacante.abierta.index", "fa-list-ul", [Rol::$POSTULANTE]),
                     new MenuItem("Consultar Vacantes", "vacante.index", "fa-list-ul", [Rol::$RESPONSABLE_ADMINISTRATIVO])
                 ],
                 [Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$POSTULANTE]
@@ -27,23 +27,23 @@ class MenuItemsService
             new MenuItemGroup(
                 "Postulaciones",
                 [
-                    new MenuItem("Mis Postulaciones", "consultar-postulaciones", "fa-plus", [Rol::$POSTULANTE])
+                    new MenuItem("Mis Postulaciones", "postulacion.index", "fa-plus", [Rol::$POSTULANTE])
                 ],
                 [Rol::$POSTULANTE]
             ),
             new MenuItemGroup(
                 "Usuarios",
                 [
-                    new MenuItem("Crear Usuario", "alta-usuario", "fa-plus", [Rol::$ADMINISTRADOR]),
-                    new MenuItem("Consultar Usuarios", "consultar-usuarios", "fa-list-ul", [Rol::$ADMINISTRADOR])
+                    new MenuItem("Crear Usuario", "usuario.create", "fa-plus", [Rol::$ADMINISTRADOR]),
+                    new MenuItem("Consultar Usuarios", "usuario.index", "fa-list-ul", [Rol::$ADMINISTRADOR])
                 ],
                 [Rol::$ADMINISTRADOR]
             ),
             new MenuItemGroup(
                 "Soporte",
                 [
-                    new MenuItem("Consultar FAQs", "consultar-faqs", "fa-info-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]),
-                    new MenuItem("Solicitar Soporte", "solicitar-soporte", "fa-question-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR])
+                    new MenuItem("Consultar FAQs", "soporte.faqs.index", "fa-info-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]),
+                    new MenuItem("Solicitar Soporte", "soporte.create", "fa-question-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR])
                 ],
                 [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]
             )

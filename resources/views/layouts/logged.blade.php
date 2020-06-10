@@ -21,15 +21,15 @@
               <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="{{route('cambiar-contrasena-index')}}">
+              <a class="dropdown-item" href="{{route('contraseña.index')}}">
                 <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                 Cambiar Contraseña
               </a>
-              <a class="dropdown-item" href="{{route('consultar-faqs')}}">
+              <a class="dropdown-item" href="{{route('soporte.faqs.index')}}">
                 <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                 FAQs
               </a>
-              <a class="dropdown-item" href="{{route('solicitar-soporte')}}">
+              <a class="dropdown-item" href="{{route('soporte.create')}}">
                 <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                 Soporte
               </a>

@@ -27,7 +27,7 @@ class VacanteController extends Controller
      */
     public function index()
     {
-        return view('vacante.consultar-vacantes');
+        return view('vacante.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class VacanteController extends Controller
     public function create()
     {
         $materias = Materia::all();
-        return view('vacante.alta-vacante', ["materias" => $materias]);
+        return view('vacante.create', ["materias" => $materias]);
     }
 
     /**
@@ -56,7 +56,7 @@ class VacanteController extends Controller
             'nombre_puesto' => $request->input('nobre-puesto'),
             'descripcion_puesto' => $request->input('descripcion-puesto'),
         ]);
-        return view('vacante.consultar-vacantes');
+        return view('vacante.index');
     }
 
     /**
@@ -109,8 +109,8 @@ class VacanteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function consultaListaVacantesAbiertas()
+    public function indexAbierta()
     {
-        return view('vacante.consultar-vacantes-abiertas');
+        return view('vacante.abierta.index');
     }
 }

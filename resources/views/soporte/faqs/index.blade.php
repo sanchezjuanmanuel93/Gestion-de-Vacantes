@@ -5,7 +5,7 @@ Consultar FAQs
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{route('tablero')}}">Inicio</a></li>
 <li class="breadcrumb-item">Soporte</li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('consultar-faqs')}}">Consultar FAQs</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('soporte.faqs.index')}}">Consultar FAQs</a></li>
 @endsection
 @section('logged-content')
 @foreach ($faqs as $faq)
