@@ -1,5 +1,6 @@
 <?php
 
+use App\Rol;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,25 +17,35 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', 'InicioController@index')->name('default');
-Route::get('/inicio', 'InicioController@index')->name('inicio');
-Route::get('/tablero', 'TableroController@index')->name('tablero');
-Route::get('vacante/abierta', 'VacanteController@indexAbierta')->name('vacante.abierta.index');
-Route::resource('vacante', 'VacanteController')->only([
-    'index', 'create', 'store'
-]);
-Route::resource('postulacion', 'PostulacionController')->only([
-    'index'
-]);
-Route::resource('usuario', 'UsuarioController')->only([
-    'index', 'create', 'store'
-]);
-Route::get('/soporte/faqs', 'SoporteController@index')->name('soporte.faqs.index');
-Route::resource('soporte', 'SoporteController')->only([
-    'create', 'store'
-]);
-Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')->name('contraseña.reset.show');
-Route::resource('contraseña', 'ContrasenaController')->only([
-    'index', 'store'
-]);
-
+Route::get('/', 'InicioController@index')
+    ->name('inicio.index');
+Route::get('vacante/abierta', 'VacanteController@indexAbierta')
+    ->name('vacante.abierta.index')
+    ->middleware('role:' . Rol::$POSTULANTE);
+Route::resource('vacante', 'VacanteController')
+    ->only([
+        'index', 'create', 'store'
+    ])
+    ->middleware('role:' . Rol::$RESPONSABLE_ADMINISTRATIVO);
+Route::resource('postulacion', 'PostulacionController')
+    ->only([
+        'index'
+    ])
+    ->middleware('role:' . Rol::$POSTULANTE);
+Route::resource('usuario', 'UsuarioController')
+    ->only([
+        'index', 'create', 'store'
+    ])
+    ->middleware('role:' . Rol::$ADMINISTRADOR);
+Route::get('/soporte/faqs', 'SoporteController@index')
+    ->name('soporte.faqs.index');
+Route::resource('soporte', 'SoporteController')
+    ->only([
+        'create', 'store'
+    ]);
+Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
+    ->name('contraseña.reset.show');
+Route::resource('contraseña', 'ContrasenaController')
+    ->only([
+        'index', 'store'
+    ]);

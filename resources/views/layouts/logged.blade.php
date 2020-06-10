@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div id="wrapper">
-  @if (Route::currentRouteName() != 'tablero')
+  @if (Route::currentRouteName() != 'inicio.index')
   <x-menu-lateral />
   @endif
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
       <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-        @if (Route::currentRouteName() != 'tablero')
+        @if (Route::currentRouteName() != 'inicio.index')
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
           <i class="fa fa-bars"></i>
         </button>
@@ -42,7 +42,7 @@
         </ul>
       </nav>
       <div class="container-fluid">
-        @if (Route::currentRouteName() != 'tablero')
+        @if (Route::currentRouteName() != 'inicio.index')
         <nav aria-label="breadcrumb" class="d-none d-md-block breadcrumb-nav">
           <ol class="breadcrumb">
             @yield('breadcrumb')
