@@ -14,7 +14,8 @@
     rel="stylesheet">
   <link href={{ asset("assets/css/main.css")}} rel="stylesheet">
   <link href={{ asset("assets/theme/css/sb-admin-2.css")}} rel="stylesheet">
-  <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
+  <link href={{ asset("assets/css/bootstrap-select.css")}} rel="stylesheet">
+  <link rel="shortcut icon" href={{ asset('assets/img/favicon.ico') }}>
 </head>
 
 <body id="page-top">
@@ -23,9 +24,7 @@
   <script src={{ asset("assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js")}}></script>
   <script src={{ asset("assets/theme/vendor/jquery-easing/jquery.easing.min.js")}}></script>
   <script src={{ asset("assets/theme/js/sb-admin-2.min.js")}}></script>
-  <script src={{ asset("assets/theme/vendor/chart.js/Chart.min.js")}}></script>
-  <script src={{ asset("assets/theme/js/demo/chart-area-demo.js")}}></script>
-  <script src={{ asset("assets/theme/js/demo/chart-pie-demo.js")}}></script>
+  <script src={{ asset("assets/js/bootstrap-select.min.js")}}></script>
 </body>
 
 </html>
