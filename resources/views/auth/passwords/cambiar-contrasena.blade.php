@@ -8,49 +8,9 @@ Cambiar Contraseña
 @endsection
 
 @section('logged-content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form method="POST" action="{{ route('cambiar-contrasena') }}">
-                @csrf
-
-                @foreach ($errors->all() as $error)
-                <p class="text-danger">{{ $error }}</p>
-                @endforeach
-
-                @if (isset($success))
-                <p class="text-success"> Su contraseña fue cambiada con éxito</p>
-                @endif
-
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña Actual</label>
-                    <div class="col-md-6">
-                        <input id="contrasenaActual" type="password" class="form-control" name="contrasenaActual" autocomplete="contrasenaActual">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña Nueva</label>
-                    <div class="col-md-6">
-                        <input id="contrasenaNueva" type="password" class="form-control" name="contrasenaNueva" autocomplete="contrasenaActual">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña Nueva</label>
-                    <div class="col-md-6">
-                        <input id="contrasenaNuevaConfirmar" type="password" class="form-control" name="contrasenaNuevaConfirmar" autocomplete="contrasenaActual">
-                    </div>
-                </div>
-
-                <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            Guardar
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    @endsection
+<x-form method="POST" successMessage="Su contraseña fue cambiada con éxito" :success="$success ?? false" route="cambiar-contrasena">
+    <x-form-group-password fieldId="contrasenaActual" fieldName="contrasenaActual" fieldDescription="Contraseña Actual" :errors="$errors" />
+    <x-form-group-password fieldId="contrasenaNueva" fieldName="contrasenaNueva" fieldDescription="Contraseña Nueva" :errors="$errors" />
+    <x-form-group-password fieldId="contrasenaNuevaConfirmar" fieldName="contrasenaNuevaConfirmar" fieldDescription="Confirmar Contraseña Nueva" :errors="$errors" />
+</x-form>
+@endsection

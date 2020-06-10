@@ -55,21 +55,7 @@
           <h1 class="title-header"> @yield('title') </h1>
         </div>
         @endif
-        @if ($errors->any())
-          @foreach($errors->all() as $error)
-          <div class="row">
-              <div class="col-sm-12">
-                  <div class="alert  alert-danger alert-dismissible fade show" role="alert">
-                      <span class="badge badge-pill badge-danger">ERROR</span> {{ $error }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-              </div>
-          </div>
-          @endforeach
-        @endif
-        <div class="container p-2 p-md-3">
+        <div class="container-fluid p-2 py-md-4 mb-2 mb-md-4 mt-3 bg-white">
           @yield('logged-content')
         </div>
       </div>
