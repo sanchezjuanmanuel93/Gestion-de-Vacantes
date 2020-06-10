@@ -71,5 +71,12 @@ nav.breadcrumb-nav{
 html{
     height: 100%;
 }
+
+button.select-live-search {
+    background-color: #fff;
+    color: rgb(110, 112, 126);    
+    border-width: 1px;
+    border-color: rgb(209, 211, 226);
+}
   
   
