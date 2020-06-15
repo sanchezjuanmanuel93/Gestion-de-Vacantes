@@ -3,7 +3,7 @@
 Inicializar Contraseña
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
+<li class="breadcrumb-item">Inicio</li>
 <li class="breadcrumb-item active" aria-current="page"><a href="{{route('contraseña.inicializar.index')}}">Inicializar Contraseña</a></li>
 @endsection
 
