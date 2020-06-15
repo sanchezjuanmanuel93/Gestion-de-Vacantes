@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUsuarioRequest;
+use App\Rol;
+use App\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UsuarioController extends Controller
 {
@@ -23,9 +28,10 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        $roles = Rol::all();
+        return view('usuario.create', ['roles' => $roles]);
     }
-    
+
     /**
      * Show the application dashboard.
      *
@@ -33,6 +39,32 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        return view('usuario.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreUsuarioRequest $request)
+    {
+        $password = Str::random(8);
+        $hashed_random_password = Hash::make($password);
+        $usuario = User::create([
+            'nombre' => $request->input('nombre'),
+            'name' => $request->input('nombre'),
+            'apellido' => $request->input('apellido'),
+            'email' => $request->input('email'),
+            'telefono' => $request->input('telefono'),
+            'id_rol' => $request->input('rol'),
+            'password' => $hashed_random_password,
+        ]);
+        Mail::
+            // to($usuario->email)
+            to("sanchez.juanmy@gmail.com")
+            ->send(new \App\Mail\NuevoUsuarioMail($usuario, $password));
         return view('usuario.index');
     }
 }
