@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['id_rol', 'name', 'nombre', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at', 'telefono', 'apellido'];
+    protected $fillable = ['id_rol', 'nombre', 'apellido', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at', 'telefono', 'password_initialized'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     /**
@@ -34,6 +34,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password_initialized' => 'boolean'
     ];
 
     /**

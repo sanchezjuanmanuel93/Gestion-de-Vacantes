@@ -56,7 +56,7 @@ class ResetPassword extends ResetPasswordNotification
         ->subject('Reseteo de contraseña')
         ->line('Usted recibió este correo porque se solicitó un reseteo de contraseña para su email.')
         ->action('Resetear contraseña', $url)
-        ->line('El link se vence dentro de '.config('auth.passwords.'.config('auth.defaults.passwords').'.expire').' minutes.')
+        ->line('El link se vence dentro de '.config('auth.passwords.'.config('auth.defaults.passwords').'.expire').' minutos.')
         ->line('Si usted no solicitó resetear la contraseña, ignore este correo.');
         
         return $msg;

@@ -81,6 +81,6 @@ html {
     border-color: rgb(209, 211, 226);
 }
 
-.bootstrap-select .dropdown-toggle:focus{
+.bootstrap-select .dropdown-toggle:focus {
     outline: none !important;
 }

@@ -39,16 +39,17 @@ class ContrasenaController extends Controller
         $request->validate([
             'contrasenaActual' => ['required', new ContrasenaEsValida],
             'contrasenaNueva' => ['required'],
-            'contrasenaNuevaConfirmar' => ['same:contrasenaNueva'],
+            'contrasenaNuevaConfirmar' => ['required', 'same:contrasenaNueva'],
         ],
         [
             'contrasenaActual.required' => 'El campo Contraseña es obligatorio.',
             'contrasenaNueva.required' => 'El campo Contraseña Nueva es obligatorio.',
+            'contrasenaNuevaConfirmar.required' => 'El campo Confirmar Contraseña Nueva es obligatorio.',
             'contrasenaNuevaConfirmar.same' => 'Las contraseñas no coinciden'
         ]);
    
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->contrasenaNueva)]);
-        return view('auth.contrasena.create')
+        return view('auth.contrasena.index')
             ->with('success', true);
     }
 }
