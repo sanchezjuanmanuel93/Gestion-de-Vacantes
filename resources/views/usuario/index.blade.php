@@ -8,5 +8,5 @@
     <li class="breadcrumb-item active" aria-current="page"><a href="{{route('usuario.index')}}">Consultar Usuarios</a></li> 
 @endsection
 @section('logged-content')
-    Aqui va el contenido!
+<x-data-table title="Usuarios" :collection="$usuarios" :columns="['nombre', 'apellido', 'telefono', 'email', 'descripcion']"/>
 @endsection

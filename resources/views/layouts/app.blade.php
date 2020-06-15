@@ -16,6 +16,7 @@
   <link href={{ asset("assets/css/main.css")}} rel="stylesheet">
   <link href={{ asset("assets/theme/css/sb-admin-2.css")}} rel="stylesheet">
   <link rel="shortcut icon" href={{ asset('assets/img/favicon.ico') }}>
+  @yield('styles')
 </head>
 
 <body id="page-top">
@@ -25,6 +26,7 @@
   <script src={{ asset("assets/theme/vendor/jquery-easing/jquery.easing.min.js")}}></script>
   <script src={{ asset("assets/theme/js/sb-admin-2.min.js")}}></script>
   <script src={{ asset("assets/js/bootstrap-select.min.js")}}></script>
+  @yield('scripts')
 </body>
 
 </html>

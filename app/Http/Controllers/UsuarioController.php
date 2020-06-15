@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUsuarioRequest;
 use App\Rol;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -39,7 +40,11 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('usuario.index');
+        $usuarios = DB::table('users')
+            ->join('rol', 'users.id_rol', '=', 'rol.id')
+            ->select('users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion')
+            ->get();
+        return view('usuario.index', ["usuarios" => $usuarios]);
     }
 
     /**
