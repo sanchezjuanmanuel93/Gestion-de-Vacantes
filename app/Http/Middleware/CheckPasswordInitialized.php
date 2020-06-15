@@ -15,12 +15,15 @@ class CheckPasswordInitialized
      */
     public function handle($request, Closure $next, $requireInicialized)
     {
-        $passwordInitilizaed = $request->user()->password_initialized;
-        if ($requireInicialized && !$passwordInitilizaed) {
-            return redirect()->route('contraseña.inicializar.index');
-        }
-        if (!$requireInicialized && $passwordInitilizaed) {
-            return redirect()->route('inicio.index');
+        $user = $request->user();
+        if ($user) {
+            $passwordInitialized = $user->password_initialized;
+            if ($requireInicialized && !$passwordInitialized) {
+                return redirect()->route('contraseña.inicializar.index');
+            }
+            if (!$requireInicialized && $passwordInitialized) {
+                return redirect()->route('inicio.index');
+            }
         }
         return $next($request);
     }
