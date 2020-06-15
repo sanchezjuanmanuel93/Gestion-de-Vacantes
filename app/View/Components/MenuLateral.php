@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use App\Services\MenuItemsService;
+use Illuminate\Support\Facades\Auth;
 
 class MenuLateral extends Component
 { 
@@ -28,6 +29,7 @@ class MenuLateral extends Component
     public function render()
     {
         return view('components.menu-lateral')
+        ->with('isPasswordValidated', Auth::user()->password_initialized)
         ->with('menuItemsGrouped', $this->menuItemsService->getMenuItemsGrouped());
     }
 }

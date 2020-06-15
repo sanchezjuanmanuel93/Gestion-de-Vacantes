@@ -9,6 +9,13 @@
         @if ($success)
         <p class="text-success"> {{$successMessage}}</p>
         @endif
+        
+        @if ($message && 
+        !$success && 
+        (!$errors || $errors->count() == 0)
+        )
+        <p class="text-primary"> {{$message}}</p>
+        @endif
 
         {{ $slot }}
 

@@ -6,6 +6,7 @@
         <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
     </a>
     <hr class="sidebar-divider">
+    @if ($isPasswordValidated)
     <x-menu-lateral-item displayName="Inicio" routeName="inicio.index" iconName="fa-home" />
     @foreach ($menuItemsGrouped as $menuItemGroup)
     <hr class="sidebar-divider">
@@ -16,4 +17,5 @@
     <x-menu-lateral-item :displayName="$menuItem->displayName" :routeName="$menuItem->routeName" :iconName="$menuItem->iconName" />
     @endforeach
     @endforeach
+    @endif
 </ul>
