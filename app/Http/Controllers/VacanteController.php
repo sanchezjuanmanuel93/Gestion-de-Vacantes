@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVacanteRequest;
 use App\Materia;
 use App\Vacante;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VacanteController extends Controller
 {
@@ -21,13 +24,21 @@ class VacanteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Nombre de la materia, la fecha de apertura de la vacante, la fecha de cierre de la vacante, el nombre del puesto
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('vacante.index');
+        $now = new DateTime();
+        $vacantes_abiertas = Vacante::with('postulaciones')
+            ->with('materia')
+            ->with('postulaciones.usuario')
+            ->where('vacante.fecha_apertura','<=', $now)
+            ->where('vacante.fecha_cierre','>', $now)
+            ->get();
+            
+        return view('vacante.index', ["vacantes" => $vacantes_abiertas]);
     }
 
     /**
@@ -53,7 +64,7 @@ class VacanteController extends Controller
             'id_materia' => $request->input('id-materia'),
             'fecha_apertura' => $request->input('fecha-apertura'),
             'fecha_cierre' => $request->input('fecha-cierre'),
-            'nombre_puesto' => $request->input('nobre-puesto'),
+            'nombre_puesto' => $request->input('nombre-puesto'),
             'descripcion_puesto' => $request->input('descripcion-puesto'),
         ]);
         return view('vacante.index');
@@ -111,6 +122,14 @@ class VacanteController extends Controller
      */
     public function indexAbierta()
     {
-        return view('vacante.abierta.index');
+        $now = new DateTime();
+        $vacantes_abiertas = Vacante::with('postulaciones')
+            ->with('materia')
+            ->with('postulaciones.usuario')
+            ->where('vacante.fecha_apertura','<=', $now)
+            ->where('vacante.fecha_cierre','>', $now)
+            ->get();
+
+        return view('vacante.abierta.index', ["vacantes" => $vacantes_abiertas]);
     }
 }

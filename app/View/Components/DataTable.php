@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class DataTable extends Component
 {
-    public $title;
     public $collection;
     public $columns;
 
@@ -15,9 +14,8 @@ class DataTable extends Component
      *
      * @return void
      */
-    public function __construct($title, $collection, $columns)
+    public function __construct($collection, $columns)
     {
-        $this->title = $title;
         $this->collection = $collection;
         $this->columns = $columns;
     }

@@ -84,3 +84,15 @@ html {
 .bootstrap-select .dropdown-toggle:focus {
     outline: none !important;
 }
+
+.file {
+    position: relative;
+    overflow: hidden;
+  }
+  input[type=file] {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  } 

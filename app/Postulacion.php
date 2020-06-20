@@ -40,4 +40,12 @@ class Postulacion extends Model
     {
         return $this->belongsTo('App\Vacante', 'id_vacante');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function usuario()
+    {
+        return $this->belongsTo('App\User', 'id_usuario');
+    }
 }

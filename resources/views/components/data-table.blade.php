@@ -7,7 +7,8 @@
         <tr>
             @foreach($columns as $column)
             <th>{{ucfirst($column)}}</th>
-            @endforeach            
+            @endforeach         
+            <th>Accion</th>   
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             @foreach($columns as $column)
                 <td>{{$item->$column}}</td>
             @endforeach
+            <td></td>
         </tr>
         @endforeach
     </tbody>

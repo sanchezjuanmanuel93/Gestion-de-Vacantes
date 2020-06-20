@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUsuarioRequest extends FormRequest
+class PostulacionStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,26 +17,34 @@ class StoreUsuarioRequest extends FormRequest
     }
 
     /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'cv' => 'Curriculum Vitae',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function rules()
+    public function rules() 
     {
         return [
-            'nombre' => 'required|max:45',
-            'apellido' => 'required|max:100',
-            'telefono' => 'required|max:45',
-            'email' => 'required|unique:App\User,email',
-            'rol' => ['required'], //Rule::in(Rol::select('id')->get())
+            'id_vacante' => 'required',
+            'cv' => 'required|file||max:2048' //mimes:pdf,doc,dox
         ];
     }
 
     public function messages()
     {
         return [
-            'nombre.required' => 'La materia es requerida',
-            'apellido.required' => 'La materia es requerida',
+            'cv.required' => 'CV REQUERIDO',
         ];
     }
 }

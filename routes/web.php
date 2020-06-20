@@ -32,7 +32,7 @@ Route::resource('vacante', 'VacanteController')
     ->middleware('passwordInitialized:' . true);;
 Route::resource('postulacion', 'PostulacionController')
     ->only([
-        'index'
+        'index', 'store'
     ])
     ->middleware('role:' . Rol::$POSTULANTE)
     ->middleware('passwordInitialized:' . true);;

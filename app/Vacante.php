@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $fecha_cierre_estipulada
  * @property string $fecha_cierre
  * @property string $fecha_orden_merito
- * @property Materium $materium
- * @property Postulacion[] $postulacions
+ * @property Materia $materia
+ * @property Postulacion[] $postulaciones
  */
 class Vacante extends Model
 {
@@ -33,15 +33,15 @@ class Vacante extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function materium()
+    public function materia()
     {
-        return $this->belongsTo('App\Materium', 'id_materia');
+        return $this->belongsTo('App\Materia', 'id_materia');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function postulacions()
+    public function postulaciones()
     {
         return $this->hasMany('App\Postulacion', 'id_vacante');
     }
