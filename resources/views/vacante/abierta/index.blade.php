@@ -10,5 +10,52 @@ Consultar Vacantes Abiertas
         Vacantes Abiertas</a></li>
 @endsection
 @section('logged-content')
-Consultar Vacantes Abiertas
+<div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+                <tr>
+                <th>Materia</th>
+                <th>Nombre Puesto</th>
+                <th>fecha apertura</th>
+                <th>fecha cierre</th>
+                <th></th>
+                </tr>
+        </thead>
+        <tbody>
+                @foreach ($vacantes as $vacante)
+                <tr>
+                        <th>{{$vacante->materia->nombre}}</th>
+                        <th>{{$vacante->nombre_puesto}}</th>
+                        <th>{{$vacante->fecha_apertura}}</th>
+                        <th>{{$vacante->fecha_cierre}}</th>
+                        <th>
+                                @foreach(Auth::user()->postulaciones as $postulacion)
+                                        @if($postulacion->vacante->id == $vacante->id)
+                                        <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>
+                                        @break
+                                        @endif
+                                        @if($loop->last)
+                                        <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
+                                                @csrf
+                                                <input name="id_vacante" type="hidden" value="{{$vacante->id}}">
+                                                <x-upload-file fieldName="cv" :errors="$errors"/>
+                                                <button type="submit" class="btn btn-sm btn-light">Postular</button>
+                                        </form>
+                                        @endif
+                                @endforeach
+                                
+                        </th>
+                        </tr>
+                @endforeach
+        </tbody>
+</table>
+</div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+$('.file').change(function() { 
+
+});
+</script>
 @endsection

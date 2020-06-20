@@ -26,6 +26,7 @@
   <script src={{ asset("assets/theme/vendor/jquery-easing/jquery.easing.min.js")}}></script>
   <script src={{ asset("assets/theme/js/sb-admin-2.min.js")}}></script>
   <script src={{ asset("assets/js/bootstrap-select.min.js")}}></script>
+  <script src={{ asset("assets/js/main.js")}}></script>
   @yield('scripts')
 </body>
 
