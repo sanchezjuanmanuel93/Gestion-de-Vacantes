@@ -22,26 +22,22 @@ Route::get('/', 'InicioController@index')
     ->middleware('passwordInitialized:' . true);
 Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
-    ->middleware('role:' . Rol::$POSTULANTE)
-    ->middleware('passwordInitialized:' . true);;
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 Route::resource('vacante', 'VacanteController')
     ->only([
         'index', 'create', 'store'
     ])
-    ->middleware('role:' . Rol::$RESPONSABLE_ADMINISTRATIVO)
-    ->middleware('passwordInitialized:' . true);;
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
     ])
-    ->middleware('role:' . Rol::$POSTULANTE)
-    ->middleware('passwordInitialized:' . true);;
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 Route::resource('usuario', 'UsuarioController')
     ->only([
         'index', 'create', 'store'
     ])
-    ->middleware('role:' . Rol::$ADMINISTRADOR)
-    ->middleware('passwordInitialized:' . true);;
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
 Route::get('/soporte/faqs', 'SoporteController@index')
     ->name('soporte.faqs.index')
     ->middleware('passwordInitialized:' . true);;

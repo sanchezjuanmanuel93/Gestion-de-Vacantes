@@ -16,8 +16,8 @@ Consultar Vacantes Abiertas
                 <tr>
                 <th>Materia</th>
                 <th>Nombre Puesto</th>
-                <th>fecha apertura</th>
-                <th>fecha cierre</th>
+                <th>Fecha Apertura</th>
+                <th>Fecha Cierre</th>
                 <th></th>
                 </tr>
         </thead>

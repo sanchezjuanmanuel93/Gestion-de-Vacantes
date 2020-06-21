@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUsuarioRequest;
 use App\Rol;
 use App\User;
+use App\Mail\NuevoUsuarioMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -42,7 +43,7 @@ class UsuarioController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('rol', 'users.id_rol', '=', 'rol.id')
-            ->select('users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion')
+            ->select('users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion as rolDescripcion')
             ->get();
         return view('usuario.index', ["usuarios" => $usuarios]);
     }
@@ -66,10 +67,10 @@ class UsuarioController extends Controller
             'id_rol' => $request->input('rol'),
             'password' => $hashed_random_password,
         ]);
-        Mail::
-            // to($usuario->email)
-            to("sanchez.juanmy@gmail.com")
-            ->send(new \App\Mail\NuevoUsuarioMail($usuario, $password));
-        return view('usuario.index');
+
+        Mail::to($usuario->email)
+            ->send(new NuevoUsuarioMail($usuario, $password));
+
+        return redirect()->route("usuario.index");
     }
 }

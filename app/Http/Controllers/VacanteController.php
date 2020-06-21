@@ -34,10 +34,10 @@ class VacanteController extends Controller
         $vacantes_abiertas = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
-            ->where('vacante.fecha_apertura','<=', $now)
-            ->where('vacante.fecha_cierre','>', $now)
+            ->where('vacante.fecha_apertura', '<=', $now)
+            ->where('vacante.fecha_cierre', '>', $now)
             ->get();
-            
+
         return view('vacante.index', ["vacantes" => $vacantes_abiertas]);
     }
 
@@ -67,7 +67,7 @@ class VacanteController extends Controller
             'nombre_puesto' => $request->input('nombre-puesto'),
             'descripcion_puesto' => $request->input('descripcion-puesto'),
         ]);
-        return view('vacante.index');
+        return redirect()->route("vacante.index");
     }
 
     /**
@@ -126,8 +126,8 @@ class VacanteController extends Controller
         $vacantes_abiertas = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
-            ->where('vacante.fecha_apertura','<=', $now)
-            ->where('vacante.fecha_cierre','>', $now)
+            ->where('vacante.fecha_apertura', '<=', $now)
+            ->where('vacante.fecha_cierre', '>', $now)
             ->get();
 
         return view('vacante.abierta.index', ["vacantes" => $vacantes_abiertas]);

@@ -8,5 +8,28 @@
     <li class="breadcrumb-item active" aria-current="page"><a href="{{route('usuario.index')}}">Consultar Usuarios</a></li> 
 @endsection
 @section('logged-content')
-<x-data-table :collection="$usuarios" :columns="['nombre', 'apellido', 'telefono', 'email', 'descripcion']"/>
+<div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                        <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        @foreach ($usuarios as $usuario)
+                        <tr>
+                                <th>{{$usuario->nombre}}</th>
+                                <th>{{$usuario->apellido}}</th>
+                                <th>{{$usuario->telefono}}</th>
+                                <th>{{$usuario->email}}</th>
+                                <th>{{$usuario->rolDescripcion}}</th>
+                        </tr>
+                        @endforeach
+                </tbody>
+        </table>
+</div>
 @endsection
