@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\MenuItemsService;
+use App\Vacante;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class InicioController extends Controller
 {
@@ -31,7 +34,13 @@ class InicioController extends Controller
             return view('dashboard')
                 ->with('menuItems', $this->menuItemsService->getMenuItems());
         } else {
-            return view('index');
+            $now = new DateTime();
+            $vacantes = Vacante::with('materia')
+                ->where('vacante.fecha_apertura', '<=', $now)
+                ->where('vacante.fecha_cierre', '>', $now)
+                ->orderBy('vacante.fecha_cierre', 'asc')
+                ->get();
+            return view('index', ['vacantes' => $vacantes]);
         }
     }
 }

@@ -27,6 +27,7 @@ Consultar Vacantes
                 <x-table-cell>{{$vacante->fecha_apertura}}</x-table-cell>
                 <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
                 <x-table-cell>
+                        <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
                         @foreach(Auth::user()->postulaciones as $postulacion)
                         @if($postulacion->vacante->id == $vacante->id)
                         <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>

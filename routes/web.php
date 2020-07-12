@@ -25,7 +25,7 @@ Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 Route::resource('vacante', 'VacanteController')
     ->only([
-        'index', 'create', 'store'
+        'index', 'create', 'store', 'show'
     ])
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 Route::resource('postulacion', 'PostulacionController')

@@ -18,6 +18,7 @@ Consultar Vacantes Abiertas
                         <x-table-header>Fecha Apertura</x-table-header>
                         <x-table-header>Fecha Cierre</x-table-header>
                         <x-table-header></x-table-header>
+                        <x-table-header></x-table-header>
                 </x-table-row>
         </x-slot>
         @foreach ($vacantes as $vacante)
@@ -26,6 +27,7 @@ Consultar Vacantes Abiertas
                 <x-table-cell>{{$vacante->nombre_puesto}}</x-table-cell>
                 <x-table-cell>{{$vacante->fecha_apertura}}</x-table-cell>
                 <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
+                <x-table-cell><x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button></x-table-cell>
                 <x-table-cell>
                         @foreach(Auth::user()->postulaciones as $postulacion)
                         @if($postulacion->vacante->id == $vacante->id)
