@@ -25,4 +25,10 @@
         </x-table-cell>
     </x-table-row>
     @endforeach
-</x-table>@endsection
+</x-table>
+@if(Auth::user() == null)
+<div class="container">
+        <a href="/login" class="btn btn-primary center-block">Iniciar Sesión</a>
+</div>
+@endif
+@endsection

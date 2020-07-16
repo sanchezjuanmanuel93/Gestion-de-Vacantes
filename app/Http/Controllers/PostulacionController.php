@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostulacionStoreRequest;
 use App\Postulacion;
 use App\Vacante;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class PostulacionController extends Controller
 {
@@ -60,5 +60,16 @@ class PostulacionController extends Controller
             to("sanchez.juanmy@gmail.com")
             ->send(new \App\Mail\PostulacionMail($vacante));
         return redirect(route('vacante.abierta.index'));
+    }
+
+    public function puntajePostulado(Request $request)
+    {
+        try {
+            $postulacion = Postulacion::where('id', '=', $request->input('id_postulacion'))->first();
+            $postulacion->puntaje = $request->input('puntaje');
+            $postulacion->save();
+        } catch (\Throwable $th) {
+        }
+        return redirect(route('vacante.show',$postulacion->id_vacante));
     }
 }

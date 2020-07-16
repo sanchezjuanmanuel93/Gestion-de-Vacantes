@@ -26,8 +26,10 @@ Route::get('vacante/abierta', 'VacanteController@indexAbierta')
 Route::resource('vacante', 'VacanteController')
     ->only([
         'index', 'create', 'store', 'show'
-    ])
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ]);
+// ->middleware(['passwordInitialized:' . true]);
+Route::get('vacante/{vacante}', 'VacanteController@show')
+    ->name('vacante.show');
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
@@ -59,3 +61,6 @@ Route::resource('contraseña', 'ContrasenaController')
         'index', 'store'
     ])
     ->middleware('passwordInitialized:' . true);;
+Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
+    ->name('vacante.orden')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);

@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVacanteRequest;
 use App\Materia;
+use App\Postulacion;
 use App\Vacante;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class VacanteController extends Controller
 {
@@ -20,7 +23,7 @@ class VacanteController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -34,8 +37,8 @@ class VacanteController extends Controller
         $vacantes_abiertas = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
-            ->where('vacante.fecha_apertura', '<=', $now)
-            ->where('vacante.fecha_cierre', '>', $now)
+            // ->where('vacante.fecha_apertura', '<=', $now)
+            // ->where('vacante.fecha_cierre', '>', $now)
             ->get();
 
         return view('vacante.index', ["vacantes" => $vacantes_abiertas]);
@@ -76,9 +79,39 @@ class VacanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vacante $vacante)
     {
-        //
+        if (Auth::user() == null) {
+            $now = new DateTime();
+            $vacante = Vacante::where('vacante.fecha_apertura', '<=', $now)
+                ->where('vacante.fecha_cierre', '>', $now)
+                ->where('vacante.id', '=', $vacante->id)
+                ->first();
+            if ($vacante == null) {
+                return redirect()->route("vacante.index");
+            }
+        } else {
+            $vacante = Vacante::with('postulaciones')
+                ->with('materia')
+                ->with('postulaciones.usuario')
+                ->where('vacante.id', '=', $vacante->id)
+                ->first();
+        }
+        switch ($vacante->status()) {
+            case Vacante::$ABIERTA:
+                $state = "Abierta";
+                break;
+            case Vacante::$CERRADA:
+                $state = "Cerrada";
+                break;
+            case Vacante::$FINALIZADA:
+                $state = "Finalizada";
+                break;
+            default:
+                $state = "Creada";
+                break;
+        }
+        return view('vacante.show', ["vacante" => $vacante, "state" => $state]);
     }
 
     /**
@@ -131,5 +164,26 @@ class VacanteController extends Controller
             ->get();
 
         return view('vacante.abierta.index', ["vacantes" => $vacantes_abiertas]);
+    }
+
+    public function publicarOrdenDeMerito(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            foreach ($request->except(['_token', 'id_vacante']) as $key => $value) {
+                $id_postulacion = explode('postulacion-', $key)[1];
+                $postulacion = Postulacion::where('id', "=", $id_postulacion)->first();
+                $postulacion->puntaje = $value;
+                $postulacion->save();
+            }
+            $vacante = Vacante::where('id', '=', $request->input('id_vacante'))->first();
+            $vacante->fecha_orden_merito = new DateTime();
+            $vacante->save();
+            DB::commit();            
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        return Redirect::back();
     }
 }

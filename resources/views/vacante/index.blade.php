@@ -18,6 +18,7 @@ Consultar Vacantes
                         <x-table-header>Fecha Apertura</x-table-header>
                         <x-table-header>Fecha Cierre</x-table-header>
                         <x-table-header></x-table-header>
+                        <x-table-header></x-table-header>
                 </x-table-row>
         </x-slot>
         @foreach ($vacantes as $vacante)
@@ -28,10 +29,12 @@ Consultar Vacantes
                 <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
                 <x-table-cell>
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
+                </x-table-cell>
+                <x-table-cell>
                         @foreach(Auth::user()->postulaciones as $postulacion)
                         @if($postulacion->vacante->id == $vacante->id)
-                        <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>
-                        @break
+                                <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>
+                                @break
                         @endif
                         @if($loop->last)
                         <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
@@ -41,8 +44,7 @@ Consultar Vacantes
                                 <button type="submit" class="btn btn-sm btn-light">Postular</button>
                         </form>
                         @endif
-                        @endforeach
-
+                @endforeach
                 </x-table-cell>
         </x-table-row>
         @endforeach

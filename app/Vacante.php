@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,6 +19,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vacante extends Model
 {
+
+    public static $CREADA = 0;
+    public static $ABIERTA = 1;
+    public static $CERRADA = 2;
+    public static $FINALIZADA = 3;
     /**
      * The table associated with the model.
      * 
@@ -44,5 +50,19 @@ class Vacante extends Model
     public function postulaciones()
     {
         return $this->hasMany('App\Postulacion', 'id_vacante');
+    }
+
+    public function status()
+    {
+        $today = Carbon::today();
+        if ($this->fecha_apertura > $today && $this->fecha_cierre < $today) {
+            return Vacante::$ABIERTA;
+        } else if ($this->fecha_orden_merito == null && $this->fecha_cierre < $today) {
+            return Vacante::$CERRADA;
+        } else if ($this->fecha_orden_merito != null && $this->fecha_cierre < $today) {
+            return Vacante::$FINALIZADA;
+        } else {
+            return Vacante::$CREADA;
+        }
     }
 }
