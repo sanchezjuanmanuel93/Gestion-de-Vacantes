@@ -43,4 +43,23 @@ class InicioController extends Controller
             return view('index', ['vacantes' => $vacantes]);
         }
     }
+
+    public function show($id)
+    {
+        if (Auth::check()) {
+            return redirect()->route("vacante.show", $id);
+        } else {
+            $now = new DateTime();
+            $vacante = Vacante::
+                where('fecha_apertura', '<=', $now)
+                ->where('fecha_cierre', '>', $now)
+                -> where('id', '=', $id)
+                ->first();
+            if(isset($vacante)){
+                return view('show', ["vacante" => $vacante ]);
+            } else {
+                return redirect()->route("inicio.index");
+            }
+        }
+    }
 }

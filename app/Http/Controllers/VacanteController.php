@@ -81,11 +81,10 @@ class VacanteController extends Controller
      */
     public function show(Vacante $vacante)
     {
-
         $vacante = Vacante::with('postulaciones')
-        ->with('materia')
-        ->with('postulaciones.usuario')
-        ->where('vacante.id', '=', $vacante->id)
+            ->with('materia')
+            ->with('postulaciones.usuario')
+            ->where('vacante.id', '=', $vacante->id)
             ->first();
         switch ($vacante->status()) {
             case Vacante::$ABIERTA:
@@ -169,7 +168,7 @@ class VacanteController extends Controller
             $vacante = Vacante::where('id', '=', $request->input('id_vacante'))->first();
             $vacante->fecha_orden_merito = new DateTime();
             $vacante->save();
-            DB::commit();            
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

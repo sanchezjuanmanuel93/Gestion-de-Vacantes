@@ -18,18 +18,22 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', 'InicioController@index')
-    ->name('inicio.index')
-    ->middleware('passwordInitialized:' . true);
+->name('inicio.index')
+->middleware('passwordInitialized:' . true);
+
+Route::get('/{id}', 'InicioController@show')
+->name('inicio.show')
+->middleware('passwordInitialized:' . true);
+
 Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 Route::resource('vacante', 'VacanteController')
     ->only([
         'index', 'create', 'store', 'show'
-    ]);
-// ->middleware(['passwordInitialized:' . true]);
-Route::get('vacante/{vacante}', 'VacanteController@show')
-    ->name('vacante.show');
+    ])->middleware(['passwordInitialized:' . true]);
+//Route::get('vacante/{vacante}', 'VacanteController@show')
+//    ->name('vacante.show');
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
