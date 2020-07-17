@@ -29,7 +29,24 @@
                     <span><b>Descripcion:</b></span>
                     <div>{{$vacante->descripcion_puesto}}</div>
                 </div>
-
+                @if(Auth::user()->id_rol == App\Rol::$POSTULANTE)
+                    @foreach(Auth::user()->postulaciones as $postulacion)
+                        @if($postulacion->vacante->id == $vacante->id)
+                        <button class="btn btn-sm btn-outline-secondary float-right" disabled>Postulado</button>
+                        @break
+                        @endif
+                        @if($loop->last)
+                        <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
+                                @csrf
+                                <div class="float-right">
+                                    <input name="id_vacante" type="hidden" value="{{$vacante->id}}">
+                                    <x-upload-file fieldName="cv" :errors="$errors" />
+                                    <button type="submit" class="btn btn-sm btn-light">Postular</button>
+                                </div>  
+                        </form>
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
