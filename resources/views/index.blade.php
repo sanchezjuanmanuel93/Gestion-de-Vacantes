@@ -21,7 +21,7 @@
             <x-table-cell>{{$vacante->fecha_apertura}}</x-table-cell>
             <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
             <x-table-cell>
-                <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
+                <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('inicio.show', $vacante->id)}}"></x-split-button>
         </x-table-cell>
     </x-table-row>
     @endforeach

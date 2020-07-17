@@ -82,11 +82,7 @@ class VacanteController extends Controller
     public function show(Vacante $vacante)
     {
         if (Auth::user() == null) {
-            $now = new DateTime();
-            $vacante = Vacante::where('vacante.fecha_apertura', '<=', $now)
-                ->where('vacante.fecha_cierre', '>', $now)
-                ->where('vacante.id', '=', $vacante->id)
-                ->first();
+            
             if ($vacante == null) {
                 return redirect()->route("vacante.index");
             }
