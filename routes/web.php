@@ -17,7 +17,20 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', 'InicioController@index')
+Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
+    ->name('vacante.orden')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+
+Route::get('vacante/abierta', 'VacanteController@indexAbierta')
+    ->name('vacante.abierta.index')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
+
+Route::resource('vacante', 'VacanteController')
+    ->only([
+        'index', 'create', 'store', 'show'
+    ])->middleware(['passwordInitialized:' . true]);
+
+    Route::get('/', 'InicioController@index')
 ->name('inicio.index')
 ->middleware('passwordInitialized:' . true);
 
@@ -25,15 +38,6 @@ Route::get('/{id}', 'InicioController@show')
 ->name('inicio.show')
 ->middleware('passwordInitialized:' . true);
 
-Route::get('vacante/abierta', 'VacanteController@indexAbierta')
-    ->name('vacante.abierta.index')
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
-Route::resource('vacante', 'VacanteController')
-    ->only([
-        'index', 'create', 'store', 'show'
-    ])->middleware(['passwordInitialized:' . true]);
-//Route::get('vacante/{vacante}', 'VacanteController@show')
-//    ->name('vacante.show');
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
@@ -65,6 +69,3 @@ Route::resource('contraseña', 'ContrasenaController')
         'index', 'store'
     ])
     ->middleware('passwordInitialized:' . true);;
-Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
-    ->name('vacante.orden')
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
