@@ -145,7 +145,8 @@ class VacanteController extends Controller
             ->with('materia')
             ->with('postulaciones.usuario')
             ->where('vacante.fecha_apertura', '<=', $now)
-            ->where('vacante.fecha_cierre', '>', $now)
+            ->whereNull('vacante.fecha_cierre')
+            ->where('vacante.fecha_cierre_estipulada', '>', $now)
             ->get();
 
         return view('vacante.abierta.index', ["vacantes" => $vacantes_abiertas]);

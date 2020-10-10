@@ -57,7 +57,7 @@ class Vacante extends Model
         $today = Carbon::today();
         if ($this->fecha_apertura > $today && $this->fecha_cierre < $today) {
             return Vacante::$ABIERTA;
-        } else if ($this->fecha_orden_merito == null && $this->fecha_cierre < $today) {
+        } else if ($this->fecha_orden_merito == null && $this->fecha_cierre != null) {
             return Vacante::$CERRADA;
         } else if ($this->fecha_orden_merito != null && $this->fecha_cierre < $today) {
             return Vacante::$FINALIZADA;
