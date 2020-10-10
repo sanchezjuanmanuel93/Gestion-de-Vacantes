@@ -29,7 +29,6 @@ Consultar Postulaciones
                 </x-table-cell>
                 <x-table-cell>{{\Carbon\Carbon::parse($postulacion->vacante->fecha_apertura)->format('d-m-Y')}}
                 </x-table-cell>
-
                 <x-table-cell>
                         {{\Carbon\Carbon::parse($postulacion->vacante->fecha_cierre ?: $postulacion->vacante->fecha_cierre_estipulada)->format('d-m-Y')}}
                 </x-table-cell>
