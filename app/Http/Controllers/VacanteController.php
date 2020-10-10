@@ -6,10 +6,8 @@ use App\Http\Requests\StoreVacanteRequest;
 use App\Materia;
 use App\Postulacion;
 use App\Vacante;
-use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -37,8 +35,6 @@ class VacanteController extends Controller
         $vacantes_abiertas = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
-            // ->where('vacante.fecha_apertura', '<=', $now)
-            // ->where('vacante.fecha_cierre', '>', $now)
             ->get();
 
         return view('vacante.index', ["vacantes" => $vacantes_abiertas]);
@@ -66,7 +62,7 @@ class VacanteController extends Controller
         Vacante::create([
             'id_materia' => $request->input('id-materia'),
             'fecha_apertura' => $request->input('fecha-apertura'),
-            'fecha_cierre' => $request->input('fecha-cierre'),
+            'fecha_cierre_estipulada' => $request->input('fecha-cierre'),
             'nombre_puesto' => $request->input('nombre-puesto'),
             'descripcion_puesto' => $request->input('descripcion-puesto'),
         ]);
