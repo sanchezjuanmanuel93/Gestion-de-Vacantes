@@ -21,7 +21,7 @@
 
         <div class="form-group justify-content-end d-flex">
             <button type="submit" class="btn btn-primary">
-                <span>Guardar</span>
+                <span>{{empty($saveButtonText) ? 'Guardar' : $saveButtonText }} </span>
             </button>
         </div>
 

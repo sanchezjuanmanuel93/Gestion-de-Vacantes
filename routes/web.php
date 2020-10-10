@@ -25,37 +25,31 @@ Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 
-Route::resource('vacante', 'VacanteController')
-    ->only([
-        'index', 'create', 'store', 'show'
-    ])->middleware(['passwordInitialized:' . true]);
-
-    Route::get('/', 'InicioController@index')
-->name('inicio.index')
-->middleware('passwordInitialized:' . true);
-
-Route::get('/{id}', 'InicioController@show')
-->name('inicio.show')
-->middleware('passwordInitialized:' . true);
-
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
     ])
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
+
+Route::get('/soporte/faqs', 'SoporteController@indexFaqs')
+    ->name('soporte.faqs.index')
+    ->middleware('passwordInitialized:' . true);
+
+Route::resource('soporte', 'SoporteController')
+    ->only([
+        'index', 'create', 'store'
+    ])
+    ->middleware('passwordInitialized:' . true);
+
+Route::get('/{id}', 'InicioController@show')
+->name('inicio.show')
+->middleware('passwordInitialized:' . true);
+
 Route::resource('usuario', 'UsuarioController')
     ->only([
         'index', 'create', 'store'
     ])
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
-Route::get('/soporte/faqs', 'SoporteController@index')
-    ->name('soporte.faqs.index')
-    ->middleware('passwordInitialized:' . true);;
-Route::resource('soporte', 'SoporteController')
-    ->only([
-        'create', 'store'
-    ])
-    ->middleware('passwordInitialized:' . true);;
 Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
     ->name('contraseña.reset.show');
 Route::get('/contraseña/inicializar', 'InicializarContrasenaController@index')
@@ -68,4 +62,13 @@ Route::resource('contraseña', 'ContrasenaController')
     ->only([
         'index', 'store'
     ])
-    ->middleware('passwordInitialized:' . true);;
+    ->middleware('passwordInitialized:' . true);
+
+Route::resource('vacante', 'VacanteController')
+    ->only([
+        'index', 'create', 'store', 'show'
+    ])->middleware(['passwordInitialized:' . true]);
+
+    Route::get('/', 'InicioController@index')
+    ->name('inicio.index')
+    ->middleware('passwordInitialized:' . true);

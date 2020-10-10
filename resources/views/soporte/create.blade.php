@@ -9,5 +9,7 @@ Solicitar Soporte
 </li>
 @endsection
 @section('logged-content')
-Aqui va el contenido!
+<x-form method="POST" saveButtonText="Enviar" successMessage="Su consulta fue enviada con éxito" :success="$success ?? false" route="soporte.store">    
+    <x-form-group-text-area fieldName="consulta" fieldId="consulta" fieldDescription="Consulta" :errors="$errors" />
+</x-form>
 @endsection

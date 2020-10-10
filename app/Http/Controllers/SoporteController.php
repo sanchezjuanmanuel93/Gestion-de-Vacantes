@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\FAQ;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\SoporteStoreRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SoporteController extends Controller
 {
@@ -15,6 +18,16 @@ class SoporteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Nombre de la materia, la fecha de apertura de la vacante, la fecha de cierre de la vacante, el nombre del puesto
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('soporte.create');
     }
 
     /**
@@ -32,9 +45,13 @@ class SoporteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function store()
+    public function store(SoporteStoreRequest $request)
     {
-        return view('soporte.create');
+        Mail::to(env('MAIL_USERNAME'))
+        ->send(new \App\Mail\SoporteMail($request->input('consulta')));
+
+        return view('soporte.create')
+        ->with('success', true);
     }
     
     /**
@@ -42,7 +59,7 @@ class SoporteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function indexFaqs()
     {
         $faqs = [];
         $faqs[] = new FAQ("¿Cómo ingreso al sistema por primera vez?", "Debe acudir al departamento administrativo a la Universidad para que le sea asignado una cuenta con el correo de la misma." );

@@ -43,7 +43,7 @@ class MenuItemsService
                 "Soporte",
                 [
                     new MenuItem("Consultar FAQs", "soporte.faqs.index", "fa-info-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]),
-                    new MenuItem("Solicitar Soporte", "soporte.create", "fa-question-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR])
+                    new MenuItem("Solicitar Soporte", "soporte.index", "fa-question-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR])
                 ],
                 [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]
             )

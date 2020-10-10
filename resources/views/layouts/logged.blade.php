@@ -29,7 +29,7 @@
                 <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                 FAQs
               </a>
-              <a class="dropdown-item" href="{{route('soporte.create')}}">
+              <a class="dropdown-item" href="{{route('soporte.index')}}">
                 <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                 Soporte
               </a>
