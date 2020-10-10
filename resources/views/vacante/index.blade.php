@@ -26,7 +26,7 @@ Consultar Vacantes
                 <x-table-cell>{{$vacante->materia->nombre}}</x-table-cell>
                 <x-table-cell>{{$vacante->nombre_puesto}}</x-table-cell>
                 <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_apertura)->format('d-m-Y')}}</x-table-cell>
-                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_cierre)->format('d-m-Y')}}</x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_cierre_estipulada)->format('d-m-Y')}}</x-table-cell>
                 <x-table-cell>
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
                 </x-table-cell>
