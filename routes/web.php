@@ -17,14 +17,12 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
-    ->name('vacante.orden')
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
-
-Route::get('vacante/abierta', 'VacanteController@indexAbierta')
-    ->name('vacante.abierta.index')
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
-
+Route::resource('usuario', 'UsuarioController')
+    ->only([
+        'index', 'create', 'store'
+    ])
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
+    
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
@@ -40,16 +38,24 @@ Route::resource('soporte', 'SoporteController')
         'index', 'create', 'store'
     ])
     ->middleware('passwordInitialized:' . true);
+    
+Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
+    ->name('vacante.orden')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+
+Route::get('vacante/abierta', 'VacanteController@indexAbierta')
+    ->name('vacante.abierta.index')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
+
+Route::resource('vacante', 'VacanteController')
+    ->only([
+        'index', 'create', 'store', 'show'
+    ])->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 
 Route::get('/{id}', 'InicioController@show')
-->name('inicio.show')
-->middleware('passwordInitialized:' . true);
+    ->name('inicio.show')
+    ->middleware('passwordInitialized:' . true);
 
-Route::resource('usuario', 'UsuarioController')
-    ->only([
-        'index', 'create', 'store'
-    ])
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
 Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
     ->name('contraseña.reset.show');
 Route::get('/contraseña/inicializar', 'InicializarContrasenaController@index')
@@ -64,11 +70,6 @@ Route::resource('contraseña', 'ContrasenaController')
     ])
     ->middleware('passwordInitialized:' . true);
 
-Route::resource('vacante', 'VacanteController')
-    ->only([
-        'index', 'create', 'store', 'show'
-    ])->middleware(['passwordInitialized:' . true]);
-
-    Route::get('/', 'InicioController@index')
+Route::get('/', 'InicioController@index')
     ->name('inicio.index')
     ->middleware('passwordInitialized:' . true);

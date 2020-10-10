@@ -19,7 +19,7 @@ class CheckRole
         if ($request->user()->rol->id != $rolId) {
             return redirect()->route('inicio.index');
         }
-
+        
         return $next($request);
     }
 
