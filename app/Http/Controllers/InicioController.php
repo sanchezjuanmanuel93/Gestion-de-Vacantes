@@ -37,7 +37,8 @@ class InicioController extends Controller
             $now = new DateTime();
             $vacantes = Vacante::with('materia')
                 ->where('vacante.fecha_apertura', '<=', $now)
-                ->where('vacante.fecha_cierre', '>', $now)
+                ->whereNull('vacante.fecha_cierre')
+                ->where('vacante.fecha_cierre_estipulada', '>', $now)
                 ->orderBy('vacante.fecha_cierre', 'asc')
                 ->get();
             return view('index', ['vacantes' => $vacantes]);
@@ -50,13 +51,12 @@ class InicioController extends Controller
             return redirect()->route("vacante.show", $id);
         } else {
             $now = new DateTime();
-            $vacante = Vacante::
-                where('fecha_apertura', '<=', $now)
+            $vacante = Vacante::where('fecha_apertura', '<=', $now)
                 ->where('fecha_cierre', '>', $now)
-                -> where('id', '=', $id)
+                ->where('id', '=', $id)
                 ->first();
-            if(isset($vacante)){
-                return view('show', ["vacante" => $vacante ]);
+            if (isset($vacante)) {
+                return view('show', ["vacante" => $vacante]);
             } else {
                 return redirect()->route("inicio.index");
             }

@@ -25,13 +25,18 @@ Consultar Vacantes Abiertas
         <x-table-row>
                 <x-table-cell>{{$vacante->materia->nombre}}</x-table-cell>
                 <x-table-cell>{{$vacante->nombre_puesto}}</x-table-cell>
-                <x-table-cell>{{$vacante->fecha_apertura}}</x-table-cell>
-                <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
-                <x-table-cell><x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button></x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_apertura)->format('d-m-Y')}}</x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_cierre_estipulada)->format('d-m-Y')}}
+                </x-table-cell>
+                <x-table-cell>
+                        <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list"
+                                routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
+                </x-table-cell>
                 <x-table-cell>
                         @foreach(Auth::user()->postulaciones as $postulacion)
                         @if($postulacion->vacante->id == $vacante->id)
-                        <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>
+                        <button class="btn btn-sm btn-outline-secondary"
+                                disabled>Postulado[{{\Carbon\Carbon::parse($postulacion->fecha_postulacion)->format('d-m-Y')}}]</button>
                         @break
                         @endif
                         @if($loop->last)

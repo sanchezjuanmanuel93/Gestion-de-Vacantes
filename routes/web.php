@@ -22,7 +22,7 @@ Route::resource('usuario', 'UsuarioController')
         'index', 'create', 'store', 'show', 'update'
     ])
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
-    
+
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
@@ -38,7 +38,7 @@ Route::resource('soporte', 'SoporteController')
         'index', 'create', 'store'
     ])
     ->middleware('passwordInitialized:' . true);
-    
+
 Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
     ->name('vacante.orden')
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
@@ -49,8 +49,8 @@ Route::get('vacante/abierta', 'VacanteController@indexAbierta')
 
 Route::resource('vacante', 'VacanteController')
     ->only([
-        'index', 'create', 'store', 'show'
-    ])->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+        'index', 'create', 'store', 'show', 'update'
+    ])->middleware(['passwordInitialized:' . true]);     //, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 
 Route::get('/{id}', 'InicioController@show')
     ->name('inicio.show')
