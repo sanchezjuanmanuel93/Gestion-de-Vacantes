@@ -22,11 +22,11 @@ Consultar Vacantes
                 </x-table-row>
         </x-slot>
         @foreach ($vacantes as $vacante)
-        <x-table-row>
+        <x-table-row>;
                 <x-table-cell>{{$vacante->materia->nombre}}</x-table-cell>
                 <x-table-cell>{{$vacante->nombre_puesto}}</x-table-cell>
-                <x-table-cell>{{$vacante->fecha_apertura}}</x-table-cell>
-                <x-table-cell>{{$vacante->fecha_cierre}}</x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_apertura)->format('d-m-Y')}}</x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_cierre)->format('d-m-Y')}}</x-table-cell>
                 <x-table-cell>
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
                 </x-table-cell>
