@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUsuarioRequest;
 use App\Rol;
 use App\User;
 use App\Mail\NuevoUsuarioMail;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -104,6 +105,21 @@ class UsuarioController extends Controller
         $user = User::where('id', $request->id)
             ->first();
         $user->update($request->all());
+        return redirect()->route("usuario.index");
+    }
+
+    /**
+     * Update usuario in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = User::where('id', $id)
+            ->first();
+        $user->deleted_at = Carbon::now();
+        $user->update();
         return redirect()->route("usuario.index");
     }
 }

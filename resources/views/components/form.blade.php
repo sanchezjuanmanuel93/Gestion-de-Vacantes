@@ -23,11 +23,13 @@
 
         {{ $slot }}
 
+        @if (empty($hideButton) || $hideButton != "true")
         <div class="form-group justify-content-end d-flex">
             <button type="submit" class="btn btn-primary">
                 <span>{{empty($saveButtonText) ? 'Guardar' : $saveButtonText }} </span>
             </button>
         </div>
+        @endif
 
     </form>
 </div>
