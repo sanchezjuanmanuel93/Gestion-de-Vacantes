@@ -43,7 +43,7 @@ class UsuarioController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('rol', 'users.id_rol', '=', 'rol.id')
-            ->select('users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion as rolDescripcion')
+            ->select('users.id','users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion as rolDescripcion')
             ->get();
         return view('usuario.index', ["usuarios" => $usuarios]);
     }
@@ -71,6 +71,39 @@ class UsuarioController extends Controller
         Mail::to($usuario->email)
             ->send(new NuevoUsuarioMail($usuario, $password));
 
+        return redirect()->route("usuario.index");
+    }
+
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $usuario)
+    {
+        $roles = Rol::all();
+        return view('usuario.update')
+        ->with("id", $usuario->id)
+        ->with("nombre", $usuario->nombre)
+        ->with("apellido", $usuario->apellido)
+        ->with("telefono", $usuario->telefono)
+        ->with("id_rol", $usuario->id_rol)
+        ->with("roles", $roles);
+    }
+
+    /**
+     * Update usuario in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(\Illuminate\Http\Request $request)
+    {
+        $user = User::where('id', $request->id)
+            ->first();
+        $user->update($request->all());
         return redirect()->route("usuario.index");
     }
 }

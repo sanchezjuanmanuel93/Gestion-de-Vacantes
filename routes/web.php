@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::resource('usuario', 'UsuarioController')
     ->only([
-        'index', 'create', 'store'
+        'index', 'create', 'store', 'show', 'update'
     ])
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
     

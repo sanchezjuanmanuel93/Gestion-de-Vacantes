@@ -11,18 +11,20 @@ class FormGroupText extends Component
     public $fieldName;
     public $fieldDescription;
     public $errors;
+    public $value;
     
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($fieldId, $fieldName, $fieldDescription, $errors)
+    public function __construct($fieldId, $fieldName, $fieldDescription, $errors, $value = null)
     {
         $this->fieldId = $fieldId;
         $this->fieldName = $fieldName;
         $this->fieldDescription = $fieldDescription;
         $this->errors = $errors;
+        $this->value = $value;
     }
 
     /**
@@ -36,6 +38,7 @@ class FormGroupText extends Component
             ->with('fieldId', $this->fieldId)
             ->with('fieldName', $this->fieldName)
             ->with('fieldDescription', $this->fieldDescription)
+            ->with('value', $this->value)
             ->with('errors', $this->errors);
     }
 }

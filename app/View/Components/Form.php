@@ -8,6 +8,7 @@ class Form extends Component
 {
     public $route;
     public $method;
+    public $id;
     public $success;
     public $successMessage;
     public $message;
@@ -18,10 +19,11 @@ class Form extends Component
      *
      * @return void
      */
-    public function __construct($route, $method, $success = false, $successMessage = null, $message = null, $saveButtonText = null)
+    public function __construct($route, $method, $id = null, $success = false, $successMessage = null, $message = null, $saveButtonText = null)
     {
         $this->route = $route;
         $this->method = $method;
+        $this->id = $id;
         $this->success = $success;
         $this->successMessage = $successMessage;
         $this->message = $message;

@@ -22,7 +22,7 @@ Consultar Vacantes
                 </x-table-row>
         </x-slot>
         @foreach ($vacantes as $vacante)
-        <x-table-row>;
+        <x-table-row>
                 <x-table-cell>{{$vacante->materia->nombre}}</x-table-cell>
                 <x-table-cell>{{$vacante->nombre_puesto}}</x-table-cell>
                 <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_apertura)->format('d-m-Y')}}</x-table-cell>

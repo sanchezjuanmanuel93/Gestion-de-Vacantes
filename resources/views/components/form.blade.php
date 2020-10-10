@@ -1,9 +1,13 @@
 <div class="col-lg-6">
-    <form method="POST" action="{{ route($route) }}">
+    <form method="POST" action="{{ empty($id) ? route($route) : route($route, $id) }}">
         @csrf
 
         @if ($method != "POST")
         @method($method)
+        @endif
+
+        @if (!empty($id))
+        <x-form-group-hidden fieldId="id" fieldName="id" value="{{$id}}" />
         @endif
 
         @if ($success)
