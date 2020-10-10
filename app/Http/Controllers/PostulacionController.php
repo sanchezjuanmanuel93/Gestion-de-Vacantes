@@ -29,7 +29,8 @@ class PostulacionController extends Controller
      */
     public function index()
     {
-        return view('postulacion.index');
+        $postulaciones = Postulacion::where('id_usuario', Auth::id())->get();
+        return view('postulacion.index', compact('postulaciones'));
     }
 
     /**
@@ -70,6 +71,6 @@ class PostulacionController extends Controller
             $postulacion->save();
         } catch (\Throwable $th) {
         }
-        return redirect(route('vacante.show',$postulacion->id_vacante));
+        return redirect(route('vacante.show', $postulacion->id_vacante));
     }
 }
