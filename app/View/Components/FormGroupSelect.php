@@ -15,13 +15,14 @@ class FormGroupSelect extends Component
     public $valueField;
     public $placeholder;
     public $searchOn;
+    public $selected;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($fieldId, $fieldName, $fieldDescription, $errors, $keyField, $valueField, $collection, $placeholder = null, $searchOn = false)
+    public function __construct($fieldId, $fieldName, $fieldDescription, $errors, $keyField, $valueField, $collection, $selected = null, $placeholder = null, $searchOn = false)
     {
         $this->fieldId = $fieldId;
         $this->fieldName = $fieldName;
@@ -32,6 +33,7 @@ class FormGroupSelect extends Component
         $this->collection = $collection;
         $this->placeholder = $placeholder;
         $this->searchOn = $searchOn;
+        $this->selected = $selected;
     }
 
     /**
@@ -49,6 +51,7 @@ class FormGroupSelect extends Component
             ->with('keyField', $this->keyField)
             ->with('valueField', $this->valueField)
             ->with('collection', $this->collection)
+            ->with('selected', $this->selected)
             ->with('placeholder', $this->placeholder)
             ->with('searchOn', $this->searchOn);
     }

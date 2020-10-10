@@ -17,7 +17,9 @@ class FormGroupHidden extends Component
      */
     public function __construct($fieldId, $fieldName, $value)
     {
-        //
+        $this->fieldId = $fieldId;
+        $this->fieldName = $fieldName;
+        $this->value = $value;
     }
 
     /**

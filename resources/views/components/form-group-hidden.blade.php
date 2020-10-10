@@ -1,1 +1,1 @@
-<input id="{{$fieldId}}" type="hidden" name="{{$fieldName}}" :value="$value">
+<input id="{{$fieldId}}" type="hidden" name="{{$fieldName}}" value="{{$value}}">

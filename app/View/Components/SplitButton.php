@@ -11,17 +11,20 @@ class SplitButton extends Component
     public $className;
     public $iconName;
     public $displayName;
+    public $buttonType;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($routeName, $className, $iconName, $displayName)
+    public function __construct($className, $iconName, $displayName, $routeName = null, $buttonType = null)
     {
-        $this->routeName = $routeName;
         $this->className = $className;
         $this->iconName = $iconName;
         $this->displayName = $displayName;
+        $this->routeName = $routeName;
+        $this->buttonType = $buttonType;
     }
 
     /**

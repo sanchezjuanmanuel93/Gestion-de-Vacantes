@@ -8,24 +8,28 @@ class Form extends Component
 {
     public $route;
     public $method;
+    public $id;
     public $success;
     public $successMessage;
     public $message;
     public $saveButtonText;
+    public $hideButton;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($route, $method, $success = false, $successMessage = null, $message = null, $saveButtonText = null)
+    public function __construct($route, $method, $id = null, $success = false, $successMessage = null, $message = null, $saveButtonText = null, $hideButton = null)
     {
         $this->route = $route;
         $this->method = $method;
+        $this->id = $id;
         $this->success = $success;
         $this->successMessage = $successMessage;
         $this->message = $message;
         $this->saveButtonText = $saveButtonText;
+        $this->hideButton = $hideButton;
     }
 
     /**
