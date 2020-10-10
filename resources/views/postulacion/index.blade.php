@@ -15,6 +15,7 @@ Consultar Postulaciones
                 <x-table-row>
                         <x-table-header>Materia</x-table-header>
                         <x-table-header>Nombre Puesto</x-table-header>
+                        <x-table-header>Fecha Postulado</x-table-header>
                         <x-table-header>Fecha Apertura</x-table-header>
                         <x-table-header>Fecha Cierre</x-table-header>
                         <x-table-header></x-table-header>
@@ -24,14 +25,18 @@ Consultar Postulaciones
         <x-table-row>
                 <x-table-cell>{{$postulacion->vacante->materia->nombre}}</x-table-cell>
                 <x-table-cell>{{$postulacion->vacante->nombre_puesto}}</x-table-cell>
+                <x-table-cell>{{\Carbon\Carbon::parse($postulacion->fecha_postulacion)->format('d-m-Y')}}
+                </x-table-cell>
                 <x-table-cell>{{\Carbon\Carbon::parse($postulacion->vacante->fecha_apertura)->format('d-m-Y')}}
                 </x-table-cell>
+
                 <x-table-cell>
-                        {{\Carbon\Carbon::parse($postulacion->vacante->fecha_cierre_estipulada)->format('d-m-Y')}}
+                        {{\Carbon\Carbon::parse($postulacion->vacante->fecha_cierre ?: $postulacion->vacante->fecha_cierre_estipulada)->format('d-m-Y')}}
                 </x-table-cell>
                 <x-table-cell>
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list"
-                                routeName="{{route('vacante.show', $postulacion->vacante->id)}}"></x-split-button>
+                                routeName="{{route('vacante.show', $postulacion->vacante->id)}}">
+                        </x-split-button>
                 </x-table-cell>
         </x-table-row>
         @endforeach
