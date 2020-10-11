@@ -48,7 +48,6 @@ Consultar Vacantes Abiertas
                         </form>
                         @endif
                         @endforeach
-
                 </x-table-cell>
         </x-table-row>
         @endforeach
