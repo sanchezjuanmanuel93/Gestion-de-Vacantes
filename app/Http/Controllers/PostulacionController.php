@@ -54,7 +54,7 @@ class PostulacionController extends Controller
             $name = Auth::user()->apellido . "_" . Auth::user()->nombre . "-" . time();
             $filePath = 'cvs/' . $name;
             if (!App::environment('local')) {
-                //Storage::disk('s3')->put($filePath, file_get_contents($file));
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
             }
         }
         Postulacion::create([
