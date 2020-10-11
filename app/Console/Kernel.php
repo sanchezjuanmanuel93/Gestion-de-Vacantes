@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Carbon;
+use App\Vacante;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +27,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $now = Carbon::now();
+
+            $vacantes = Vacante::
+            whereNull('fecha_cierre')
+            ->whereDate('fecha_cierre_estipulada', $now->toDateString());
+
+            Mail::to(env('MAIL_USERNAME'))
+            ->send(new \App\Mail\CierreVacanteMail($now, $vacantes->get(), "Mensaje de prueba."));
+
+            $vacantes
+            ->update(['fecha_cierre' => $now]);
+        })->dailyAt('12:00');
     }
 
     /**
