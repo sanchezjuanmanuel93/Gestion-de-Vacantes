@@ -17,7 +17,7 @@ class CreatePostulacionTable extends Migration {
 	{
 		Schema::create('postulacion', function(Blueprint $table)
 		{
-			$table->integer('id', true)->primary();
+            $table->id();
 			$table->timestamp('fecha_postulacion')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->integer('puntaje')->nullable();
 			$table->bigInteger('id_usuario')->unsigned();

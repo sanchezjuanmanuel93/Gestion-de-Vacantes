@@ -33,21 +33,21 @@ Consultar Vacantes Abiertas
                                 routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
                 </x-table-cell>
                 <x-table-cell>
-                        @foreach(Auth::user()->postulaciones as $postulacion)
-                        @if($postulacion->vacante->id == $vacante->id)
-                        <button class="btn btn-sm btn-outline-secondary"
-                                disabled>Postulado[{{\Carbon\Carbon::parse($postulacion->fecha_postulacion)->format('d-m-Y')}}]</button>
-                        @break
-                        @endif
-                        @if($loop->last)
-                        <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
-                                @csrf
-                                <input name="id_vacante" type="hidden" value="{{$vacante->id}}">
-                                <x-upload-file fieldName="cv" :errors="$errors" />
-                                <button type="submit" class="btn btn-sm btn-light">Postular</button>
-                        </form>
-                        @endif
-                        @endforeach
+                @php
+                        $postulacion = Auth::user()->postulaciones->firstWhere('vacante.id', $vacante->id);
+                @endphp
+                @if(!empty($postulacion))
+                        <button class="btn btn-sm btn-outline-secondary" disabled>
+                                Postulado[{{\Carbon\Carbon::parse($postulacion->fecha_postulacion)->format('d-m-Y')}}]
+                        </button>
+                @else
+                <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
+                        @csrf
+                        <input name="id_vacante" type="hidden" value="{{$vacante->id}}">
+                        <x-upload-file fieldName="cv" :errors="$errors" />
+                        <button type="submit" class="btn btn-sm btn-light">Postular</button>
+                </form>
+                @endif
                 </x-table-cell>
         </x-table-row>
         @endforeach
