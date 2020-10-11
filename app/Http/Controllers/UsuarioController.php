@@ -44,7 +44,7 @@ class UsuarioController extends Controller
     {
         $usuarios = DB::table('users')
             ->join('rol', 'users.id_rol', '=', 'rol.id')
-            ->select('users.id','users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion as rolDescripcion')
+            ->select('users.id','users.nombre', 'users.apellido', 'users.telefono', 'users.email', 'rol.descripcion as rolDescripcion', 'users.deleted_at')
             ->get();
         return view('usuario.index', ["usuarios" => $usuarios]);
     }
@@ -109,7 +109,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Update usuario in storage.
+     * Soft delete usuario in storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -119,6 +119,21 @@ class UsuarioController extends Controller
         $user = User::where('id', $id)
             ->first();
         $user->deleted_at = Carbon::now();
+        $user->update();
+        return redirect()->route("usuario.index");
+    }
+
+    /**
+     * Recover usuario in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function recuperar($id)
+    {
+        $user = User::where('id', $id)
+            ->first();
+        $user->deleted_at = null;
         $user->update();
         return redirect()->route("usuario.index");
     }

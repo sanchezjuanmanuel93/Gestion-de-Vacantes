@@ -31,9 +31,16 @@ Consultar Usuarios
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list" routeName="{{route('usuario.show', $usuario->id)}}"></x-split-button>
                 </x-table-cell>
                 <x-table-cell>
+                        @if(empty($usuario->deleted_at))
                         <x-form route="usuario.destroy" method="DELETE" :id="$usuario->id" hideButton="true">
                                 <x-split-button buttonType="button" displayName="Baja" className="btn-danger" iconName="fa-ban"></x-split-button>
                         </x-form>
+                        @endif
+                        @if(!empty($usuario->deleted_at))
+                        <x-form route="usuario.recuperar" method="PUT" :id="$usuario->id" hideButton="true">
+                                <x-split-button buttonType="button" displayName="Recuperar" className="btn-info" iconName="fa-undo"></x-split-button>
+                        </x-form>
+                        @endif
                 </x-table-cell>
         </x-table-row>
         @endforeach

@@ -31,6 +31,10 @@ class InicioController extends Controller
     public function index()
     {
         if (Auth::check()) {
+            if (Auth::user()->deleted_at) {
+                Auth::logout();
+                return redirect()->route('inicio.index');
+            }
             return view('dashboard')
                 ->with('menuItems', $this->menuItemsService->getMenuItems());
         } else {
