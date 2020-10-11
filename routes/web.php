@@ -51,6 +51,10 @@ Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
     ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 
+Route::put('vacante/cerrarAnticipadamente/{id}', 'VacanteController@cerrarAnticipadamente')
+    ->name('vacante.cerrarAnticipadamente')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    
 Route::resource('vacante', 'VacanteController')
     ->only([
         'index', 'create', 'store', 'show', 'update'

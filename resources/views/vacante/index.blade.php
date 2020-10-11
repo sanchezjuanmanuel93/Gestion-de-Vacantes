@@ -16,8 +16,8 @@ Consultar Vacantes
                         <x-table-header>Materia</x-table-header>
                         <x-table-header>Nombre Puesto</x-table-header>
                         <x-table-header>Fecha Apertura</x-table-header>
+                        <x-table-header>Fecha Cierre Estipulada</x-table-header>
                         <x-table-header>Fecha Cierre</x-table-header>
-                        <x-table-header></x-table-header>
                         <x-table-header></x-table-header>
                 </x-table-row>
         </x-slot>
@@ -29,24 +29,17 @@ Consultar Vacantes
                 <x-table-cell>{{\Carbon\Carbon::parse($vacante->fecha_cierre_estipulada)->format('d-m-Y')}}
                 </x-table-cell>
                 <x-table-cell>
-                        <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list"
-                                routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
+                        @if(empty($vacante->fecha_cierre))
+                                <x-form route="vacante.cerrarAnticipadamente" method="PUT" :id="$vacante->id" hideButton="true">
+                                        <x-split-button buttonType="button" displayName="Cerrar Ahora" className="btn-danger" iconName="fa-window-close"></x-split-button>
+                                </x-form>
+                        @else
+                                {{\Carbon\Carbon::parse($vacante->fecha_cierre)->format('d-m-Y')}}
+                        @endif
                 </x-table-cell>
                 <x-table-cell>
-                        @foreach(Auth::user()->postulaciones as $postulacion)
-                        @if($postulacion->vacante->id == $vacante->id)
-                        <button class="btn btn-sm btn-outline-secondary" disabled>Postulado</button>
-                        @break
-                        @endif
-                        @if($loop->last)
-                        <form method="POST" action={{ route('postulacion.store') }} enctype="multipart/form-data">
-                                @csrf
-                                <input name="id_vacante" type="hidden" value="{{$vacante->id}}">
-                                <x-upload-file fieldName="cv" :errors="$errors" />
-                                <button type="submit" class="btn btn-sm btn-light">Postular</button>
-                        </form>
-                        @endif
-                        @endforeach
+                        <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list"
+                                routeName="{{route('vacante.show', $vacante->id)}}"></x-split-button>
                 </x-table-cell>
         </x-table-row>
         @endforeach

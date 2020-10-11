@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVacanteRequest;
 use App\Materia;
 use App\Postulacion;
+use App\Rol;
 use App\Vacante;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Carbon;
 
 class VacanteController extends Controller
 {
@@ -37,7 +39,7 @@ class VacanteController extends Controller
             ->with('postulaciones.usuario')
             ->get();
 
-        return view('vacante.index', ["vacantes" => $vacantes_abiertas]);
+        return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
     }
 
     /**
@@ -163,7 +165,7 @@ class VacanteController extends Controller
                 $postulacion->save();
             }
             $vacante = Vacante::where('id', '=', $request->input('id_vacante'))->first();
-            $vacante->fecha_orden_merito = new DateTime();
+            $vacante->fecha_orden_merito = Carbon::now();
             $vacante->save();
             DB::commit();
         } catch (\Throwable $th) {
@@ -171,5 +173,20 @@ class VacanteController extends Controller
             throw $th;
         }
         return Redirect::back();
+    }
+
+    /**
+     * Recover usuario in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cerrarAnticipadamente($id)
+    {
+        $user = Vacante::where('id', $id)
+            ->first();
+        $user->fecha_cierre = Carbon::now();;
+        $user->update();
+        return redirect()->route("vacante.index");
     }
 }
