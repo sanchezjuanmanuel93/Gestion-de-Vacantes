@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item"><a href="{{route('vacante.abierta.index')}}">Vacantes</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{route('vacante.index')}}">Vacantes</a></li>
 <li class="breadcrumb-item active" aria-current="page"><a
         href="{{route('vacante.show', $vacante->id)}}">{{$vacante->id}}</a></li>
 @endsection

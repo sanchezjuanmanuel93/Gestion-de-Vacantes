@@ -3,8 +3,8 @@
 Crear Usuario
 @endsection
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-    <li class="breadcrumb-item">Usuarios</li>
+    <li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>    
+    <li class="breadcrumb-item" aria-current="page"><a href="{{route('usuario.index')}}">Usuarios</a></li>
     <li class="breadcrumb-item active" aria-current="page"><a href="{{route('usuario.show', $id)}}">{{$id}}</a></li> 
 @endsection
 @section('logged-content')
