@@ -52,7 +52,7 @@ class PostulacionController extends Controller
         if ($request->hasFile('cv')) {
             $file = $request->file('cv');
             $name = Auth::user()->apellido . "_" . Auth::user()->nombre . "-" . time();
-            $filePath = 'cvs/' . $name;
+            $filePath = 'cvs/' . $name.'.'.$file->getClientOriginalExtension();
             $fileContent = file_get_contents($file);
             Storage::disk('s3')->put($filePath, $fileContent);
         }
