@@ -7,6 +7,8 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
 use App\Vacante;
+use App\User;
+use App\Rol;
 
 class Kernel extends ConsoleKernel
 {
@@ -34,7 +36,11 @@ class Kernel extends ConsoleKernel
             whereNull('fecha_cierre')
             ->whereDate('fecha_cierre_estipulada', $now->toDateString());
 
+            $users = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
+            ->pluck('email');
+
             Mail::to(env('MAIL_USERNAME'))
+            ->bcc($users)
             ->send(new \App\Mail\CierreVacanteMail($now, $vacantes->get(), "Mensaje de prueba."));
 
             $vacantes

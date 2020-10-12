@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\User;
 
 class VacanteController extends Controller
 {
@@ -183,10 +185,19 @@ class VacanteController extends Controller
      */
     public function cerrarAnticipadamente($id)
     {
-        $user = Vacante::where('id', $id)
+        $now = Carbon::now();
+        $vacante = Vacante::where('id', $id)
             ->first();
-        $user->fecha_cierre = Carbon::now();;
-        $user->update();
+        $vacante->fecha_cierre = $now;
+        $vacante->update();
+
+        $users = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
+        ->pluck('email');
+
+        Mail::to(env('MAIL_USERNAME'))
+        ->bcc($users)
+        ->send(new \App\Mail\CierreVacanteMail($now, [$vacante] , "Mensaje de prueba."));
+        
         return redirect()->route("vacante.index");
     }
 }
