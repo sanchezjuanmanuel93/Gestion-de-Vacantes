@@ -10,7 +10,7 @@
                         <x-table-header>Materia</x-table-header>
                         <x-table-header>Nombre Puesto</x-table-header>
                         <x-table-header>Fecha Apertura</x-table-header>
-                        <x-table-header>Fecha Cierre</x-table-header>
+                        <x-table-header>Fecha Cierre Estipulada</x-table-header>
                         <x-table-header></x-table-header>
                 </x-table-row>
         </x-slot>
