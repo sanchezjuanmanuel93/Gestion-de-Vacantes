@@ -55,14 +55,17 @@ class Vacante extends Model
     public function status()
     {
         $today = Carbon::today();
-        if ($this->fecha_apertura > $today && $this->fecha_cierre < $today) {
-            return Vacante::$ABIERTA;
-        } else if ($this->fecha_orden_merito == null && $this->fecha_cierre != null) {
+        if ($this->fecha_cierre == null) {
+            if($this->fecha_apertura >= $today){
+                return Vacante::$ABIERTA;
+            }
+            else {
+                return Vacante::$CREADA;
+            }
+        } else if ($this->fecha_orden_merito == null) {
             return Vacante::$CERRADA;
-        } else if ($this->fecha_orden_merito != null && $this->fecha_cierre < $today) {
-            return Vacante::$FINALIZADA;
         } else {
-            return Vacante::$CREADA;
+            return Vacante::$FINALIZADA;
         }
     }
 }
