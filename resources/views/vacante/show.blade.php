@@ -24,7 +24,7 @@
                     <span><b>Fecha Apertura:</b> {{date('d/m/Y', strtotime($vacante->fecha_apertura))}}</span>
                 </div>
                 <div>
-                    <span><b>Fecha Cierre:</b>
+                    <span><b>Fecha Cierre Estipulada:</b>
                         {{date('d/m/Y', strtotime($vacante->fecha_cierre ?: $vacante->fecha_cierre_estipulada))}}</span>
                 </div>
                 <div>
