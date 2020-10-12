@@ -31,7 +31,7 @@ class Postulacion extends Model
     /**
      * @var array
      */
-    protected $fillable = ['id_vacante', 'fecha_postulacion', 'puntaje', 'id_usuario'];
+    protected $fillable = ['id_vacante', 'fecha_postulacion', 'puntaje', 'id_usuario', 'cv_path'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

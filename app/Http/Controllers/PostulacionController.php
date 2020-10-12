@@ -53,16 +53,15 @@ class PostulacionController extends Controller
             $file = $request->file('cv');
             $name = Auth::user()->apellido . "_" . Auth::user()->nombre . "-" . time();
             $filePath = 'cvs/' . $name;
-            if (!App::environment('local')) {
-                Storage::disk('s3')->put($filePath, file_get_contents($file));
-            }
+            $fileContent = file_get_contents($file);
+            Storage::disk('s3')->put($filePath, $fileContent);
         }
         Postulacion::create([
             'id_vacante' => $request->input('id_vacante'),
             'id_usuario' => Auth::user()->id,
             'cv_path' => $filePath
         ]);
-        Mail::to(env('MAIL_USERNAME'))
+        Mail::to(Auth::user()->email)
             ->send(new \App\Mail\PostulacionMail($vacante));
         return redirect(route('vacante.abierta.index'));
     }
