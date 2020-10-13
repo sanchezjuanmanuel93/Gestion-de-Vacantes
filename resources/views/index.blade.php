@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.unlogged')
 
-@section('title', "Inicio")
+@section('title', "Gestión de Vacantes")
 
-@section('content')
-
+@section('unlogged-content')
+<div class="d-flex px-0 mx-0 w-100 pb-2 pb-md-4">
+        <a href="{{route('login')}}" class="btn btn-primary ml-auto mr-0">Iniciar Sesión</a>
+</div>
 <x-table tableId="dataTable">
         <x-slot name="header">
                 <x-table-row>
@@ -28,9 +30,4 @@
         </x-table-row>
         @endforeach
 </x-table>
-@if(Auth::user() == null)
-<div class="container">
-        <a href="/login" class="btn btn-primary center-block">Iniciar Sesión</a>
-</div>
-@endif
 @endsection
