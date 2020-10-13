@@ -8,6 +8,8 @@ Consultar Vacantes Abiertas
 <li class="breadcrumb-item active" aria-current="page"><a href="{{route('vacante.abierta.index')}}">Vacantes Abiertas</a></li>
 @endsection
 @section('logged-content')
+
+@if(count($vacantes) > 0)
 <x-table tableId="dataTable">
         <x-slot name="header">
                 <x-table-row>
@@ -50,6 +52,9 @@ Consultar Vacantes Abiertas
         </x-table-row>
         @endforeach
 </x-table>
+@else
+No hay vacantes abiertas en este momento.
+@endif
 @endsection
 
 @section('scripts')

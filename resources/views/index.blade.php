@@ -31,6 +31,7 @@
         </x-table-row>
         @endforeach
 </x-table>
-@endif
+@else
 No hay vacantes abiertas en este momento.
+@endif
 @endsection

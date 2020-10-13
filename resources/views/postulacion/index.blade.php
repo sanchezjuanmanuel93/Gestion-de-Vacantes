@@ -9,6 +9,7 @@ Consultar Postulaciones
                 Postulaciones</a></li>
 @endsection
 @section('logged-content')
+@if(count($postulaciones) > 0)
 <x-table tableId="dataTable">
         <x-slot name="header">
                 <x-table-row>
@@ -39,4 +40,7 @@ Consultar Postulaciones
         </x-table-row>
         @endforeach
 </x-table>
+@else
+No hay postulaciones en este momento.
+@endif
 @endsection
