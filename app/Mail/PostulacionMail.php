@@ -12,15 +12,17 @@ class PostulacionMail extends Mailable
     use Queueable, SerializesModels;
 
     public $vacante;
+    public $usuario;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($vacante)
+    public function __construct($vacante, $usuario)
     {
         $this->vacante = $vacante;
+        $this->usuario = $usuario;
     }
 
     /**
@@ -31,7 +33,9 @@ class PostulacionMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Confirmación de la vacante ' . $this->vacante->materia->nombre . ' ' . $this->vacante->nombre_puesto)
-            ->view('emails.postulacion');
+            ->subject('Gestión de Vacantes | Confirmación vacante')
+            ->view('emails.postulacion')
+            ->with('vacante', $this->vacante)
+            ->with('usuario', $this->usuario);
     }
 }

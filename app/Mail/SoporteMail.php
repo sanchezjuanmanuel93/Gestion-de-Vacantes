@@ -31,7 +31,7 @@ class SoporteMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Gestion de Vacantes | Soporte')
+            ->subject('Gestión de Vacantes | Soporte')
             ->replyTo(Auth::user()->email)
             ->view('emails.soporte')
             ->with('nombre', Auth::user()->nombre)

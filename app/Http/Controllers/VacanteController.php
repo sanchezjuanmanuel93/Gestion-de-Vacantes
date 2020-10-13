@@ -186,7 +186,11 @@ class VacanteController extends Controller
     public function cerrarAnticipadamente($id)
     {
         $now = Carbon::now();
-        $vacante = Vacante::where('id', $id)
+        $vacante = Vacante::
+            with('postulaciones')
+            ->with('materia')
+            ->with('postulaciones.usuario')
+            ->where('id', $id)
             ->first();
         $vacante->fecha_cierre = $now;
         $vacante->update();
@@ -196,7 +200,7 @@ class VacanteController extends Controller
 
         Mail::to(env('MAIL_USERNAME'))
         ->bcc($users)
-        ->send(new \App\Mail\CierreVacanteMail($now, [$vacante] , "Mensaje de prueba."));
+        ->send(new \App\Mail\CierreVacanteMail($now, [$vacante]));
         
         return redirect()->route("vacante.index");
     }

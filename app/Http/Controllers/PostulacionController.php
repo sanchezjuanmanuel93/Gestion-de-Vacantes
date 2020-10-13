@@ -61,8 +61,9 @@ class PostulacionController extends Controller
             'id_usuario' => Auth::user()->id,
             'cv_path' => $filePath
         ]);
-        Mail::to(Auth::user()->email)
-            ->send(new \App\Mail\PostulacionMail($vacante));
+        Mail::to(env('MAIL_USERNAME'))
+            ->bcc(Auth::user()->email)
+            ->send(new \App\Mail\PostulacionMail($vacante, Auth::user()));
         return redirect(route('vacante.abierta.index'));
     }
 

@@ -69,8 +69,9 @@ class UsuarioController extends Controller
             'password' => $hashed_random_password,
         ]);
 
-        Mail::to($usuario->email)
-            ->send(new NuevoUsuarioMail($usuario, $password));
+        Mail::to(env('MAIL_USERNAME'))
+            ->bcc($usuario->email)
+            ->send(new NuevoUsuarioMail($usuario, $password, url('/')));
 
         return redirect()->route("usuario.index");
     }

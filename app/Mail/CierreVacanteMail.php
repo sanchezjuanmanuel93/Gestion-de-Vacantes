@@ -11,7 +11,6 @@ class CierreVacanteMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mensaje;
     public $vacantes;
     public $fechaHora;
 
@@ -20,9 +19,8 @@ class CierreVacanteMail extends Mailable
      *
      * @return void
      */
-    public function __construct($fechaHora, $vacantes, $mensaje)
+    public function __construct($fechaHora, $vacantes)
     {
-        $this->mensaje = $mensaje;
         $this->vacantes = $vacantes;
         $this->fechaHora = $fechaHora;
     }
@@ -35,10 +33,9 @@ class CierreVacanteMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Gestion de Vacantes | Cierre de Vacantes')
+            ->subject('Gestión de Vacantes | Cierre de Vacantes')
             ->view('emails.cierreVacantes')
             ->with('fechaHora', $this->fechaHora)
-            ->with('vacantes', $this->vacantes)
-            ->with('mensaje', $this->mensaje);
+            ->with('vacantes', $this->vacantes);
     }
 }

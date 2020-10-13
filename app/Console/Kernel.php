@@ -33,7 +33,10 @@ class Kernel extends ConsoleKernel
             $now = Carbon::now();
 
             $vacantes = Vacante::
-            whereNull('fecha_cierre')
+            with('postulaciones')
+            ->with('materia')
+            ->with('postulaciones.usuario')
+            ->whereNull('fecha_cierre')
             ->whereDate('fecha_cierre_estipulada', $now->toDateString());
 
             $users = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
@@ -41,7 +44,7 @@ class Kernel extends ConsoleKernel
 
             Mail::to(env('MAIL_USERNAME'))
             ->bcc($users)
-            ->send(new \App\Mail\CierreVacanteMail($now, $vacantes->get(), "Mensaje de prueba."));
+            ->send(new \App\Mail\CierreVacanteMail($now, $vacantes->get()));
 
             $vacantes
             ->update(['fecha_cierre' => $now]);
