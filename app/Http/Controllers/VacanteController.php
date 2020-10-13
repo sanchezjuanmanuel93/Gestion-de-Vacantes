@@ -51,7 +51,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        $materias = Materia::all();
+        $materias = Materia::orderBy('nombre', 'asc')->get();
         return view('vacante.create', ["materias" => $materias]);
     }
 

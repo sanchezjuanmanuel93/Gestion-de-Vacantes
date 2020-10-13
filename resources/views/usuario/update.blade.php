@@ -1,6 +1,6 @@
 @extends('layouts.logged')
 @section('title')
-Crear Usuario
+Editar Usuario
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>    

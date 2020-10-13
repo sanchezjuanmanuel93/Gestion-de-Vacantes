@@ -27,6 +27,10 @@ Route::resource('usuario', 'UsuarioController')
     ])
     ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
 
+Route::get('/postulacion/descargarCV/{id}', 'PostulacionController@descargarCV')
+    ->name('postulacion.descargarCV')
+    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
@@ -42,6 +46,20 @@ Route::resource('soporte', 'SoporteController')
         'index', 'create', 'store'
     ])
     ->middleware(['userSoftDeleted','passwordInitialized:' . true]);
+
+Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
+    ->name('contraseña.reset.show');
+Route::get('/contraseña/inicializar', 'InicializarContrasenaController@index')
+    ->name('contraseña.inicializar.index')
+    ->middleware('passwordInitialized:' . false);;
+Route::post('/contraseña/inicializar', 'InicializarContrasenaController@store')
+    ->name('contraseña.inicializar.store')
+    ->middleware('passwordInitialized:' . false);;
+Route::resource('contraseña', 'ContrasenaController')
+    ->only([
+        'index', 'store'
+    ])
+    ->middleware('passwordInitialized:' . true);
 
 Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
     ->name('vacante.orden')
@@ -67,20 +85,6 @@ Route::resource('vacante', 'VacanteController')
 Route::get('/{id}', 'InicioController@show')
     ->name('inicio.show')
     ->middleware(['userSoftDeleted','passwordInitialized:' . true]);
-
-Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
-    ->name('contraseña.reset.show');
-Route::get('/contraseña/inicializar', 'InicializarContrasenaController@index')
-    ->name('contraseña.inicializar.index')
-    ->middleware('passwordInitialized:' . false);;
-Route::post('/contraseña/inicializar', 'InicializarContrasenaController@store')
-    ->name('contraseña.inicializar.store')
-    ->middleware('passwordInitialized:' . false);;
-Route::resource('contraseña', 'ContrasenaController')
-    ->only([
-        'index', 'store'
-    ])
-    ->middleware('passwordInitialized:' . true);
 
 Route::get('/', 'InicioController@index')
     ->name('inicio.index')

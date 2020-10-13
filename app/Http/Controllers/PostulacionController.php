@@ -54,7 +54,7 @@ class PostulacionController extends Controller
             $name = Auth::user()->apellido . "_" . Auth::user()->nombre . "-" . time();
             $filePath = 'cvs/' . $name.'.'.$file->getClientOriginalExtension();
             $fileContent = file_get_contents($file);
-            Storage::disk('s3')->put($filePath, $fileContent);
+            Storage::put($filePath, $fileContent);
         }
         Postulacion::create([
             'id_vacante' => $request->input('id_vacante'),
@@ -75,5 +75,11 @@ class PostulacionController extends Controller
         } catch (\Throwable $th) {
         }
         return redirect(route('vacante.show', $postulacion->id_vacante));
+    }
+
+    public function descargarCV($id)
+    {
+        $postulacion = Postulacion::where('id', '=', $id)->first();
+        return Storage::download($postulacion->cv_path);
     }
 }

@@ -96,3 +96,7 @@ html {
     right: 0;
     top: 0;
   } 
+
+textarea {
+    resize: none !important;
+}

@@ -87,17 +87,20 @@
                         <x-table-cell>{{$postulacion->usuario->apellido}}</x-table-cell>
                         <x-table-cell>{{$postulacion->usuario->telefono}}</x-table-cell>
                         <x-table-cell>{{$postulacion->usuario->email}}</x-table-cell>
-                        <x-table-cell><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-download"></i></a>
+                        <x-table-cell><a href="{{route('postulacion.descargarCV', $postulacion->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i></a>
                         </x-table-cell>
                         @if($vacante->status() == App\Vacante::$CERRADA || $vacante->status() ==
                         App\Vacante::$FINALIZADA)
                         <x-table-cell>
                             @csrf
+                            @if($postulacion->puntaje == null)
                             <div class="form-group mb-2">
                                 <input type="text" name="postulacion-{{ $postulacion->id }}"
-                                    class="form-control-sm puntaje" style="max-width: 35px" @if($postulacion->puntaje !=
-                                null)value="{{$postulacion->puntaje}}" readonly @endif>
+                                    class="form-control-sm puntaje" style="max-width: 35px" >
                             </div>
+                            @else
+                            {{$postulacion->puntaje}}
+                            @endif
                         </x-table-cell>
                         @endif
                     </x-table-row>
