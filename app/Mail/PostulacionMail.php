@@ -33,7 +33,7 @@ class PostulacionMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Gestión de Vacantes | Confirmación vacante')
+            ->subject('Gestión de Vacantes | Confirmación postulacion')
             ->view('emails.postulacion')
             ->with('vacante', $this->vacante)
             ->with('usuario', $this->usuario);
