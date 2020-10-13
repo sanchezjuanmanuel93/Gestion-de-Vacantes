@@ -6,6 +6,7 @@
 <div class="d-flex px-0 mx-0 w-100 pb-2 pb-md-4">
         <a href="{{route('login')}}" class="btn btn-primary ml-auto mr-0">Iniciar Sesión</a>
 </div>
+@if(count($vacantes) > 0)
 <x-table tableId="dataTable">
         <x-slot name="header">
                 <x-table-row>
@@ -30,4 +31,6 @@
         </x-table-row>
         @endforeach
 </x-table>
+@endif
+No hay vacantes abiertas en este momento.
 @endsection
