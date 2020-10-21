@@ -16,6 +16,17 @@ class StoreVacanteRequest extends FormRequest
         return true;
     }
 
+    public function attributes()
+    {
+        return [
+            'id-materia' => 'Materia',
+            'fecha-apertura' => 'Fecha Apertura',
+            'fecha-cierre' => 'Fecha Cierre Estipulada',
+            'nombre-puesto' => 'Nombre del Puesto',
+            'descripcion-puesto' => 'Descripcion del Puesto',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,8 +36,8 @@ class StoreVacanteRequest extends FormRequest
     {
         return [
             'id-materia' => 'required',
-            'fecha-apertura' => 'required',
-            'fecha-cierre' => 'required',
+            'fecha-apertura' => 'required|date|after:yesterday',
+            'fecha-cierre' => 'required|date|after_or_equal:fecha-apertura',
             'nombre-puesto' => 'required|max:45',
             'descripcion-puesto' => 'required|max:500'
         ];
@@ -35,13 +46,7 @@ class StoreVacanteRequest extends FormRequest
     public function messages()
     {
         return [
-            'id-materia.required' => 'La materia es requerida',
-            'fecha-apertura.required' => 'La fecha de apertura es requerida',
-            'fecha-cierre.required' => 'La fecha de cierre es requerida',
-            'nombre-puesto.required' => 'El nombre del puesto es requerido',
-            'descripcion-puesto.required' => 'La descripcion del puesto es requerida',
-            'nombre-puesto.max' => "El nombre del puesto no debe contener mas de 45 caracteres",
-            'descripcion-puesto.max' => "La descripcion es demasiada larga"
+            'fecha-apertura.after' => 'El campo Fecha Apertura debe ser una fecha posterior a hoy.',
         ];
     }
 }
