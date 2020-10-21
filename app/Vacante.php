@@ -36,6 +36,9 @@ class Vacante extends Model
      */
     protected $fillable = ['id_materia', 'nombre_puesto', 'descripcion_puesto', 'fecha_apertura', 'fecha_cierre_estipulada', 'fecha_cierre', 'fecha_orden_merito'];
 
+
+    protected $appends = ['status'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -50,6 +53,23 @@ class Vacante extends Model
     public function postulaciones()
     {
         return $this->hasMany('App\Postulacion', 'id_vacante');
+    }
+
+    public function getStatusAttribute()
+    {
+        $today = Carbon::today();
+        if ($this->fecha_cierre == null) {
+            if($this->fecha_apertura <= $today){
+                return "Abierta";
+            }
+            else {
+                return "Cerrada";
+            }
+        } else if ($this->fecha_orden_merito == null) {
+            return "Cerrada";
+        } else {
+            return "Finalizada";
+        }
     }
 
     public function status()

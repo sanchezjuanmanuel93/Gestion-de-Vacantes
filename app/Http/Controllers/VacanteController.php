@@ -35,7 +35,6 @@ class VacanteController extends Controller
      */
     public function index()
     {
-        $now = new DateTime();
         $vacantes_abiertas = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
@@ -186,8 +185,7 @@ class VacanteController extends Controller
     public function cerrarAnticipadamente($id)
     {
         $now = Carbon::now();
-        $vacante = Vacante::
-            with('postulaciones')
+        $vacante = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario')
             ->where('id', $id)
@@ -196,12 +194,12 @@ class VacanteController extends Controller
         $vacante->update();
 
         $users = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
-        ->pluck('email');
+            ->pluck('email');
 
         Mail::to(env('MAIL_USERNAME'))
-        ->bcc($users)
-        ->send(new \App\Mail\CierreVacanteMail($now, [$vacante]));
-        
+            ->bcc($users)
+            ->send(new \App\Mail\CierreVacanteMail($now, [$vacante]));
+
         return redirect()->route("vacante.index");
     }
 }
