@@ -7,14 +7,16 @@ use Illuminate\View\Component;
 class Table extends Component
 {
     public $tableId;
+    public $dataTable;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($tableId)
+    public function __construct($tableId, $dataTable = false)
     {
         $this->tableId = $tableId;
+        $this->dataTable = $dataTable;
     }
 
     /**
@@ -25,6 +27,6 @@ class Table extends Component
     public function render()
     {
         return view('components.table')
-        ->with('tableId', $this->tableId);
+            ->with('tableId', $this->tableId);
     }
 }

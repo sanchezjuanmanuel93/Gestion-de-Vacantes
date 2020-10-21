@@ -9,7 +9,7 @@ Consultar Vacantes
 @endsection
 @section('logged-content')
 @if(count($vacantes) > 0)
-<x-table tableId="dataTable">
+<x-table tableId="dataTable" :dataTable="true">
         <x-slot name="header">
                 <x-table-row>
                         <x-table-header>Materia</x-table-header>
