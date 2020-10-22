@@ -6,23 +6,25 @@ use Illuminate\View\Component;
 
 class FormGroupDatePicker extends Component
 {
-   
+
     public $fieldId;
     public $fieldName;
     public $fieldDescription;
     public $errors;
-    
+    public $value;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($fieldId, $fieldName, $fieldDescription, $errors)
+    public function __construct($fieldId, $fieldName, $fieldDescription, $errors, $value = "")
     {
         $this->fieldId = $fieldId;
         $this->fieldName = $fieldName;
         $this->fieldDescription = $fieldDescription;
         $this->errors = $errors;
+        $this->value = $value;
     }
 
     /**
