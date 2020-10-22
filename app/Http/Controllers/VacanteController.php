@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterVacantesRequest;
 use App\Http\Requests\StoreVacanteRequest;
 use App\Materia;
 use App\Postulacion;
@@ -33,12 +34,32 @@ class VacanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FilterVacantesRequest $request)
     {
-        $vacantes_abiertas = Vacante::with('postulaciones')
+        $vacantes = Vacante::with('postulaciones')
             ->with('materia')
-            ->with('postulaciones.usuario')
-            ->get();
+            ->with('postulaciones.usuario');
+
+        if ($request->has('searchBy')) {
+            $fechaInicio = $request->fecha_inicio;
+            $fechaFin = $request->fecha_fin;
+            switch ($request->has('searchBy')) {
+                case "fecha_apertura":
+                    $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
+                    break;
+                case "fecha_cierre_estipulada":
+                    $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
+                    break;
+                case "fecha_cierre":
+                    $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
+                    break;
+                case "echa_orden_merito":
+                    $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
+                    break;
+            }
+        }
+
+        $vacantes_abiertas = $vacantes->get();
 
         return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
     }

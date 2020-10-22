@@ -8,6 +8,68 @@ Consultar Vacantes
 <li class="breadcrumb-item active" aria-current="page"><a href="{{route('vacante.index')}}">Vacantes</a></li>
 @endsection
 @section('logged-content')
+
+<div class="row">
+        <div class="col-md-6">
+                <h2>Filtros:</h2>
+                <div class="my-3 py-1">
+                        <form>
+                                <div class="form-inline">
+                                        <x-form-group fieldName="fecha_apertura"
+                                                fieldDescription="Fecha Apertura de Vacante: " :errors="$errors">
+                                                <input type="radio" name="searchBy" value="fecha_apertura"
+                                                        class="form-control" style="width: 1.25rem; height: 1.25rem;"
+                                                        @if(request()->get('searchBy')
+                                                == 'fecha_apertura') checked @endif>
+                                        </x-form-group>
+                                </div>
+                                <div class="form-inline">
+                                        <x-form-group fieldName="fecha_cierre_estipulada"
+                                                fieldDescription="Fecha Cierre Estipulada: " :errors="$errors">
+                                                <input type="radio" name="searchBy" value="fecha_cierre_estipulada"
+                                                        class="form-control" style="width: 1.25rem; height: 1.25rem;"
+                                                        @if(request()->get('searchBy') == 'fecha_cierre_estipulada')
+                                                checked
+                                                @endif>
+                                        </x-form-group>
+                                </div>
+                                <div class="form-inline">
+                                        <x-form-group fieldName="fecha_cierre" fieldDescription="Fecha Cierre: "
+                                                :errors="$errors">
+                                                <input type="radio" name="searchBy" value="fecha_cierre"
+                                                        class="form-control" style="width: 1.25rem; height: 1.25rem;"
+                                                        @if(request()->get('searchBy')
+                                                == 'fecha_cierre') checked @endif>
+                                        </x-form-group>
+                                </div>
+                                <div class="form-inline">
+                                        <x-form-group fieldName="fecha_cierre_merito"
+                                                fieldDescription="Fecha Realizacion de Orden de Merito: "
+                                                :errors="$errors">
+                                                <input type="radio" name="searchBy" value="fecha_cierre_merito"
+                                                        class="form-control" style="width: 1.25rem; height: 1.25rem;"
+                                                        @if(request()->get('searchBy') == 'fecha_cierre_merito') checked
+                                                @endif>
+                                        </x-form-group>
+                                </div>
+
+                                <div class="form-inline">
+                                        <x-form-group-date-picker fieldName="fecha_inicio" fieldId="fecha_inicio"
+                                                fieldDescription="Fecha Inicio:" :errors="$errors"
+                                                :value="request()->get('fecha_inicio')" />
+                                        <x-form-group-date-picker fieldName="fecha_fin" fieldId="fecha_fin"
+                                                fieldDescription="Fecha Fin:" :errors="$errors"
+                                                :value="request()->get('fecha_fin')" />
+                                </div>
+                                <input type="reset" value="Limpiar filtro" class="btn btn-success">
+
+                                <input type="submit" value="Buscar" class="btn btn-primary">
+
+                        </form>
+                </div>
+        </div>
+</div>
+
 @if(count($vacantes) > 0)
 <x-table tableId="dataTable" :dataTable="true">
         <x-slot name="header">
