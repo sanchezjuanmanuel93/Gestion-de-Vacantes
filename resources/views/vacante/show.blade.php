@@ -64,6 +64,10 @@
             <x-card color="warning" displayName="Postulados" :displayDescription="count($vacante->postulaciones)"
                 iconName="fa-users" />
             <x-card color="success" displayName="Estado" :displayDescription="$state" iconName="fa-list" />
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
             <form class="form-inline" method="POST" action="{{route('vacante.orden')}}"
                 onsubmit="return validatePuntajes()">
                 <input type="hidden" name="id_vacante" value="{{$vacante->id}}" />
@@ -87,7 +91,8 @@
                         <x-table-cell>{{$postulacion->usuario->apellido}}</x-table-cell>
                         <x-table-cell>{{$postulacion->usuario->telefono}}</x-table-cell>
                         <x-table-cell>{{$postulacion->usuario->email}}</x-table-cell>
-                        <x-table-cell><a href="{{route('postulacion.descargarCV', $postulacion->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i></a>
+                        <x-table-cell><a href="{{route('postulacion.descargarCV', $postulacion->id)}}"
+                                class="btn btn-primary btn-sm"><i class="fa fa-download"></i></a>
                         </x-table-cell>
                         @if($vacante->status() == App\Vacante::$CERRADA || $vacante->status() ==
                         App\Vacante::$FINALIZADA)
@@ -96,7 +101,7 @@
                             @if($postulacion->puntaje == null)
                             <div class="form-group mb-2">
                                 <input type="text" name="postulacion-{{ $postulacion->id }}"
-                                    class="form-control-sm puntaje" style="max-width: 35px" >
+                                    class="form-control-sm puntaje" style="max-width: 35px">
                             </div>
                             @else
                             {{$postulacion->puntaje}}
@@ -116,11 +121,13 @@
             @endif
         </div>
     </div>
-    @endsection
-    @section('scripts')
-    @parent
-    <script type="text/javascript">
-        function validatePuntajes(){
+</div>
+</div>
+@endsection
+@section('scripts')
+@parent
+<script type="text/javascript">
+    function validatePuntajes(){
             var length = $(".puntaje").length;
             console.log(length)
             $(".puntaje").each(function(index, element){
@@ -132,5 +139,5 @@
                 }
             });
         }
-    </script>
-    @endsection
+</script>
+@endsection
