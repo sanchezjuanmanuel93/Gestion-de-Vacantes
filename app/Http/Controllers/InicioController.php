@@ -55,12 +55,13 @@ class InicioController extends Controller
             return redirect()->route("vacante.show", $id);
         } else {
             $now = new DateTime();
-            $vacante = Vacante::where('fecha_apertura', '<=', $now)
-                ->where('fecha_cierre', '>', $now)
-                ->where('id', '=', $id)
+            $vacante = Vacante::where('id', $id)
+                ->where('vacante.fecha_apertura', '<=', $now)
+                ->whereNull('vacante.fecha_cierre')
+                ->where('vacante.fecha_cierre_estipulada', '>', $now)
                 ->first();
             if (isset($vacante)) {
-                return view('show', ["vacante" => $vacante]);
+                return view('show', compact('vacante'));
             } else {
                 return redirect()->route("inicio.index");
             }
