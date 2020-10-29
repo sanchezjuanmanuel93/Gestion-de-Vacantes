@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
             ->with('materia')
             ->with('postulaciones.usuario')
             ->whereNull('fecha_cierre')
-            ->whereDate('fecha_cierre_estipulada', $now->toDateString());
+            ->whereDate('fecha_cierre_estipulada', '<=', $now->toDateString());
 
             $users = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
             ->pluck('email');

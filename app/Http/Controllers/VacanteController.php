@@ -106,21 +106,7 @@ class VacanteController extends Controller
             ->with('postulaciones.usuario')
             ->where('vacante.id', '=', $vacante->id)
             ->first();
-        switch ($vacante->status()) {
-            case Vacante::$ABIERTA:
-                $state = "Abierta";
-                break;
-            case Vacante::$CERRADA:
-                $state = "Cerrada";
-                break;
-            case Vacante::$FINALIZADA:
-                $state = "Finalizada";
-                break;
-            default:
-                $state = "Creada";
-                break;
-        }
-        return view('vacante.show', ["vacante" => $vacante, "state" => $state]);
+        return view('vacante.show', ["vacante" => $vacante, "state" => $this->getStatus($vacante)]);
     }
 
     /**
@@ -176,20 +162,50 @@ class VacanteController extends Controller
         return view('vacante.abierta.index', ["vacantes" => $vacantes_abiertas]);
     }
 
+    private function getStatus($vacante)
+    {
+        $state = "";
+        switch ($vacante->status()) {
+            case Vacante::$ABIERTA:
+                $state = "Abierta";
+                break;
+            case Vacante::$CERRADA:
+                $state = "Cerrada";
+                break;
+            case Vacante::$FINALIZADA:
+                $state = "Finalizada";
+                break;
+            default:
+                $state = "Creada";
+                break;
+        }
+        return $state;
+    }
+
     public function publicarOrdenDeMerito(Request $request)
     {
+        $emails = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
+        ->pluck('email');
+        
         DB::beginTransaction();
         try {
+            $now =Carbon::now();
             foreach ($request->except(['_token', 'id_vacante']) as $key => $value) {
                 $id_postulacion = explode('postulacion-', $key)[1];
                 $postulacion = Postulacion::where('id', "=", $id_postulacion)->first();
                 $postulacion->puntaje = $value;
                 $postulacion->save();
+                $emails->push($postulacion->usuario->email);
             }
             $vacante = Vacante::where('id', '=', $request->input('id_vacante'))->first();
-            $vacante->fecha_orden_merito = Carbon::now();
+            $vacante->fecha_orden_merito = $now;
             $vacante->save();
             DB::commit();
+
+            Mail::to(env('MAIL_USERNAME'))
+            ->bcc($emails)
+            ->send(new \App\Mail\PublicacionOrdenDeMeritoMail($now, $vacante));
+
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
