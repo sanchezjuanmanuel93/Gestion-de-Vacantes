@@ -53,13 +53,15 @@ class VacanteController extends Controller
         if ($request->orden_fecha_inicio && $request->orden_fecha_fin) {
             $vacantes->whereBetween('fecha_orden_merito', [$request->orden_fecha_fin, $request->orden_fecha_fin]);
         }
-        if (in_array("abierta", $request->estado)) {
-            $vacantes->where('fecha_apertura', '<=', $now)
-                ->whereNull('fecha_cierre')
-                ->where('fecha_cierre_estipulada', '>', $now);
+        if ($request->estado) {
+            if (in_array("abierta", $request->estado)) {
+                $vacantes->where('fecha_apertura', '<=', $now)
+                    ->whereNull('fecha_cierre')
+                    ->where('fecha_cierre_estipulada', '>', $now);
+            }
         }
-
-        $vacantes_abiertas = $vacantes->get();
+        $vacantes_abiertas = $vacantes->paginate(5);
+        // $vacantes->paginate(1);
 
 
         return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
