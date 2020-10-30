@@ -36,30 +36,11 @@ class VacanteController extends Controller
      */
     public function index(FilterVacantesRequest $request)
     {
-        
+        $now = Carbon::now();
         $vacantes = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario');
 
-        // if ($request->has('searchBy')) {
-        //     $fechaInicio = $request->fecha_inicio;
-        //     $fechaFin = $request->fecha_fin;
-        //     switch ($request->has('searchBy')) {
-        //         case "fecha_apertura":
-        //             $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
-        //             break;
-        //         case "fecha_cierre_estipulada":
-        //             $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
-        //             break;
-        //         case "fecha_cierre":
-        //             $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
-        //             break;
-        //         case "fecha_orden_merito":
-        //             $vacantes->whereBetween('fecha_apertura', [$fechaInicio, $fechaFin]);
-        //             break;
-        //     }
-        // }
-        
         if ($request->get('id-materia')) {
             $vacantes->where('id_materia', $request->get('id-materia'));
         }
@@ -72,8 +53,14 @@ class VacanteController extends Controller
         if ($request->orden_fecha_inicio && $request->orden_fecha_fin) {
             $vacantes->whereBetween('fecha_orden_merito', [$request->orden_fecha_fin, $request->orden_fecha_fin]);
         }
+        if (in_array("abierta", $request->estado)) {
+            $vacantes->where('fecha_apertura', '<=', $now)
+                ->whereNull('fecha_cierre')
+                ->where('fecha_cierre_estipulada', '>', $now);
+        }
+
         $vacantes_abiertas = $vacantes->get();
-        
+
 
         return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
     }
