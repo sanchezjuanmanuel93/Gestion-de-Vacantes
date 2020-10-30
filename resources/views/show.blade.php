@@ -1,9 +1,10 @@
-@extends('layouts.app')
-@section('title', "Vacante")
+@extends('layouts.unlogged')
 
-@section('content')
+@section('title', "Gestión de Vacantes")
+
+@section('unlogged-content')
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-6 mx-auto">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">{{$vacante->nombre_puesto}}</h6>
