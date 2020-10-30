@@ -9,6 +9,104 @@ Consultar Vacantes
 @endsection
 @section('logged-content')
 
+<div class="container-fluid">
+        <form action="">
+                <div class="row">
+                        <div class="col-md-4">
+                                <div class="row">
+                                        <div class="form-inline">
+                                                <x-form-group fieldName="" fieldDescription="Estado: "
+                                                        :errors="$errors">
+                                                        <x-form-group fieldName="creada" fieldDescription="Creada"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estado[]" value="creada"
+                                                                        @if(collect(request()->get('estado'))->contains('creada'))
+                                                                checked @endif >
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="abierta" fieldDescription="Abierta"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estado[]" value="abierta"
+                                                                        @if(collect(request()->get('estado'))->contains('abierta'))
+                                                                checked @endif>
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="cerrada" fieldDescription="Cerrada"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estado[]" value="cerrada"
+                                                                        @if(collect(request()->get('estado'))->contains('cerrada'))
+                                                                checked @endif>
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="finalizada"
+                                                                fieldDescription="Finalizada" :errors="$errors">
+                                                                <input type="checkbox" name="estado[]"
+                                                                        value="finalizada"
+                                                                        @if(collect(request()->get('estado'))->contains('finalizada'))
+                                                                checked @endif>
+                                                        </x-form-group>
+                                                </x-form-group>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <x-form-group-select-materia :selected="request()->get('id-materia')" />
+                                </div>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="row">
+                                        <div class="form-inline">
+                                                <x-form-group fieldName="" fieldDescription="Apertura: "
+                                                        :errors="$errors">
+                                                        <x-form-group-date-picker fieldName="apertura_fecha_inicio"
+                                                                fieldId="apertura_fecha_inicio" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('apertura_fecha_inicio')" />
+                                                        <x-form-group-date-picker fieldName="apertura_fecha_fin"
+                                                                fieldId="apertura_fecha_fin" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('apertura_fecha_fin')" />
+                                                </x-form-group>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="form-inline">
+                                                <x-form-group fieldName="" fieldDescription="Cierre: "
+                                                        :errors="$errors">
+                                                        <x-form-group-date-picker fieldName="cierre_fecha_inicio"
+                                                                fieldId="cierre_fecha_inicio" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('cierre_fecha_inicio')" />
+                                                        <x-form-group-date-picker fieldName="cierre_fecha_fin"
+                                                                fieldId="cierre_fecha_fin" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('cierre_fecha_fin')" />
+                                                </x-form-group>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="row">
+                                        <div class="form-inline">
+                                                <x-form-group fieldName="" fieldDescription="Orden de Merito: "
+                                                        :errors="$errors">
+                                                        <x-form-group-date-picker fieldName="orden_fecha_inicio"
+                                                                fieldId="orden_fecha_inicio" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('orden_fecha_inicio')" />
+                                                        <x-form-group-date-picker fieldName="orden_fecha_fin"
+                                                                fieldId="orden_fecha_fin" fieldDescription=""
+                                                                :errors="$errors"
+                                                                :value="request()->get('orden_fecha_fin')" />
+                                                </x-form-group>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-12">
+                                <button class="btn btn-success float-right" type="submit">Filtrar</button>
+                        </div>
+                </div>
+        </form>
+
+</div>
 <div class="row">
         <div class="col-md-6">
                 <h2>Filtros:</h2>
