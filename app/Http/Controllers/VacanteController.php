@@ -40,30 +40,80 @@ class VacanteController extends Controller
         $vacantes = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario');
+             
+        $id_materia = $request->get('id-materia');
+        $apertura_fecha_inicio = $request->get('apertura_fecha_inicio');
+        $apertura_fecha_fin = $request->get('apertura_fecha_fin');
+        $cierre_fecha_inicio = $request->get('cierre_fecha_inicio');
+        $cierre_fecha_fin = $request->get('cierre_fecha_fin');
+        $orden_merito_inicio = $request->get('orden_merito_inicio');
+        $orden_merito_fin= $request->get('orden_merito_fin');
+        $estadoCreada = $request->get('estadoCreada') ?? true;
+        $estadoAbierta = $request->get('estadoAbierta') ?? true;
+        $estadoCerrada = $request->get('estadoCerrada') ?? true;
+        $estadoFinalizada = $request->get('estadoFinalizada') ?? true;
 
-        if ($request->get('id-materia')) {
-            $vacantes->where('id_materia', $request->get('id-materia'));
+        if ($id_materia) {
+            $vacantes->where('id_materia', $id_materia);
         }
-        if ($request->apertura_fecha_inicio && $request->apertura_fecha_fin) {
-            $vacantes->whereBetween('fecha_apertura', [$request->apertura_fecha_inicio, $request->apertura_fecha_fin]);
+
+        if ($apertura_fecha_inicio) {
+            $vacantes->whereDate('fecha_apertura', '>=' ,$apertura_fecha_inicio);
         }
-        if ($request->ciere_fecha_inicio && $request->cierre_fecha_fin) {
-            $vacantes->whereBetween('fecha_cierre_estipulada', [$request->ciere_fecha_inicio, $request->cierre_fecha_fin]);
+        if ($apertura_fecha_fin) {
+            $vacantes->whereDate('fecha_apertura', '<=' ,$apertura_fecha_fin);
         }
-        if ($request->orden_fecha_inicio && $request->orden_fecha_fin) {
-            $vacantes->whereBetween('fecha_orden_merito', [$request->orden_fecha_fin, $request->orden_fecha_fin]);
+
+        if ($cierre_fecha_inicio) {
+            $vacantes->whereDate('fecha_cierre_estipulada', '>=', $cierre_fecha_inicio);
         }
-        if ($request->estado) {
-            if (in_array("abierta", $request->estado)) {
-                $vacantes->where('fecha_apertura', '<=', $now)
-                    ->whereNull('fecha_cierre')
-                    ->where('fecha_cierre_estipulada', '>', $now);
-            }
+
+        if ($cierre_fecha_fin) {
+            $vacantes->whereDate('fecha_cierre_estipulada', '<=', $cierre_fecha_fin);
         }
+
+        if ($orden_merito_inicio) {
+            $vacantes->whereDate('fecha_orden_merito', '>=', $orden_merito_inicio);
+        }
+
+        if ($orden_merito_fin) {
+            $vacantes->whereDate('fecha_orden_merito', '<=', $orden_merito_fin);
+        }
+        
+        if ($estadoCreada) {
+            
+        }
+        if ($estadoAbierta) {
+            
+        }
+        if ($estadoCerrada) {
+            
+        }
+        if ($estadoCreada) {
+            
+        }
+        if ($estadoFinalizada) {
+            
+        }
+
         $vacantes_abiertas = $vacantes->paginate(5);
-        // $vacantes->paginate(1);
 
-        return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
+        return view('vacante.index', 
+        [
+            "vacantes" => $vacantes_abiertas, 
+            "postulanteId" => Rol::$POSTULANTE,
+            "id_materia" => $id_materia,
+            "apertura_fecha_inicio" => $apertura_fecha_inicio,
+            "apertura_fecha_fin" => $apertura_fecha_fin,
+            "cierre_fecha_inicio" => $cierre_fecha_inicio,
+            "cierre_fecha_fin" => $cierre_fecha_fin,
+            "orden_merito_inicio" => $orden_merito_inicio,
+            "orden_merito_fin" => $orden_merito_fin,
+            "estadoCreada" => $estadoCreada,
+            "estadoAbierta" => $estadoAbierta,
+            "estadoCerrada" => $estadoCerrada,
+            "estadoFinalizada" => $estadoFinalizada
+        ]);
     }
 
     /**

@@ -15,35 +15,30 @@ Consultar Vacantes
                         <div class="col-md-4">
                                 <div class="row">
                                         <div class="form-inline">
-                                                <x-form-group fieldName="creada" fieldDescription="Creada"
+                                                <x-form-group fieldName="estadoCreada" fieldDescription="Creada"
                                                         :errors="$errors">
-                                                        <input type="checkbox" name="estado[]" value="creada"
-                                                                @if(collect(request()->get('estado'))->contains('creada'))
-                                                        checked @endif >
+                                                        <input type="checkbox" name="estadoCreada" 
+                                                        @if($estadoCreada) checked @endif>
                                                 </x-form-group>
-                                                <x-form-group fieldName="abierta" fieldDescription="Abierta"
+                                                <x-form-group fieldName="estadoAbierta" fieldDescription="Abierta"
                                                         :errors="$errors">
-                                                        <input type="checkbox" name="estado[]" value="abierta"
-                                                                @if(collect(request()->get('estado'))->contains('abierta'))
-                                                        checked @endif>
+                                                        <input type="checkbox" name="estadoAbierta" checked="{{$estadoAbierta}}"
+                                                        @if($estadoAbierta) checked @endif>
                                                 </x-form-group>
-                                                <x-form-group fieldName="cerrada" fieldDescription="Cerrada"
+                                                <x-form-group fieldName="estadoCerrada" fieldDescription="Cerrada"
                                                         :errors="$errors">
-                                                        <input type="checkbox" name="estado[]" value="cerrada"
-                                                                @if(collect(request()->get('estado'))->contains('cerrada'))
-                                                        checked @endif>
+                                                        <input type="checkbox" name="estadoCerrada" checked="{{$estadoCerrada}}"
+                                                        @if($estadoCerrada) checked @endif>
                                                 </x-form-group>
-                                                <x-form-group fieldName="finalizada"
+                                                <x-form-group fieldName="estadoFinalizada"
                                                         fieldDescription="Finalizada" :errors="$errors">
-                                                        <input type="checkbox" name="estado[]"
-                                                                value="finalizada"
-                                                                @if(collect(request()->get('estado'))->contains('finalizada'))
-                                                        checked @endif>
+                                                        <input type="checkbox" name="estadoFinalizada" checked="{{$estadoFinalizada}}"
+                                                        @if($estadoFinalizada) checked @endif>
                                                 </x-form-group>
                                         </div>
                                 </div>
                                 <div class="row">
-                                        <x-form-group-select-materia :selected="request()->get('id-materia')" />
+                                        <x-form-group-select-materia :selected="$id_materia" />
                                 </div>
                         </div>
                         <div class="col-md-4">
@@ -54,11 +49,11 @@ Consultar Vacantes
                                                         <x-form-group-date-picker fieldName="apertura_fecha_inicio"
                                                                 fieldId="apertura_fecha_inicio" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('apertura_fecha_inicio')" />
+                                                                :value="$apertura_fecha_inicio" />
                                                         <x-form-group-date-picker fieldName="apertura_fecha_fin"
                                                                 fieldId="apertura_fecha_fin" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('apertura_fecha_fin')" />
+                                                                :value="$apertura_fecha_fin" />
                                                 </x-form-group>
                                         </div>
                                 </div>
@@ -69,11 +64,11 @@ Consultar Vacantes
                                                         <x-form-group-date-picker fieldName="cierre_fecha_inicio"
                                                                 fieldId="cierre_fecha_inicio" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('cierre_fecha_inicio')" />
+                                                                :value="$cierre_fecha_inicio" />
                                                         <x-form-group-date-picker fieldName="cierre_fecha_fin"
                                                                 fieldId="cierre_fecha_fin" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('cierre_fecha_fin')" />
+                                                                :value="$cierre_fecha_fin" />
                                                 </x-form-group>
                                         </div>
                                 </div>
@@ -83,14 +78,14 @@ Consultar Vacantes
                                         <div class="form-inline">
                                                 <x-form-group fieldName="" fieldDescription="Orden de Merito: "
                                                         :errors="$errors">
-                                                        <x-form-group-date-picker fieldName="orden_fecha_inicio"
-                                                                fieldId="orden_fecha_inicio" fieldDescription=""
+                                                        <x-form-group-date-picker fieldName="orden_merito_inicio"
+                                                                fieldId="orden_merito_inicio" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('orden_fecha_inicio')" />
-                                                        <x-form-group-date-picker fieldName="orden_fecha_fin"
-                                                                fieldId="orden_fecha_fin" fieldDescription=""
+                                                                :value="$orden_merito_inicio" />
+                                                        <x-form-group-date-picker fieldName="orden_merito_fin"
+                                                                fieldId="orden_merito_fin" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('orden_fecha_fin')" />
+                                                                :value="$orden_merito_fin" />
                                                 </x-form-group>
                                         </div>
                                 </div>
