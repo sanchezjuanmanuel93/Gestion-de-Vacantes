@@ -10,39 +10,35 @@ Consultar Vacantes
 @section('logged-content')
 
 <div class="container-fluid">
-        <h3>Filtros:</h3>
         <form action="">
                 <div class="row">
                         <div class="col-md-4">
                                 <div class="row">
                                         <div class="form-inline">
-                                                <x-form-group fieldName="" fieldDescription="Estado: "
+                                                <x-form-group fieldName="creada" fieldDescription="Creada"
                                                         :errors="$errors">
-                                                        <x-form-group fieldName="creada" fieldDescription="Creada"
-                                                                :errors="$errors">
-                                                                <input type="checkbox" name="estado[]" value="creada"
-                                                                        @if(collect(request()->get('estado'))->contains('creada'))
-                                                                checked @endif >
-                                                        </x-form-group>
-                                                        <x-form-group fieldName="abierta" fieldDescription="Abierta"
-                                                                :errors="$errors">
-                                                                <input type="checkbox" name="estado[]" value="abierta"
-                                                                        @if(collect(request()->get('estado'))->contains('abierta'))
-                                                                checked @endif>
-                                                        </x-form-group>
-                                                        <x-form-group fieldName="cerrada" fieldDescription="Cerrada"
-                                                                :errors="$errors">
-                                                                <input type="checkbox" name="estado[]" value="cerrada"
-                                                                        @if(collect(request()->get('estado'))->contains('cerrada'))
-                                                                checked @endif>
-                                                        </x-form-group>
-                                                        <x-form-group fieldName="finalizada"
-                                                                fieldDescription="Finalizada" :errors="$errors">
-                                                                <input type="checkbox" name="estado[]"
-                                                                        value="finalizada"
-                                                                        @if(collect(request()->get('estado'))->contains('finalizada'))
-                                                                checked @endif>
-                                                        </x-form-group>
+                                                        <input type="checkbox" name="estado[]" value="creada"
+                                                                @if(collect(request()->get('estado'))->contains('creada'))
+                                                        checked @endif >
+                                                </x-form-group>
+                                                <x-form-group fieldName="abierta" fieldDescription="Abierta"
+                                                        :errors="$errors">
+                                                        <input type="checkbox" name="estado[]" value="abierta"
+                                                                @if(collect(request()->get('estado'))->contains('abierta'))
+                                                        checked @endif>
+                                                </x-form-group>
+                                                <x-form-group fieldName="cerrada" fieldDescription="Cerrada"
+                                                        :errors="$errors">
+                                                        <input type="checkbox" name="estado[]" value="cerrada"
+                                                                @if(collect(request()->get('estado'))->contains('cerrada'))
+                                                        checked @endif>
+                                                </x-form-group>
+                                                <x-form-group fieldName="finalizada"
+                                                        fieldDescription="Finalizada" :errors="$errors">
+                                                        <input type="checkbox" name="estado[]"
+                                                                value="finalizada"
+                                                                @if(collect(request()->get('estado'))->contains('finalizada'))
+                                                        checked @endif>
                                                 </x-form-group>
                                         </div>
                                 </div>

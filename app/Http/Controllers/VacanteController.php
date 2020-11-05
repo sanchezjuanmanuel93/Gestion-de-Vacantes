@@ -63,7 +63,6 @@ class VacanteController extends Controller
         $vacantes_abiertas = $vacantes->paginate(5);
         // $vacantes->paginate(1);
 
-
         return view('vacante.index', ["vacantes" => $vacantes_abiertas, "postulanteId" => Rol::$POSTULANTE]);
     }
 
