@@ -36,7 +36,7 @@ Resetar Contraseña
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" title="¿Olvidó su contraseña? Link">
                                         ¿Olvidó su contraseña?
                                     </a>
                                 @endif

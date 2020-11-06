@@ -21,7 +21,7 @@
     </footer>
   </div>
 </div>
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
+<a class="scroll-to-top rounded" href="#page-top" title="Ir Arriba Link">
+  <i class="fas fa-angle-up" title="Ir Arriba Icon"></i>
 </a>
 @endsection

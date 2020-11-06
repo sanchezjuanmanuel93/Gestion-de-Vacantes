@@ -3,8 +3,8 @@
 Solicitar Soporte
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('soporte.create')}}">Soporte</a>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('soporte.create')}}" title="Soporte Link">Soporte</a>
 </li>
 @endsection
 @section('logged-content')

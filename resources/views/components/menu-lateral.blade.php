@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('inicio.index')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('inicio.index')}}" title="Home Link">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-user-graduate"></i>
+            <i class="fas fa-user-graduate" title="Home Icon"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Gestion de vacantes</div>
     </a>

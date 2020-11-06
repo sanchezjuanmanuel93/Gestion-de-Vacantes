@@ -3,8 +3,8 @@
 Cambiar Contraseña
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('contraseña.index')}}">Cambiar Contraseña</a></li>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('contraseña.index')}}" title="Cambiar Contraseña Link">Cambiar Contraseña</a></li>
 @endsection
 
 @section('logged-content')

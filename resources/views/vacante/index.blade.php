@@ -14,8 +14,8 @@
 Consultar Vacantes
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('vacante.index')}}">Vacantes</a></li>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('vacante.index')}}" title="Vacantes Link">Vacantes</a></li>
 @endsection
 @section('logged-content')
 
