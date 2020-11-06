@@ -22,9 +22,12 @@ Consultar Vacantes
 <div class="container-fluid mb-5">
         <form action="" id="form-filter">
                 <div class="row mb-3">
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-6 col-12">
+                                <x-form-group-select-materia :selected="$id_materia" />
+                        </div>
+                        <div class="col-lg-6 col-12">
                                 <div class="form-inline">
-                                        <x-form-group fieldName="" fieldDescription="Estado: "
+                                        <x-form-group fieldName="" fieldDescription=""
                                                 :errors="$errors">
                                                 <x-form-group fieldName="creada" fieldDescription="Creada"
                                                         :errors="$errors">
@@ -50,7 +53,9 @@ Consultar Vacantes
                                         </x-form-group>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
+                </div>
+                <div class="row mb-3">
+                        <div class="col-lg-6 col-12">
                                 <div class="row">
                                         <div class="form-inline">
                                                 <div class="col-lg-2">
@@ -71,7 +76,7 @@ Consultar Vacantes
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-6 col-12">
                                 <div class="row">
                                         <div class="form-inline">
                                                 <div class="col-lg-2">
@@ -93,12 +98,9 @@ Consultar Vacantes
                                 </div>
                         </div>
                 </div>
+                
                 <div class="row mb-3">
-                        <div class="col-lg-4 col-md-12">
-                                <x-form-group-select-materia :selected="request()->get('id-materia')" />
-                        </div>
-
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-6 col-12">
                                 <div class="row">
                                         <div class="form-inline">
                                                 <div class="col-lg-2">
@@ -108,26 +110,22 @@ Consultar Vacantes
                                                         <x-form-group-date-picker fieldName="cierre_fecha_inicio"
                                                                 fieldId="cierre_fecha_inicio" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('cierre_fecha_inicio')" />
+                                                                :value="$cierre_fecha_inicio" />
                                                 </div>
                                                 <div class="col-lg-5">
                                                         <x-form-group-date-picker fieldName="cierre_fecha_fin"
                                                                 fieldId="cierre_fecha_fin" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="request()->get('cierre_fecha_fin')" />
+                                                                :value="$cierre_fecha_fin" />
                                                 </div>
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-12">
+                        <div class="col-lg-6 col-12">
                                 <button class="btn btn-primary float-right ml-1" type="submit">Filtrar</button>
-                                <a class="btn btn-success float-right" id="btn-reset" href="
-                        {{route('vacante.index')}}">Borrar
-                                        filtros</a>
+                                        <a class="btn btn-success float-right" id="btn-reset" href="
+                                {{route('vacante.index')}}">Borrar
+                                                filtros</a>
                         </div>
                 </div>
 
