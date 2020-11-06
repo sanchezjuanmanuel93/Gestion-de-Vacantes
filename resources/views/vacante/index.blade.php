@@ -15,25 +15,30 @@ Consultar Vacantes
                         <div class="col-md-4">
                                 <div class="row">
                                         <div class="form-inline">
-                                                <x-form-group fieldName="estadoCreada" fieldDescription="Creada"
+                                                
+                                        <x-form-group fieldName="" fieldDescription="Estado: "
                                                         :errors="$errors">
-                                                        <input type="checkbox" name="estadoCreada" 
-                                                        @if($estadoCreada) checked @endif>
-                                                </x-form-group>
-                                                <x-form-group fieldName="estadoAbierta" fieldDescription="Abierta"
-                                                        :errors="$errors">
-                                                        <input type="checkbox" name="estadoAbierta" checked="{{$estadoAbierta}}"
-                                                        @if($estadoAbierta) checked @endif>
-                                                </x-form-group>
-                                                <x-form-group fieldName="estadoCerrada" fieldDescription="Cerrada"
-                                                        :errors="$errors">
-                                                        <input type="checkbox" name="estadoCerrada" checked="{{$estadoCerrada}}"
-                                                        @if($estadoCerrada) checked @endif>
-                                                </x-form-group>
-                                                <x-form-group fieldName="estadoFinalizada"
-                                                        fieldDescription="Finalizada" :errors="$errors">
-                                                        <input type="checkbox" name="estadoFinalizada" checked="{{$estadoFinalizada}}"
-                                                        @if($estadoFinalizada) checked @endif>
+                                                        <x-form-group fieldName="creada" fieldDescription="Creada"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estados[]" value="creada"
+                                                                        @if($estadoCreada) checked @endif >
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="abierta" fieldDescription="Abierta"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estados[]" value="abierta"
+                                                                        @if($estadoAbierta) checked @endif >
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="cerrada" fieldDescription="Cerrada"
+                                                                :errors="$errors">
+                                                                <input type="checkbox" name="estados[]" value="cerrada"
+                                                                @if($estadoCerrada) checked @endif >
+                                                        </x-form-group>
+                                                        <x-form-group fieldName="finalizada"
+                                                                fieldDescription="Finalizada" :errors="$errors">
+                                                                <input type="checkbox" name="estados[]"
+                                                                        value="finalizada"
+                                                                        @if($estadoFinalizada) checked @endif >
+                                                        </x-form-group>
                                                 </x-form-group>
                                         </div>
                                 </div>

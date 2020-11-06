@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Builder;
 use App\User;
 
 class VacanteController extends Controller
@@ -48,10 +49,18 @@ class VacanteController extends Controller
         $cierre_fecha_fin = $request->get('cierre_fecha_fin');
         $orden_merito_inicio = $request->get('orden_merito_inicio');
         $orden_merito_fin= $request->get('orden_merito_fin');
-        $estadoCreada = $request->get('estadoCreada') ?? true;
-        $estadoAbierta = $request->get('estadoAbierta') ?? true;
-        $estadoCerrada = $request->get('estadoCerrada') ?? true;
-        $estadoFinalizada = $request->get('estadoFinalizada') ?? true;
+        $estados = collect($request->get('estados') ?? []);
+        if($estados->count() > 0){
+            $estadoCreada = $estados->contains('creada');
+            $estadoAbierta = $estados->contains('abierta');
+            $estadoCerrada = $estados->contains('cerrada');
+            $estadoFinalizada = $estados->contains('finalizada');
+        } else {
+            $estadoCreada = true;
+            $estadoAbierta = true;
+            $estadoCerrada = true;
+            $estadoFinalizada = true;
+        }
 
         if ($id_materia) {
             $vacantes->where('id_materia', $id_materia);
@@ -79,21 +88,18 @@ class VacanteController extends Controller
         if ($orden_merito_fin) {
             $vacantes->whereDate('fecha_orden_merito', '<=', $orden_merito_fin);
         }
-        
-        if ($estadoCreada) {
-            
+
+        if (!$estadoCreada) {
+            $vacantes->whereRaw('NOT (fecha_cierre IS NULL AND DATE(fecha_apertura) > CURDATE())');  
         }
-        if ($estadoAbierta) {
-            
+        if (!$estadoAbierta) {
+            $vacantes->whereRaw('NOT (fecha_cierre IS NULL AND DATE(fecha_apertura) <= CURDATE())');
         }
-        if ($estadoCerrada) {
-            
+        if (!$estadoCerrada) {
+            $vacantes->whereRaw('NOT (fecha_cierre IS NOT NULL AND fecha_orden_merito  IS NULL)');
         }
-        if ($estadoCreada) {
-            
-        }
-        if ($estadoFinalizada) {
-            
+        if (!$estadoFinalizada) {
+            $vacantes->whereRaw('NOT (fecha_cierre IS NOT NULL AND fecha_orden_merito  IS NOT NULL)');
         }
 
         $vacantes_abiertas = $vacantes->paginate(5);

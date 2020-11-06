@@ -54,7 +54,7 @@ class Vacante extends Model
     {
         return $this->hasMany('App\Postulacion', 'id_vacante');
     }
-
+    
     public function getStatusAttribute()
     {
         $today = Carbon::today();
