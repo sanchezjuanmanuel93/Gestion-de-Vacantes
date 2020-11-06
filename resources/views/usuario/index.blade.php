@@ -3,8 +3,8 @@
 Consultar Usuarios
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('usuario.index')}}">Usuarios</a></li>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('usuario.index')}}" title="Usuarios Link">Usuarios</a></li>
 @endsection
 @section('logged-content')
 <x-table tableId="dataTable">

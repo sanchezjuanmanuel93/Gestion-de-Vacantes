@@ -21,21 +21,21 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               @if (Auth::user()->password_initialized)
-              <a class="dropdown-item" href="{{route('contraseña.index')}}">
-                <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="dropdown-item" href="{{route('contraseña.index')}}" title="Cambiar Contraseña Link">
+                <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400" title="Cambiar Contraseña Icon"></i>
                 Cambiar Contraseña
               </a>
-              <a class="dropdown-item" href="{{route('soporte.faqs.index')}}">
-                <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="dropdown-item" href="{{route('soporte.faqs.index')}}" title="FAQs Link">
+                <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-gray-400" title="FAQs Icon"></i>
                 FAQs
               </a>
-              <a class="dropdown-item" href="{{route('soporte.index')}}">
-                <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="dropdown-item" href="{{route('soporte.index')}}" title="Soporte Link">
+                <i class="fas fa-question-circle fa-sm fa-fw mr-2 text-gray-400" title="Soporte Icon"></i>
                 Soporte
               </a>
               @endif
-              <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal" title="Cerrar Sesión Link">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" title="Cerrar Sesión Icon"></i>
                 Cerrar Sesión
               </a>
             </div>
@@ -51,7 +51,7 @@
         </nav>
         <div class="d-flex align-items-center">
           @if (url()->previous() != url()->current() && url()->previous() != route('login') && Auth::user()->password_initialized)
-          <a href="{{ url()->previous() }}" class="mr-2 previous-button"><i class="fas fa-arrow-left"> </i> </a>
+          <a href="{{ url()->previous() }}" class="mr-2 previous-button" title="Atrás Link"><i class="fas fa-arrow-left" title="Atrás Icon"> </i> </a>
           @endif
           <h1 class="title-header"> @yield('title') </h1>
         </div>
@@ -70,8 +70,8 @@
     </footer>
   </div>
 </div>
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
+<a class="scroll-to-top rounded" href="#page-top" title="Ir Arriba Link">
+  <i class="fas fa-angle-up" title="Ir Arriba Icon"></i>
 </a>
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

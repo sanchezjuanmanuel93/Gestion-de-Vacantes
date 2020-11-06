@@ -7,7 +7,7 @@
                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{$displayDescription}}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas {{$iconName}} fa-2x text-gray-300"></i>
+                    <i class="fas {{$iconName}} fa-2x text-gray-300" title="{{$displayName}} Icon"></i>
                 </div>
             </div>
         </div>

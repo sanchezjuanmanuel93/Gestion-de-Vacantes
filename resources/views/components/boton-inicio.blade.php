@@ -6,7 +6,7 @@
                     <div class="d-flex mb-auto">
                         <h5 class="text-center card-title mx-auto">{{$menuItem->displayName}}</h5>
                     </div>
-                    <div class="d-flex mt-auto mb-2"> <i class="fas {{$menuItem->iconName}} icon-home mx-auto"></i> </div>
+                    <div class="d-flex mt-auto mb-2"> <i class="fas {{$menuItem->iconName}} icon-home mx-auto" title="Home Icon"></i> </div>
                 </div>
             </div>
         </div>

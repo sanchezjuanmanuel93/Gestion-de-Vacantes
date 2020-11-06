@@ -1,5 +1,5 @@
 <div class="file btn btn-sm btn-primary">
-    <i class="fa fa-upload"></i>
+    <i class="fa fa-upload" title="Upload Icon"></i>
     <input type="file" name="{{$fieldName}}"/>
 </div>
 @if ($errors->first($fieldName))

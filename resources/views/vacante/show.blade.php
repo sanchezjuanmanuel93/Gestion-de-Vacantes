@@ -3,10 +3,10 @@
 @section('title', "Detalle vacante")
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item" aria-current="page"><a href="{{route('vacante.index')}}">Vacantes</a></li>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{route('vacante.index')}}" title="Vacantes Link">Vacantes</a></li>
 <li class="breadcrumb-item active" aria-current="page"><a
-        href="{{route('vacante.show', $vacante->id)}}">{{$vacante->nombre_puesto}} ({{$vacante->materia->nombre}})</a></li>
+        href="{{route('vacante.show', $vacante->id)}}" title="Detalle Link">{{$vacante->nombre_puesto}} ({{$vacante->materia->nombre}})</a></li>
 @endsection
 @section('logged-content')
 
@@ -92,7 +92,7 @@
                         <x-table-cell>{{$postulacion->usuario->telefono}}</x-table-cell>
                         <x-table-cell>{{$postulacion->usuario->email}}</x-table-cell>
                         <x-table-cell><a href="{{route('postulacion.descargarCV', $postulacion->id)}}"
-                                class="btn btn-primary btn-sm"><i class="fa fa-download"></i></a>
+                                class="btn btn-primary btn-sm" title="Descargar Link"><i class="fa fa-download" title="Descargar Icon"></i></a>
                         </x-table-cell>
                         @if($vacante->status() == App\Vacante::$CERRADA || $vacante->status() ==
                         App\Vacante::$FINALIZADA)

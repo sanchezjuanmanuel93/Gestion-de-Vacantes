@@ -3,9 +3,9 @@
 Consultar FAQs
 @endsection
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('inicio.index')}}">Inicio</a></li>
-<li class="breadcrumb-item" aria-current="page"><a href="{{route('soporte.create')}}">Soporte</a>
-<li class="breadcrumb-item active" aria-current="page"><a href="{{route('soporte.faqs.index')}}">Consultar FAQs</a></li>
+<li class="breadcrumb-item"><a href="{{route('inicio.index')}}" title="Inicio Link">Inicio</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{route('soporte.create')}}" title="Soporte Link">Soporte</a>
+<li class="breadcrumb-item active" aria-current="page"><a href="{{route('soporte.faqs.index')}}" title="Consultar FAQs Link">Consultar FAQs</a></li>
 @endsection
 @section('logged-content')
 @foreach ($faqs as $faq)
