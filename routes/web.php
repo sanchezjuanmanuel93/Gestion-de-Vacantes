@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::put('usuario/recuperar/{id}', 'UsuarioController@recuperar')
     ->name('usuario.recuperar')
