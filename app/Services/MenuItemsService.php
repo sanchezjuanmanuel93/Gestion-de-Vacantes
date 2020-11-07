@@ -42,7 +42,7 @@ class MenuItemsService
             new MenuItemGroup(
                 "Mantenimiento",
                 [
-                    new MenuItem("PHP Info", "laravelPhpInfo::phpinfo", "fa-server", [Rol::$ADMINISTRADOR])
+                    new MenuItem("Servidor", "laravelPhpInfo::phpinfo", "fa-server", [Rol::$ADMINISTRADOR])
                 ],
                 [Rol::$ADMINISTRADOR]
             ),
