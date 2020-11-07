@@ -65,7 +65,7 @@ Consultar Vacantes
                                                         <x-form-group-date-picker fieldName="apertura_fecha_inicio"
                                                                 fieldId="apertura_fecha_inicio" fieldDescription=""
                                                                 :errors="$errors"
-                                                                :value="$cierre_fecha_inicio" />
+                                                                :value="$apertura_fecha_inicio" />
                                                 </div>
                                                 <div class="col-lg-5">
                                                         <x-form-group-date-picker fieldName="apertura_fecha_fin"
@@ -83,14 +83,14 @@ Consultar Vacantes
                                                         <label class="float-left">Orden de Merito:</label>
                                                 </div>
                                                 <div class="col-lg-5">
-                                                        <x-form-group-date-picker fieldName="orden_fecha_inicio"
-                                                                fieldId="orden_fecha_inicio" fieldDescription=""
+                                                        <x-form-group-date-picker fieldName="orden_merito_inicio"
+                                                                fieldId="orden_merito_inicio" fieldDescription=""
                                                                 :errors="$errors"
                                                                 :value="$orden_merito_inicio"  />
                                                 </div>
                                                 <div class="col-lg-5">
-                                                        <x-form-group-date-picker fieldName="orden_fecha_fin"
-                                                                fieldId="orden_fecha_fin" fieldDescription=""
+                                                        <x-form-group-date-picker fieldName="orden_merito_fin"
+                                                                fieldId="orden_merito_fin" fieldDescription=""
                                                                 :errors="$errors"
                                                                 :value="$orden_merito_fin" />
                                                 </div>

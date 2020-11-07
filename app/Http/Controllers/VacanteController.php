@@ -50,6 +50,7 @@ class VacanteController extends Controller
         $orden_merito_inicio = $request->get('orden_merito_inicio');
         $orden_merito_fin= $request->get('orden_merito_fin');
         $estados = collect($request->get('estados') ?? []);
+        
         if($estados->count() > 0){
             $estadoCreada = $estados->contains('creada');
             $estadoAbierta = $estados->contains('abierta');
