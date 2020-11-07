@@ -8,6 +8,8 @@ class MenuItem
 
     public $routeName;
 
+    public $url;
+
     public $iconName;
 
     public $roles;
@@ -17,7 +19,7 @@ class MenuItem
      *
      * @return void
      */
-    public function __construct($displayName, $routeName, $iconName, $roles)
+    public function __construct($displayName, $routeName = null, $iconName, $roles)
     {
         $this->displayName = $displayName;
         $this->routeName = $routeName;

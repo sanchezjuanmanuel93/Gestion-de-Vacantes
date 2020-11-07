@@ -40,6 +40,13 @@ class MenuItemsService
                 [Rol::$ADMINISTRADOR]
             ),
             new MenuItemGroup(
+                "Mantenimiento",
+                [
+                    new MenuItem("PHP Info", "laravelPhpInfo::phpinfo", "fa-server", [Rol::$ADMINISTRADOR])
+                ],
+                [Rol::$ADMINISTRADOR]
+            ),
+            new MenuItemGroup(
                 "Soporte",
                 [
                     new MenuItem("Consultar FAQs", "soporte.faqs.index", "fa-info-circle", [Rol::$POSTULANTE, Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$ADMINISTRADOR]),
