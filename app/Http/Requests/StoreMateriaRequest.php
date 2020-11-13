@@ -19,8 +19,8 @@ class StoreMateriaRequest extends FormRequest
     public function attributes()
     {
         return [
-            'nombre' => 'Nombre de la materia',
-            'descripcion' => 'Descripcion de la materia'
+            'nombre' => 'Nombre',
+            'descripcion' => 'Descripcion'
         ];
     }
 
@@ -32,7 +32,7 @@ class StoreMateriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:3|max:50',
+            'nombre' => 'required|min:3|max:50|unique:App\Materia,nombre',
             'descripcion' => 'required|min:3|max:200',
         ];
     }
