@@ -14,37 +14,42 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes(['register' => false]);
+
+Route::resource('materia', 'MateriaController')
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+
 
 Route::put('usuario/recuperar/{id}', 'UsuarioController@recuperar')
     ->name('usuario.recuperar')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
 
 Route::resource('usuario', 'UsuarioController')
     ->only([
         'index', 'create', 'store', 'show', 'update', 'destroy'
     ])
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$ADMINISTRADOR]);
 
 Route::get('/postulacion/descargarCV/{id}', 'PostulacionController@descargarCV')
     ->name('postulacion.descargarCV')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 
 Route::resource('postulacion', 'PostulacionController')
     ->only([
         'index', 'store'
     ])
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$POSTULANTE]);
 
 Route::get('/soporte/faqs', 'SoporteController@indexFaqs')
     ->name('soporte.faqs.index')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true]);
 
 Route::resource('soporte', 'SoporteController')
     ->only([
         'index', 'create', 'store'
     ])
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true]);
 
 Route::get('/contraseña/reseteo/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')
     ->name('contraseña.reset.show');
@@ -62,7 +67,7 @@ Route::resource('contraseña', 'ContrasenaController')
 
 Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
     ->name('vacante.orden')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
 
 Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
@@ -79,11 +84,11 @@ Route::get('vacante', 'VacanteController@index')
 Route::resource('vacante', 'VacanteController')
     ->only([
         'create', 'store', 'show', 'update'
-    ])->middleware(['userSoftDeleted','passwordInitialized:' . true]);    
+    ])->middleware(['userSoftDeleted', 'passwordInitialized:' . true]);
 
 Route::get('/{id}', 'InicioController@show')
     ->name('inicio.show')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true]);
 
 Route::get('/', 'InicioController@index')
     ->name('inicio.index')
