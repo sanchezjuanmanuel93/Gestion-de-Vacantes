@@ -62,7 +62,7 @@ Route::resource('contraseña', 'ContrasenaController')
 
 Route::post('vacante/orden', 'VacanteController@publicarOrdenDeMerito')
     ->name('vacante.orden')
-    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ->middleware(['userSoftDeleted','passwordInitialized:' . true, 'role:' . Rol::$JEFE_CATEDRA]);
 
 Route::get('vacante/abierta', 'VacanteController@indexAbierta')
     ->name('vacante.abierta.index')
@@ -74,7 +74,7 @@ Route::put('vacante/cerrarAnticipadamente/{id}', 'VacanteController@cerrarAntici
 
 Route::get('vacante', 'VacanteController@index')
     ->name('vacante.index')
-    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ->middleware(['passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO . '-' . Rol::$JEFE_CATEDRA]);
 
 Route::resource('vacante', 'VacanteController')
     ->only([

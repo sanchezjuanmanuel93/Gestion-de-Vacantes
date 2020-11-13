@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Rol;
+use Illuminate\Support\Facades\DB;
 
 class RolesSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        Rol::truncate();
         Rol::create(
             ['id' => Rol::$ADMINISTRADOR, 'descripcion' => "Administrador"]
         );
@@ -21,5 +24,9 @@ class RolesSeeder extends Seeder
         Rol::create(
             ['id' => Rol::$RESPONSABLE_ADMINISTRATIVO, 'descripcion' => "Responsable Administrativo"],
         );
+        Rol::create(
+            ['id' => Rol::$JEFE_CATEDRA, 'descripcion' => "Jefe De Cátedra"],
+        );
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
     }
 }

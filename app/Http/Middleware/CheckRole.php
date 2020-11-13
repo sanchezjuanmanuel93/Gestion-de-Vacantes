@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Arr;
 
 class CheckRole
 {
@@ -16,7 +17,8 @@ class CheckRole
      */
     public function handle($request, Closure $next, $rolId)
     {
-        if ($request->user()->rol->id != $rolId) {
+        $roles = array_map('intval', explode('-', $rolId));
+        if (!in_array($request->user()->rol->id, $roles)) {
             return redirect()->route('inicio.index');
         }
         

@@ -59,7 +59,7 @@
         <x-card color="success" displayName="Estado" :displayDescription="$state" iconName="fa-list" />
         @endif
 
-        @if(Auth::user() != null && Auth::user()->rol->id == App\Rol::$RESPONSABLE_ADMINISTRATIVO)
+        @if(Auth::user() != null && (Auth::user()->rol->id == App\Rol::$RESPONSABLE_ADMINISTRATIVO) || (Auth::user()->rol->id == App\Rol::$JEFE_CATEDRA) )
         <div class="row">
             <x-card color="warning" displayName="Postulados" :displayDescription="count($vacante->postulaciones)"
                 iconName="fa-users" />
@@ -112,7 +112,7 @@
                     @endforeach
                 </x-table>
                 @if($vacante->status() == App\Vacante::$CERRADA && Auth::user()->id_rol ==
-                App\Rol::$RESPONSABLE_ADMINISTRATIVO)
+                App\Rol::$JEFE_CATEDRA)
                 <div class="d-block mx-auto">
                     <input type="submit" class="btn btn-primary btn-sm " value="Publicar Orden de Mérito" />
                 </div>

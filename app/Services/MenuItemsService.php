@@ -20,9 +20,9 @@ class MenuItemsService
                 [
                     new MenuItem("Abrir Vacante", "vacante.create", "fa-plus", [Rol::$RESPONSABLE_ADMINISTRATIVO]),
                     new MenuItem("Consultar Vacantes Abiertas", "vacante.abierta.index", "fa-list-ul", [Rol::$POSTULANTE]),
-                    new MenuItem("Consultar Vacantes", "vacante.index", "fa-list-ul", [Rol::$RESPONSABLE_ADMINISTRATIVO])
+                    new MenuItem("Consultar Vacantes", "vacante.index", "fa-list-ul", [Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$JEFE_CATEDRA])
                 ],
-                [Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$POSTULANTE]
+                [Rol::$RESPONSABLE_ADMINISTRATIVO, Rol::$POSTULANTE, Rol::$JEFE_CATEDRA]
             ),
             new MenuItemGroup(
                 "Postulaciones",
