@@ -32,6 +32,14 @@ class MenuItemsService
                 [Rol::$POSTULANTE]
             ),
             new MenuItemGroup(
+                "Materias",
+                [
+                    new MenuItem("Crear Materia", "materia.create", "fa-plus", [Rol::$RESPONSABLE_ADMINISTRATIVO]),
+                    new MenuItem("Consultar Materias", "materia.index", "fa-list-ul", [Rol::$RESPONSABLE_ADMINISTRATIVO])
+                ],
+                [Rol::$RESPONSABLE_ADMINISTRATIVO]
+            ),
+            new MenuItemGroup(
                 "Usuarios",
                 [
                     new MenuItem("Crear Usuario", "usuario.create", "fa-plus", [Rol::$ADMINISTRADOR]),
@@ -67,7 +75,7 @@ class MenuItemsService
     {
         $rol = Auth::user()->rol->id;
         $menuItemsGrouped = [];
-        
+
         foreach ($this->filterByRol($this->menuItems, $rol) as $group) {
             $menuItems = [];
             foreach ($this->filterByRol($group->menuItems, $rol) as $item) {
