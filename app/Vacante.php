@@ -44,7 +44,7 @@ class Vacante extends Model
      */
     public function materia()
     {
-        return $this->belongsTo('App\Materia', 'id_materia');
+        return $this->belongsTo('App\Materia', 'id_materia')->withTrashed();
     }
 
     /**
