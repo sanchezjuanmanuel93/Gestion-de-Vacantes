@@ -98,7 +98,7 @@
                         App\Vacante::$FINALIZADA)
                         <x-table-cell>
                             @csrf
-                            @if($postulacion->puntaje == null)
+                            @if($postulacion->puntaje == null && (Auth::user()->rol->id == App\Rol::$JEFE_CATEDRA))
                             <div class="form-group mb-2">
                                 <input type="text" name="postulacion-{{ $postulacion->id }}"
                                     class="form-control-sm puntaje" style="max-width: 35px">
