@@ -67,7 +67,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-
+            @if (count($vacante->postulaciones) > 0)
             <form class="form-inline" method="POST" action="{{route('vacante.orden')}}"
                 onsubmit="return validatePuntajes()">
                 <input type="hidden" name="id_vacante" value="{{$vacante->id}}" />
@@ -118,6 +118,9 @@
                 </div>
                 @endif
             </form>
+            @else
+                No hay postulaciones
+            @endif
             @endif
         </div>
     </div>
@@ -134,10 +137,8 @@
                 if(!parseInt(element.value)){
                     return false;
                 }
-                if (index === (length - 1)) {
-                    return true;
-                }
             });
+            return true;
         }
 </script>
 @endsection

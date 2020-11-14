@@ -33,7 +33,7 @@ Route::resource('usuario', 'UsuarioController')
 
 Route::get('/postulacion/descargarCV/{id}', 'PostulacionController@descargarCV')
     ->name('postulacion.descargarCV')
-    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO]);
+    ->middleware(['userSoftDeleted', 'passwordInitialized:' . true, 'role:' . Rol::$RESPONSABLE_ADMINISTRATIVO . '-' . Rol::$JEFE_CATEDRA]);
 
 Route::resource('postulacion', 'PostulacionController')
     ->only([
