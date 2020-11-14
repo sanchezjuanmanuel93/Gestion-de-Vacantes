@@ -59,7 +59,7 @@
         <x-card color="success" displayName="Estado" :displayDescription="$state" iconName="fa-list" />
         @endif
 
-        @if(Auth::user() != null && Auth::user()->rol->id == App\Rol::$RESPONSABLE_ADMINISTRATIVO)
+        @if(Auth::user() != null && (Auth::user()->rol->id == App\Rol::$RESPONSABLE_ADMINISTRATIVO) || (Auth::user()->rol->id == App\Rol::$JEFE_CATEDRA) )
         <div class="row">
             <x-card color="warning" displayName="Postulados" :displayDescription="count($vacante->postulaciones)"
                 iconName="fa-users" />
@@ -67,7 +67,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-
+            @if (count($vacante->postulaciones) > 0)
             <form class="form-inline" method="POST" action="{{route('vacante.orden')}}"
                 onsubmit="return validatePuntajes()">
                 <input type="hidden" name="id_vacante" value="{{$vacante->id}}" />
@@ -98,7 +98,7 @@
                         App\Vacante::$FINALIZADA)
                         <x-table-cell>
                             @csrf
-                            @if($postulacion->puntaje == null)
+                            @if($postulacion->puntaje == null && (Auth::user()->rol->id == App\Rol::$JEFE_CATEDRA))
                             <div class="form-group mb-2">
                                 <input type="text" name="postulacion-{{ $postulacion->id }}"
                                     class="form-control-sm puntaje" style="max-width: 35px">
@@ -112,12 +112,15 @@
                     @endforeach
                 </x-table>
                 @if($vacante->status() == App\Vacante::$CERRADA && Auth::user()->id_rol ==
-                App\Rol::$RESPONSABLE_ADMINISTRATIVO)
+                App\Rol::$JEFE_CATEDRA)
                 <div class="d-block mx-auto">
                     <input type="submit" class="btn btn-primary btn-sm " value="Publicar Orden de Mérito" />
                 </div>
                 @endif
             </form>
+            @else
+                No hay postulaciones
+            @endif
             @endif
         </div>
     </div>
@@ -134,10 +137,8 @@
                 if(!parseInt(element.value)){
                     return false;
                 }
-                if (index === (length - 1)) {
-                    return true;
-                }
             });
+            return true;
         }
 </script>
 @endsection

@@ -158,11 +158,13 @@ Consultar Vacantes
                         </x-table-cell>
                         <x-table-cell>
                                 @if(empty($vacante->fecha_cierre))
-                                <x-form route="vacante.cerrarAnticipadamente" method="PUT" :id="$vacante->id"
-                                        hideButton="true">
-                                        <x-split-button buttonType="button" displayName="Cerrar Ahora"
-                                                className="btn-danger" iconName="fa-window-close"></x-split-button>
-                                </x-form>
+                                        @if(Auth::user()->rol->id == App\Rol::$RESPONSABLE_ADMINISTRATIVO)
+                                        <x-form route="vacante.cerrarAnticipadamente" method="PUT" :id="$vacante->id"
+                                                hideButton="true">
+                                                <x-split-button buttonType="button" displayName="Cerrar Ahora"
+                                                        className="btn-danger" iconName="fa-window-close"></x-split-button>
+                                        </x-form>
+                                        @endif
                                 @else
                                 {{\Carbon\Carbon::parse($vacante->fecha_cierre)->format('d-m-Y')}}
                                 @endif
