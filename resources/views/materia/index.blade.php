@@ -19,7 +19,7 @@
         @foreach ($materias as $materia)
         <x-table-row>
                 <x-table-cell>{{$materia->nombre}}</x-table-cell>
-                <x-table-cell>{{$materia->descripcion}}</x-table-cell>
+                <x-table-cell>{{Str::limit($materia->descripcion,50, $end='...')}}</x-table-cell>
                 <x-table-cell>
                         <x-split-button displayName="Detalle" className="btn-success" iconName="fa-list"
                                 routeName="{{route('materia.show', $materia->id)}}"></x-split-button>

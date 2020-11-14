@@ -17,7 +17,7 @@ class FormGroupSelectMateria extends Component
      */
     public function __construct($selected = null)
     {
-        $this->materias = Materia::all();
+        $this->materias = Materia::withTrashed()->get();
         $this->selected = $selected;
     }
 

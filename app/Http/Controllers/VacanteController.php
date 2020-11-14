@@ -41,17 +41,17 @@ class VacanteController extends Controller
         $vacantes = Vacante::with('postulaciones')
             ->with('materia')
             ->with('postulaciones.usuario');
-             
+
         $id_materia = $request->get('id-materia');
         $apertura_fecha_inicio = $request->get('apertura_fecha_inicio');
         $apertura_fecha_fin = $request->get('apertura_fecha_fin');
         $cierre_fecha_inicio = $request->get('cierre_fecha_inicio');
         $cierre_fecha_fin = $request->get('cierre_fecha_fin');
         $orden_merito_inicio = $request->get('orden_merito_inicio');
-        $orden_merito_fin= $request->get('orden_merito_fin');
+        $orden_merito_fin = $request->get('orden_merito_fin');
         $estados = collect($request->get('estados') ?? []);
-        
-        if($estados->count() > 0){
+
+        if ($estados->count() > 0) {
             $estadoCreada = $estados->contains('creada');
             $estadoAbierta = $estados->contains('abierta');
             $estadoCerrada = $estados->contains('cerrada');
@@ -68,10 +68,10 @@ class VacanteController extends Controller
         }
 
         if ($apertura_fecha_inicio) {
-            $vacantes->whereDate('fecha_apertura', '>=' ,$apertura_fecha_inicio);
+            $vacantes->whereDate('fecha_apertura', '>=', $apertura_fecha_inicio);
         }
         if ($apertura_fecha_fin) {
-            $vacantes->whereDate('fecha_apertura', '<=' ,$apertura_fecha_fin);
+            $vacantes->whereDate('fecha_apertura', '<=', $apertura_fecha_fin);
         }
 
         if ($cierre_fecha_inicio) {
@@ -91,7 +91,7 @@ class VacanteController extends Controller
         }
 
         if (!$estadoCreada) {
-            $vacantes->whereRaw('NOT (fecha_cierre IS NULL AND DATE(fecha_apertura) > CURDATE())');  
+            $vacantes->whereRaw('NOT (fecha_cierre IS NULL AND DATE(fecha_apertura) > CURDATE())');
         }
         if (!$estadoAbierta) {
             $vacantes->whereRaw('NOT (fecha_cierre IS NULL AND DATE(fecha_apertura) <= CURDATE())');
@@ -105,22 +105,24 @@ class VacanteController extends Controller
 
         $vacantes_abiertas = $vacantes->paginate(5);
 
-        return view('vacante.index', 
-        [
-            "vacantes" => $vacantes_abiertas, 
-            "postulanteId" => Rol::$POSTULANTE,
-            "id_materia" => $id_materia,
-            "apertura_fecha_inicio" => $apertura_fecha_inicio,
-            "apertura_fecha_fin" => $apertura_fecha_fin,
-            "cierre_fecha_inicio" => $cierre_fecha_inicio,
-            "cierre_fecha_fin" => $cierre_fecha_fin,
-            "orden_merito_inicio" => $orden_merito_inicio,
-            "orden_merito_fin" => $orden_merito_fin,
-            "estadoCreada" => $estadoCreada,
-            "estadoAbierta" => $estadoAbierta,
-            "estadoCerrada" => $estadoCerrada,
-            "estadoFinalizada" => $estadoFinalizada
-        ]);
+        return view(
+            'vacante.index',
+            [
+                "vacantes" => $vacantes_abiertas,
+                "postulanteId" => Rol::$POSTULANTE,
+                "id_materia" => $id_materia,
+                "apertura_fecha_inicio" => $apertura_fecha_inicio,
+                "apertura_fecha_fin" => $apertura_fecha_fin,
+                "cierre_fecha_inicio" => $cierre_fecha_inicio,
+                "cierre_fecha_fin" => $cierre_fecha_fin,
+                "orden_merito_inicio" => $orden_merito_inicio,
+                "orden_merito_fin" => $orden_merito_fin,
+                "estadoCreada" => $estadoCreada,
+                "estadoAbierta" => $estadoAbierta,
+                "estadoCerrada" => $estadoCerrada,
+                "estadoFinalizada" => $estadoFinalizada
+            ]
+        );
     }
 
     /**
@@ -211,7 +213,7 @@ class VacanteController extends Controller
     {
         $now = new DateTime();
         $vacantes_abiertas = Vacante::with('postulaciones')
-            ->with('materia')
+            ->with('materia')->withTrashed()
             ->with('postulaciones.usuario')
             ->where('vacante.fecha_apertura', '<=', $now)
             ->whereNull('vacante.fecha_cierre')
@@ -245,10 +247,10 @@ class VacanteController extends Controller
     {
         dd("prueba");
         $emails = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
-        ->pluck('email');
+            ->pluck('email');
         DB::beginTransaction();
         try {
-            $now =Carbon::now();
+            $now = Carbon::now();
             foreach ($request->except(['_token', 'id_vacante']) as $key => $value) {
                 $id_postulacion = explode('postulacion-', $key)[1];
                 $postulacion = Postulacion::where('id', "=", $id_postulacion)->first();
@@ -262,9 +264,8 @@ class VacanteController extends Controller
             DB::commit();
 
             Mail::to(env('MAIL_USERNAME'))
-            ->bcc($emails)
-            ->send(new \App\Mail\PublicacionOrdenDeMeritoMail($now, $vacante));
-
+                ->bcc($emails)
+                ->send(new \App\Mail\PublicacionOrdenDeMeritoMail($now, $vacante));
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
