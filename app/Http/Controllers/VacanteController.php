@@ -213,7 +213,7 @@ class VacanteController extends Controller
     {
         $now = new DateTime();
         $vacantes_abiertas = Vacante::with('postulaciones')
-            ->with('materia')->withTrashed()
+            ->with('materia')
             ->with('postulaciones.usuario')
             ->where('vacante.fecha_apertura', '<=', $now)
             ->whereNull('vacante.fecha_cierre')
