@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-3 pb-5">
+<div class="col-12 col-md-6 col-lg-4 pb-5">
     <a href="{{route($menuItem->routeName)}}" class="icon-home-anchor">
         <div class="card card-home mx-auto">
             <div class="card-body">
