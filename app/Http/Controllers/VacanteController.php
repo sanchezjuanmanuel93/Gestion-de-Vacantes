@@ -245,7 +245,6 @@ class VacanteController extends Controller
 
     public function publicarOrdenDeMerito(Request $request)
     {
-        dd("prueba");
         $emails = User::where('id_rol', Rol::$RESPONSABLE_ADMINISTRATIVO)
             ->pluck('email');
         DB::beginTransaction();
